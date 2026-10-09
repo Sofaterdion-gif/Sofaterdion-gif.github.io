@@ -9,6 +9,12 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="page-transition" aria-hidden="true"><span>OPEN BELL</span></div>
+  <div class="site-loader" aria-hidden="true">
+    <div class="loader-mark">OB</div>
+    <p>OPEN BELL</p>
+    <span>LOADING MARKET REPLAY</span>
+  </div>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Open Bell home">
       <span class="brand-mark">OB</span>
@@ -16,10 +22,24 @@
     </a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" class="site-nav" aria-label="Main navigation">
-      <a href="#game">Game</a>
-      <a href="#markets">Markets</a>
-      <a href="#download">Download</a>
-      <a href="#updates">Updates</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" type="button" aria-expanded="false">Explore <span>⌄</span></button>
+        <div class="nav-dropdown-menu">
+          <a class="page-link" href="#about">理念 Philosophy</a>
+          <a class="page-link" href="#game">玩法 Game</a>
+          <a class="page-link" href="#screens">實機畫面 Screens</a>
+          <a class="page-link" href="#markets">市場 Markets</a>
+          <a class="page-link" href="#updates">開發日誌 Updates</a>
+        </div>
+      </div>
+      <a class="page-link" href="#download">Download</a>
+      <label class="language-picker">
+        <span class="sr-only">Language</span>
+        <select id="language-select" aria-label="Language">
+          <option value="zh">繁中</option>
+          <option value="en">EN</option>
+        </select>
+      </label>
       <a class="nav-link" href="https://github.com/Sofaterdion-gif/Sofaterdion-gif.github.io" target="_blank" rel="noreferrer">GitHub</a>
     </nav>
   </header>
@@ -53,30 +73,71 @@
       </div>
     </section>
 
-    <section id="game" class="section-wrap section">
-      <div class="section-heading"><p class="eyebrow">THE LOOP</p><h2>每一天，都有一個選擇。</h2><p>從第一筆下單到最後一次復盤，Open Bell 把市場變成一段可以反覆閱讀的旅程。</p></div>
-      <div class="feature-grid">
-        <article class="feature-card"><span class="feature-number">01</span><h3>Trade</h3><p>買入、賣出、放空、回補，使用數量或資金百分比建立自己的節奏。</p><span class="feature-icon">↗</span></article>
-        <article class="feature-card accent"><span class="feature-number">02</span><h3>Replay</h3><p>播放、暫停、單步與 0.5x 到 4x 倍速，重新走過每一根 K 線。</p><span class="feature-icon">▶</span></article>
-        <article class="feature-card"><span class="feature-number">03</span><h3>Career</h3><p>選擇職場或散戶人生，移動、工作、研究、管理資金與生活。</p><span class="feature-icon">⌁</span></article>
+    <section id="about" class="section-wrap intro-section reveal">
+      <div class="intro-copy">
+        <p class="eyebrow" data-i18n="aboutEyebrow">ABOUT OPEN BELL</p>
+        <h2 data-i18n="aboutTitle">把市場變成<br><em>可以反覆閱讀的日子。</em></h2>
+        <p data-i18n="aboutText">Open Bell 不是即時投資工具，而是一款以決策、節奏與回放為核心的交易模擬遊戲。你可以在安全的遊戲世界裡試錯、觀察，再重新走一次。</p>
+      </div>
+      <div class="intro-points">
+        <div><strong>01</strong><span>看懂每一根 K 線</span><small>用回放重新理解市場節奏。</small></div>
+        <div><strong>02</strong><span>建立自己的交易習慣</span><small>數量、百分比與不同市場規則。</small></div>
+        <div><strong>03</strong><span>走自己的散戶人生</span><small>工作、研究、移動與管理生活。</small></div>
       </div>
     </section>
 
-    <section id="markets" class="market-section section">
+    <section id="game" class="section-wrap section reveal">
+      <div class="section-heading"><p class="eyebrow">THE LOOP</p><h2>每一天，都有一個選擇。</h2><p>從第一筆下單到最後一次復盤，Open Bell 把市場變成一段可以反覆閱讀的旅程。</p></div>
+      <div class="feature-grid">
+        <article class="feature-card reveal"><span class="feature-number">01</span><h3>Trade</h3><p>買入、賣出、放空、回補，使用數量或資金百分比建立自己的節奏。</p><span class="feature-icon">↗</span></article>
+        <article class="feature-card accent reveal"><span class="feature-number">02</span><h3>Replay</h3><p>播放、暫停、單步與 0.5x 到 4x 倍速，重新走過每一根 K 線。</p><span class="feature-icon">▶</span></article>
+        <article class="feature-card reveal"><span class="feature-number">03</span><h3>Career</h3><p>選擇職場或散戶人生，移動、工作、研究、管理資金與生活。</p><span class="feature-icon">⌁</span></article>
+      </div>
+    </section>
+
+    <section id="screens" class="section-wrap section screens-section reveal">
+      <div class="section-heading">
+        <p class="eyebrow">IN-GAME SCREENS</p>
+        <h2>現在就能看到的遊戲畫面。</h2>
+        <p>以下是目前開發版的實機介面展示：桌面版優先，手機畫面仍屬測試階段。畫面會隨版本持續調整。</p>
+      </div>
+      <div class="device-showcase">
+        <figure class="desktop-device">
+          <div class="device-bar"><span>OPEN BELL</span><span class="device-live">● LIVE PLAYTEST</span></div>
+          <div class="desktop-screen">
+            <div class="screen-sidebar"><b>MARKETS</b><span>US EQUITIES</span><span>CRYPTO</span><span>CAREER</span><span>REPLAY</span></div>
+            <div class="screen-main">
+              <div class="screen-title"><span>BTC / USDT</span><strong>42,680.40</strong><small>+3.18%</small></div>
+              <div class="screen-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="screen-controls"><span>DAY 042 / 180</span><button>▶ PLAY</button><button>2.0x</button><button>STEP</button></div>
+            </div>
+            <div class="screen-order"><b>ORDER</b><small>QUANTITY</small><strong>10</strong><button>BUY</button><button>SELL</button></div>
+          </div>
+          <figcaption><b>Windows / PC</b><span>目前可玩試玩版</span></figcaption>
+        </figure>
+        <figure class="phone-device">
+          <div class="phone-speaker"></div>
+          <div class="phone-screen"><span class="phone-brand">OB</span><b>CAREER</b><div class="phone-chart"></div><strong>散戶人生</strong><small>移動 · 研究 · 交易</small><button>開始測試</button></div>
+          <figcaption><b>Mobile</b><span>測試版介面</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="markets" class="market-section section reveal">
       <div class="section-wrap market-layout">
         <div class="section-heading"><p class="eyebrow">SIX WORLDS</p><h2>一張桌，六個市場。</h2><p>從熟悉的股票到高波動的加密市場，每個市場都有不同的節奏與風險。</p></div>
         <div class="market-list">
-          <div><b>US</b><span>美股</span><small>AAPL · TSLA · GOOG</small></div>
-          <div><b>TW</b><span>台股</span><small>2330 · 2317 · 2454</small></div>
-          <div><b>HK</b><span>港股</span><small>0700 · 9988 · 0005</small></div>
-          <div><b>CRYPTO</b><span>加密</span><small>BTC · ETH · SOL</small></div>
-          <div><b>FUNDS</b><span>基金</span><small>VT · BND · 0050</small></div>
-          <div><b>FUTURES</b><span>期貨</span><small>ES · NQ · GC</small></div>
+          <button type="button"><b>US</b><span>美股</span><small>AAPL · TSLA · GOOG</small></button>
+          <button type="button"><b>TW</b><span>台股</span><small>2330 · 2317 · 2454</small></button>
+          <button type="button"><b>HK</b><span>港股</span><small>0700 · 9988 · 0005</small></button>
+          <button type="button"><b>CRYPTO</b><span>加密</span><small>BTC · ETH · SOL</small></button>
+          <button type="button"><b>FUNDS</b><span>基金</span><small>VT · BND · 0050</small></button>
+          <button type="button"><b>FUTURES</b><span>期貨</span><small>ES · NQ · GC</small></button>
         </div>
       </div>
     </section>
 
-    <section id="download" class="section-wrap section download-section">
+    <section id="download" class="section-wrap section download-section reveal">
       <div class="download-card">
         <div class="download-cover"><img src="open-bell-cover.svg" alt="Open Bell 開發中試玩版封面"></div>
         <div>
@@ -90,7 +151,7 @@
       <p class="playtest-note">試玩版狀態：Windows / PC 優先 · 行動版仍為測試階段 · 請以開發日誌為準</p>
     </section>
 
-    <section id="updates" class="section-wrap section updates">
+    <section id="updates" class="section-wrap section updates reveal">
       <div class="section-heading"><p class="eyebrow">DEV LOG</p><h2>正在建造。</h2></div>
       <div class="update-row"><time>10.2026</time><strong>Open Bell web 基礎頁</strong><span>官網首頁、遊戲特色、下載入口</span></div>
       <div class="update-row"><time>10.2026</time><strong>Replay controls</strong><span>播放、單步與 0.5x — 4x 倍速</span></div>
@@ -98,7 +159,7 @@
     </section>
   </main>
 
-  <footer class="site-footer section-wrap"><span>© 2026 Open Bell</span><span>Made for replaying the market.</span><a href="https://openbell.me">openbell.me ↗</a></footer>
+  <footer class="site-footer section-wrap"><span>© 2026 Open Bell</span><span>Made in Taiwan (Republic of China) · Made for replaying the market.</span><a class="page-link" href="#top">回到頂部 ↑</a></footer>
   <script src="script.js"></script>
 </body>
 </html>

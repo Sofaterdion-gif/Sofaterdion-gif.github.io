@@ -24,7 +24,7 @@
     <text x="70" y="100" font-size="24" letter-spacing="8" fill="#4de6a2">MARKET REPLAY / PLAYTEST</text>
     <text x="70" y="175" font-size="76" font-weight="700" letter-spacing="-3">OPEN BELL</text>
     <text x="73" y="215" font-size="22" fill="#93a0af">Read the market. Play the day.</text>
-    <text x="70" y="595" font-size="18" letter-spacing="3" fill="#ffb56d">CURRENT BUILD · IN DEVELOPMENT · WINDOWS / PC</text>
+    <text x="70" y="595" font-size="18" letter-spacing="3" fill="#ffb56d">MADE IN TAIWAN (REPUBLIC OF CHINA) · WINDOWS / PC</text>
   </g>
   <g transform="translate(930 72)">
     <rect width="200" height="58" rx="29" fill="#4de6a2"/>

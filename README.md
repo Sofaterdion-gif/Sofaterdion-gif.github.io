@@ -11,5 +11,6 @@
 - 平台：Windows 64-bit
 - 狀態：開發中試玩版
 - 行動版：測試階段，尚未作為正式下載
+- 製作地：Taiwan (Republic of China)
 
 下載後直接雙擊 `.exe` 即可啟動。若 Windows 顯示 SmartScreen 提示，請確認檔案來源是本專案 GitHub Pages repository。
