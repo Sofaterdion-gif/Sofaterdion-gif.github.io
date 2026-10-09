@@ -259,3 +259,22 @@ body.language-changing { filter: blur(3px); transition: filter .16s ease; }
   .js .reveal { opacity: 1; transform: none; }
   .page-transition { display: none; }
 }
+
+/* Motion and tactile feedback */
+html.js body:not(.is-loading) .site-header,
+html.js body:not(.is-loading) main,
+html.js body:not(.is-loading) .site-footer { animation: content-arrive .75s cubic-bezier(.22,1,.36,1) both; }
+html.js body:not(.is-loading) main { animation-delay: .08s; }
+@keyframes content-arrive { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+button, a.button, a.text-link, a.nav-link { position: relative; overflow: hidden; transition: color .2s, background-color .2s, border-color .2s, transform .2s, box-shadow .2s; }
+button::after, a.button::after, a.text-link::after, a.nav-link::after { content: ""; position: absolute; inset: 50%; width: 0; height: 0; border-radius: 999px; background: rgba(77,230,162,.24); transform: translate(-50%,-50%); pointer-events: none; }
+button.is-pressed, a.button.is-pressed, a.text-link.is-pressed, a.nav-link.is-pressed { transform: translateY(2px) scale(.98); }
+button.is-pressed::after, a.button.is-pressed::after, a.text-link.is-pressed::after, a.nav-link.is-pressed::after { width: 180px; height: 180px; transition: width .35s ease, height .35s ease; }
+.button-primary:hover, .button-primary:focus-visible, .download-link:hover { box-shadow: 0 0 0 4px rgba(77,230,162,.1), 0 12px 30px rgba(77,230,162,.16); }
+.site-loader { transition: opacity .45s ease, visibility .45s ease; }
+body.download-started .download-card { animation: download-pulse .8s ease both; }
+body.download-started .download-link { color: var(--bg); background: var(--green); }
+@keyframes download-pulse { 0% { transform: scale(1); } 35% { transform: scale(1.012); box-shadow: 0 0 0 8px rgba(77,230,162,.08); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  html.js body:not(.is-loading) .site-header, html.js body:not(.is-loading) main, html.js body:not(.is-loading) .site-footer { animation: none; }
+}

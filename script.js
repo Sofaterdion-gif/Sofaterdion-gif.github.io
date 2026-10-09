@@ -1,7 +1,7 @@
 document.documentElement.classList.add("js");
 document.body.classList.add("is-loading");
 
-const finishLoading = () => window.setTimeout(() => document.body.classList.remove("is-loading"), 450);
+const finishLoading = () => window.setTimeout(() => document.body.classList.remove("is-loading"), 900);
 if (document.readyState === "complete") finishLoading();
 else window.addEventListener("load", finishLoading, { once: true });
 
@@ -99,6 +99,21 @@ if ("IntersectionObserver" in window) {
 } else {
   revealItems.forEach((item) => item.classList.add("is-visible"));
 }
+
+document.querySelectorAll("button, .button, .text-link, .nav-link").forEach((element) => {
+  element.addEventListener("pointerdown", () => element.classList.add("is-pressed"));
+  ["pointerup", "pointercancel", "blur"].forEach((eventName) => {
+    element.addEventListener(eventName, () => element.classList.remove("is-pressed"));
+  });
+});
+
+document.querySelectorAll("a[href*='OpenBell-Playtest.exe']").forEach((link) => {
+  link.classList.add("download-link");
+  link.addEventListener("click", () => {
+    document.body.classList.add("download-started");
+    window.setTimeout(() => document.body.classList.remove("download-started"), 900);
+  });
+});
 
 const translations = {
   zh: {
