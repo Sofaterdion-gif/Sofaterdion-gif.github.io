@@ -158,6 +158,12 @@ const maybeFinishLoading = () => {
     window.setTimeout(() => document.body.classList.remove("boot-black"), 180);
   }, reduceMotion ? 1400 : 1400);
 };
+const loadingFailsafe = window.setTimeout(() => {
+  if (loadingFinished) return;
+  codeComplete = true;
+  pageLoaded = true;
+  maybeFinishLoading();
+}, 6500);
 if (loaderCode) {
   let codeIndex = 0;
   const typeCode = () => {
@@ -184,6 +190,7 @@ const finishLoading = () => {
 };
 if (document.readyState === "complete") finishLoading();
 else window.addEventListener("load", finishLoading, { once: true });
+window.addEventListener("pageshow", finishLoading, { once: true });
 
 const nav = document.querySelector(".site-nav");
 const dropdown = document.querySelector(".nav-dropdown");

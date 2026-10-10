@@ -50,13 +50,13 @@ body::before { content: ""; position: fixed; inset: 0; z-index: 90; pointer-even
 .bg-layer-ambient { z-index: 1; overflow: hidden; filter: blur(30px); transition: filter 320ms cubic-bezier(.16,1,.3,1); }
 .bg-layer-ambient i { position: absolute; width: 28vw; aspect-ratio: 1; border-radius: 50%; opacity: .13; background: var(--green); filter: blur(100px); animation: ambient-drift 16s ease-in-out infinite; mix-blend-mode: screen; }
 .bg-layer-ambient i:nth-child(1) { top: 4%; left: 8%; background: var(--cmyk-cyan); }.bg-layer-ambient i:nth-child(2) { top: 35%; right: 4%; background: var(--violet); animation-delay: -4s; }.bg-layer-ambient i:nth-child(3) { bottom: -10%; left: 35%; background: var(--cmyk-magenta); animation-delay: -8s; }.bg-layer-ambient i:nth-child(4) { top: 55%; left: -12%; background: var(--cmyk-yellow); animation-delay: -12s; opacity: .07; }
-.bg-layer-data { z-index: 2; opacity: .24; }
+.bg-layer-data { z-index: 2; opacity: .46; }
 .bg-layer-grid { z-index: 3; opacity: .12; transform: perspective(800px) rotateX(58deg) translate3d(var(--grid-x, 0px), var(--grid-y, 0px), 0) scale(1.15); transition: transform 700ms cubic-bezier(.16,1,.3,1), opacity 700ms cubic-bezier(.16,1,.3,1); background: linear-gradient(rgba(0,217,255,.16) 1px, transparent 1px), linear-gradient(90deg, rgba(167,139,250,.16) 1px, transparent 1px); background-size: 96px 96px; mask-image: linear-gradient(to bottom, transparent 0%, #000 34%, transparent 92%); transform-origin: center bottom; }
 .bg-layer-grid::after { content: ""; position: absolute; inset: 42% -10% -12%; background: inherit; transform: perspective(700px) rotateX(62deg) scale(1.35); transform-origin: center top; opacity: .5; }
 body.idle-mode .bg-layer-ambient i { animation-play-state: paused; opacity: .1; }
-body.idle-mode .bg-layer-data { opacity: .16; }
+body.idle-mode .bg-layer-data { opacity: .28; }
 body.idle-mode .bg-layer-grid { opacity: .07; }
-@media (max-width: 767px) { .bg-layer-ambient i:nth-child(n+3) { opacity: 0; }.bg-layer-grid { opacity: .07; background-size: 72px 72px; } }
+@media (max-width: 767px) { .bg-layer-ambient i:nth-child(n+3) { opacity: 0; }.bg-layer-data { opacity: .36; }.bg-layer-grid { opacity: .07; background-size: 72px 72px; } }
 @media (prefers-reduced-motion: reduce) { .bg-layer-ambient, .bg-layer-ambient i, .bg-layer-data, .bg-layer-grid { animation: none !important; transition: none !important; }.bg-layer-data { opacity: 0; }.bg-layer-grid { opacity: .05; } }
 .content-layer { position: relative; z-index: 10; }
 main { position: relative; z-index: 10; min-height: 100vh; }
