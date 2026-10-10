@@ -190,16 +190,24 @@ document.querySelectorAll("a[href*='OpenBell-Playtest.exe']").forEach((link) => 
     if (dayElement) dayElement.textContent = `DAY ${String(playtestDay).padStart(3, "0")} / 180`;
     if (positionElement) positionElement.textContent = `POSITION: ${playtestUnits ? `${playtestUnits} BTC` : "FLAT"} · CASH: $${playtestCash.toLocaleString("en-US", { minimumFractionDigits: 2 })}`;
     if (chartElement) {
-      const bar = document.createElement("i");
-      bar.style.height = `${Math.max(12, Math.min(94, 50 + change * 8 + Math.random() * 20))}%`;
-      bar.className = change >= 0 ? "up" : "down";
-      chartElement.appendChild(bar);
+      const candle = document.createElement("i");
+      const direction = Math.random() < 0.5 ? -1 : 1;
+      const bodyHeight = 18 + Math.random() * 30;
+      const wickHeight = bodyHeight + 18 + Math.random() * 24;
+      const bodyOffset = 10 + Math.random() * Math.max(8, 78 - bodyHeight);
+      candle.style.setProperty("--body-height", `${bodyHeight}%`);
+      candle.style.setProperty("--wick-height", `${wickHeight}%`);
+      candle.style.setProperty("--body-offset", `${bodyOffset}%`);
+      candle.className = direction > 0 ? "up" : "down";
+      chartElement.appendChild(candle);
       while (chartElement.children.length > 28) chartElement.firstElementChild.remove();
     }
   };
 
   const stepPlaytest = () => {
-    playtestPrice = Math.max(100, playtestPrice + (Math.random() - 0.46) * 420);
+    const direction = Math.random() < 0.5 ? -1 : 1;
+    const move = 80 + Math.random() * 260;
+    playtestPrice = Math.max(100, playtestPrice + direction * move);
     playtestDay = Math.min(180, playtestDay + 1);
     renderPlaytest();
   };

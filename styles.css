@@ -176,8 +176,11 @@ h1 em { color: var(--green); font-style: normal; }
 .web-market-head b { color: var(--green); }
 .web-market-head b.negative { color: #ff9b9b; }
 .web-chart { display: flex; align-items: end; gap: 4px; height: 170px; margin: 18px 0; padding: 12px; border: 1px solid var(--line); background: repeating-linear-gradient(0deg, transparent 0 37px, #263140 38px); }
-.web-chart i { flex: 1; min-width: 4px; background: var(--green); animation: bar-in .3s ease both; }
-.web-chart i.down { background: #ff9b9b; }
+.web-chart i { position: relative; flex: 1; min-width: 6px; height: 100%; background: transparent; animation: bar-in .3s ease both; }
+.web-chart i::before, .web-chart i::after { content: ""; position: absolute; left: 50%; transform: translateX(-50%); }
+.web-chart i::before { bottom: var(--body-offset); width: 1px; height: var(--wick-height); background: var(--green); }
+.web-chart i::after { bottom: var(--body-offset); width: min(12px, 80%); height: var(--body-height); background: var(--green); box-shadow: 0 0 0 1px rgba(77, 230, 162, .15); }
+.web-chart i.down::before, .web-chart i.down::after { background: #ff6b78; }
 .web-playtest-toolbar, .web-trade-panel { display: flex; align-items: center; gap: 8px; }
 .web-playtest-toolbar { justify-content: space-between; color: var(--muted); font-size: 11px; }
 .web-playtest-toolbar button, .web-trade-panel button { border: 1px solid #385248; padding: 8px 12px; background: #142b25; color: var(--green); cursor: pointer; }
