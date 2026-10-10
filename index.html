@@ -54,12 +54,36 @@
         </div>
       </div>
     </section>
+    <section class="home-modes" aria-labelledby="home-modes-title">
+      <div class="home-modes-intro" data-reveal>
+        <p class="eyebrow">OPEN BELL / CHOOSE YOUR DAY</p>
+        <h2 id="home-modes-title">先選一種走法。<br><em>市場會自己說話。</em></h2>
+        <p>不用急著把所有系統學完。從一段回放、一筆交易，或一天生涯開始。</p>
+      </div>
+      <div class="home-mode-grid">
+        <a class="home-mode-card" href="game.html#1" data-reveal data-mode="trade" data-mode-title="做一筆決定" data-mode-kicker="01 / TRADE" data-mode-description="調整部位，看風險如何回到你的手上。" data-mode-points="設定部位與槓桿|觀察盈虧如何變化|留下自己的交易節奏"><span>01 / TRADE</span><strong>做一筆決定</strong><p>調整部位，看風險如何回到你的手上。</p><b>進入交易 ↗</b></a>
+        <a class="home-mode-card" href="game.html#2" data-reveal data-mode="replay" data-mode-title="把一天倒回去" data-mode-kicker="02 / REPLAY" data-mode-description="慢一點，看清楚那根 K 線為什麼出現。" data-mode-points="播放、暫停與單步前進|切換 0.5× 到 4×|回看每一次決策"><span>02 / REPLAY</span><strong>把一天倒回去</strong><p>慢一點，看清楚那根 K 線為什麼出現。</p><b>開始回放 ↗</b></a>
+        <a class="home-mode-card" href="game.html#3" data-reveal data-mode="career" data-mode-title="安排你的生活" data-mode-kicker="03 / CAREER" data-mode-description="研究、工作、休息，時間也是你的資本。" data-mode-points="分配時間與注意力|在生活與資金間取捨|走出自己的路線"><span>03 / CAREER</span><strong>安排你的生活</strong><p>研究、工作、休息，時間也是你的資本。</p><b>閱讀生涯 ↗</b></a>
+      </div>
+    </section>
   </main>
+  <div class="mode-modal" data-mode-modal aria-hidden="true">
+    <div class="mode-modal-scrim" data-mode-close></div>
+    <article class="mode-modal-panel" role="dialog" aria-modal="true" aria-labelledby="mode-modal-title">
+      <button class="mode-modal-close" type="button" data-mode-close aria-label="關閉模式介紹">關閉 ×</button>
+      <p class="eyebrow" data-modal-kicker>OPEN BELL / SELECT MODE</p>
+      <h2 id="mode-modal-title" data-modal-title></h2>
+      <p class="mode-modal-description" data-modal-description></p>
+      <ul class="mode-modal-points" data-modal-points></ul>
+      <a class="button button-primary mode-modal-enter" data-modal-enter href="game.html">進入模式 ↗</a>
+    </article>
+  </div>
   <footer class="home-footer content-layer"><span>© 2026 Open Bell</span><span>Tirde Studio · Open Bell™</span></footer>
   <script src="background-motion.js?v=20261010-architecture1"></script>
   <script src="background-3d.js?v=20261010-3d1"></script>
   <script src="page-motion.js?v=20261010-architecture1"></script>
   <script src="loader.js?v=20261010-3d1"></script>
+  <script src="interaction.js?v=20261010-mode1"></script>
   <script src="script.js?v=20261010-architecture1"></script>
 </body>
 </html>
