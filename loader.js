@@ -2,6 +2,44 @@
   const loader = document.querySelector(".site-loader");
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!loader) return;
+  let repeatLoad = false;
+  try {
+    repeatLoad = sessionStorage.getItem("openbell-loader-seen") === "1";
+    sessionStorage.setItem("openbell-loader-seen", "1");
+  } catch {
+    repeatLoad = false;
+  }
+  const loadDuration = repeatLoad ? 4400 : 8800;
+  document.body.classList.toggle("loader-repeat", repeatLoad);
+  loader.style.setProperty("--loader-duration", `${loadDuration}ms`);
+  const progress = document.createElement("div");
+  progress.className = "loader-progress";
+  progress.setAttribute("role", "progressbar");
+  progress.setAttribute("aria-label", "Loading Open Bell");
+  progress.setAttribute("aria-valuemin", "0");
+  progress.setAttribute("aria-valuemax", "100");
+  progress.setAttribute("aria-valuenow", "0");
+  progress.innerHTML = "<i></i><span>0%</span>";
+  loader.appendChild(progress);
+  const progressFill = progress.querySelector("i");
+  const progressLabel = progress.querySelector("span");
+  const progressStart = performance.now();
+  const updateProgress = (now) => {
+    const value = Math.min(100, Math.round(((now - progressStart) / loadDuration) * 100));
+    progressFill.style.transform = `scaleX(${value / 100})`;
+    progressLabel.textContent = `${value}%`;
+    progress.setAttribute("aria-valuenow", String(value));
+    if (value < 100) requestAnimationFrame(updateProgress);
+  };
+  requestAnimationFrame(updateProgress);
+  const quote = document.createElement("blockquote");
+  quote.className = "loader-quote";
+  quote.textContent = "「先看清楚，再做決定。」";
+  loader.appendChild(quote);
+  const activity = document.createElement("div");
+  activity.className = "loader-activity";
+  activity.innerHTML = "<b>LIVE EVENT</b><span>TAIWAN MARKET OPEN</span>";
+  loader.appendChild(activity);
   const status = loader.querySelector("span");
   const states = ["SYSTEM INIT", "LOADING MARKET DATA", "CALIBRATING INTERFACE", "SIGNAL READY"];
   let index = 0;
@@ -97,6 +135,6 @@
       }
     }
   };
-  window.setTimeout(() => window.OpenBellLoader.complete(), 8800);
+  window.setTimeout(() => window.OpenBellLoader.complete(), loadDuration);
   window.addEventListener("beforeunload", () => window.clearInterval(timer), { once: true });
 })();

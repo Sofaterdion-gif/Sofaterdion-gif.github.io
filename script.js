@@ -146,13 +146,14 @@ const loaderCodeText = [
 let pageLoaded = document.readyState === "complete";
 let codeComplete = !loaderCode;
 let loadingFinished = false;
+const loaderDuration = document.body.classList.contains("loader-repeat") ? 4400 : 8800;
 const maybeFinishLoading = () => {
   if (!pageLoaded || !codeComplete || loadingFinished) return;
   loadingFinished = true;
   window.setTimeout(() => {
     document.body.classList.add("boot-black");
     window.OpenBellLoader?.complete();
-  }, 8800);
+  }, loaderDuration);
 };
 const loadingFailsafe = window.setTimeout(() => {
   if (loadingFinished) return;

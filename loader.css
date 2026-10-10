@@ -89,11 +89,84 @@ body.is-loading #system-loader {
 }
 .site-loader .loader-code { top: auto; right: 24px; bottom: 24px; width: min(560px, calc(100% - 48px)); color: rgba(143,255,228,.7); font: 10px/1.7 var(--mono, monospace); text-align: right; white-space: pre-wrap; }
 .loader-caret { color: var(--loader-orange); }
+.loader-progress {
+  position: absolute;
+  left: 50%;
+  bottom: 46px;
+  width: min(360px, calc(100vw - 48px));
+  height: 3px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(255,255,255,.14);
+  box-shadow: 0 0 14px rgba(143,255,228,.12);
+  overflow: hidden;
+}
+.loader-progress i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(90deg, #ff3cac, #784ba0 45%, #2bffff);
+  box-shadow: 0 0 16px rgba(43,255,255,.72);
+  will-change: transform;
+}
+.loader-progress span {
+  position: absolute;
+  right: 0;
+  bottom: 8px;
+  color: rgba(255,255,255,.65);
+  font: 9px var(--mono, monospace);
+  letter-spacing: .12em;
+}
+.loader-quote {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(84vw, 420px);
+  margin: 0;
+  color: rgba(255,255,255,.86);
+  font: 600 14px/1.6 var(--mono, monospace);
+  letter-spacing: .12em;
+  text-align: center;
+  transform: translate(-50%, 112px);
+  opacity: 0;
+  animation: loader-quote-rise var(--loader-duration) ease both;
+  pointer-events: none;
+}
+.loader-activity {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  max-width: 88vw;
+  padding: 8px 12px;
+  border: 1px solid rgba(255,92,176,.55);
+  border-radius: 999px;
+  background: rgba(255,36,128,.12);
+  box-shadow: 0 0 22px rgba(255,36,128,.22);
+  color: #ffb3d5;
+  font: 700 9px var(--mono, monospace);
+  letter-spacing: .12em;
+  transform: translate(-50%, 168px) scale(.88);
+  opacity: 0;
+  animation: loader-activity-rise var(--loader-duration) ease both;
+  pointer-events: none;
+}
+.loader-activity b { color: #ff5cac; }
+.loader-activity span { color: rgba(255,255,255,.78); }
+.loader-repeat .loader-progress { bottom: 30px; }
+body.loader-repeat.is-loading .loader-taiwan,
+body.loader-repeat.is-loading .loader-quote,
+body.loader-repeat.is-loading .loader-activity { animation-duration: 4.4s; }
 .loader-particle { position: absolute; left: var(--particle-x); top: var(--particle-y); width: 2px; height: 2px; border-radius: 50%; background: var(--loader-cyan); box-shadow: 0 0 9px var(--loader-cyan); opacity: 0; animation: loader-particle 2.4s var(--particle-delay) ease-in-out infinite; pointer-events: none; }
 .loader-taiwan { position: absolute; left: 50%; top: 50%; width: 76px; height: 152px; transform: translate(-50%, -50%) scale(.28); transform-origin: center; opacity: 0; filter: blur(8px) drop-shadow(0 0 8px rgba(143,255,228,.25)); pointer-events: none; }
 .loader-taiwan svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .loader-taiwan path { fill: rgba(143,255,228,.2); stroke: var(--loader-cyan); stroke-width: 2; vector-effect: non-scaling-stroke; }
-body.is-loading .loader-taiwan { animation: loader-taiwan-gather 8.8s cubic-bezier(.22,1,.36,1) both; }
+body.is-loading .loader-taiwan { animation: loader-taiwan-gather var(--loader-duration) cubic-bezier(.22,1,.36,1) both; }
 .loader-burst { position: absolute; left: 50%; top: 50%; width: 2px; height: 2px; pointer-events: none; }
 .loader-burst-line {
   position: absolute;
@@ -121,6 +194,16 @@ body.is-loading .loader-taiwan { animation: loader-taiwan-gather 8.8s cubic-bezi
   35% { opacity: .25; transform: translate(-50%, -50%) scale(.52); filter: blur(7px) drop-shadow(0 0 12px rgba(143,255,228,.4)); }
   72% { opacity: .7; transform: translate(-50%, -50%) scale(.86); filter: blur(3px) drop-shadow(0 0 20px rgba(143,255,228,.7)); }
   100% { opacity: 1; transform: translate(-50%, -50%) scale(1); filter: blur(0) drop-shadow(0 0 28px rgba(143,255,228,1)); }
+}
+@keyframes loader-quote-rise {
+  0%, 30% { opacity: 0; transform: translate(-50%, 124px); }
+  42%, 78% { opacity: .9; transform: translate(-50%, 112px); }
+  100% { opacity: 0; transform: translate(-50%, 96px); }
+}
+@keyframes loader-activity-rise {
+  0%, 55% { opacity: 0; transform: translate(-50%, 178px) scale(.88); }
+  68%, 86% { opacity: 1; transform: translate(-50%, 168px) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, 156px) scale(1.04); }
 }
 @keyframes loader-core-burst { 0% { transform: scale(1); opacity: 1; } 55% { transform: scale(1.18); opacity: 1; } 100% { transform: scale(.58); opacity: 0; } }
 @keyframes loader-completion {
