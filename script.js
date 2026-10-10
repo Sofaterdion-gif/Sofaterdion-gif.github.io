@@ -53,6 +53,10 @@ else window.addEventListener("load", finishLoading, { once: true });
 const nav = document.querySelector(".site-nav");
 const dropdown = document.querySelector(".nav-dropdown");
 const dropdownToggle = document.querySelector(".nav-dropdown-toggle");
+const dropdownMenu = dropdown?.querySelector(".nav-dropdown-menu");
+const dropdownClose = dropdown?.querySelector(".nav-menu-close");
+const dropdownPanel = dropdown?.querySelector(".nav-menu-panel");
+const getMenuFocusables = () => dropdownMenu ? [...dropdownMenu.querySelectorAll("button, a")].filter((element) => !element.hasAttribute("disabled")) : [];
 const closeNav = () => {
   nav?.classList.remove("open");
 };
@@ -70,11 +74,13 @@ if (dropdown && dropdownToggle) {
     const open = dropdown.classList.toggle("open");
     dropdownToggle.setAttribute("aria-expanded", String(open));
     document.body.classList.toggle("nav-overlay-open", open);
+    if (open) window.setTimeout(() => dropdownClose?.focus(), 40);
   });
   dropdown.addEventListener("focusin", (event) => {
     if (event.target === dropdownToggle) return;
     dropdown.classList.add("open");
     dropdownToggle.setAttribute("aria-expanded", "true");
+    document.body.classList.add("nav-overlay-open");
   });
   dropdown.addEventListener("focusout", () => {
     window.setTimeout(() => {
@@ -85,6 +91,7 @@ if (dropdown && dropdownToggle) {
     if (!dropdown.contains(event.target)) closeDropdown();
   });
   dropdown.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => closeDropdown()));
+  dropdownClose?.addEventListener("click", () => closeDropdown({ returnFocus: true }));
   dropdownToggle.addEventListener("wheel", (event) => {
     event.preventDefault();
     const open = event.deltaY < 0;
@@ -92,8 +99,24 @@ if (dropdown && dropdownToggle) {
     dropdownToggle.setAttribute("aria-expanded", String(open));
     document.body.classList.toggle("nav-overlay-open", open);
   }, { passive: false });
-  dropdown.querySelector(".nav-dropdown-menu")?.addEventListener("click", (event) => {
+  dropdownMenu?.addEventListener("click", (event) => {
     if (event.target === event.currentTarget) closeDropdown();
+  });
+  dropdownPanel?.addEventListener("wheel", (event) => event.stopPropagation(), { passive: true });
+  dropdownMenu?.addEventListener("touchmove", (event) => event.stopPropagation(), { passive: true });
+  dropdownMenu?.addEventListener("keydown", (event) => {
+    if (event.key !== "Tab") return;
+    const focusables = getMenuFocusables();
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   });
 }
 
