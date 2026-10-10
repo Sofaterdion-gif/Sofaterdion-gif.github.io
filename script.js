@@ -50,14 +50,11 @@ const finishLoading = () => {
 if (document.readyState === "complete") finishLoading();
 else window.addEventListener("load", finishLoading, { once: true });
 
-const toggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
 const dropdown = document.querySelector(".nav-dropdown");
 const dropdownToggle = document.querySelector(".nav-dropdown-toggle");
 const closeNav = () => {
-  if (!toggle || !nav) return;
-  nav.classList.remove("open");
-  toggle.setAttribute("aria-expanded", "false");
+  nav?.classList.remove("open");
 };
 const closeDropdown = ({ returnFocus = false } = {}) => {
   if (!dropdown || !dropdownToggle) return;
@@ -65,17 +62,6 @@ const closeDropdown = ({ returnFocus = false } = {}) => {
   dropdownToggle.setAttribute("aria-expanded", "false");
   if (returnFocus) dropdownToggle.focus();
 };
-
-if (toggle && nav) {
-  toggle.addEventListener("click", () => {
-    const open = nav.classList.toggle("open");
-    toggle.setAttribute("aria-expanded", String(open));
-  });
-  nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeNav));
-  window.addEventListener("resize", () => {
-    if (window.matchMedia("(min-width: 801px)").matches) closeNav();
-  });
-}
 
 if (dropdown && dropdownToggle) {
   dropdownToggle.addEventListener("click", (event) => {
@@ -97,15 +83,31 @@ if (dropdown && dropdownToggle) {
     if (!dropdown.contains(event.target)) closeDropdown();
   });
   dropdown.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => closeDropdown()));
+  dropdownToggle.addEventListener("wheel", (event) => {
+    event.preventDefault();
+    const open = event.deltaY < 0;
+    dropdown.classList.toggle("open", open);
+    dropdownToggle.setAttribute("aria-expanded", String(open));
+  }, { passive: false });
 }
 
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape") return;
-  const navWasOpen = nav?.classList.contains("open");
   const dropdownWasOpen = dropdown?.classList.contains("open");
   closeDropdown({ returnFocus: dropdownWasOpen });
   closeNav();
-  if (navWasOpen && toggle) toggle.focus();
+});
+
+document.querySelectorAll('a[href$=".html"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (link.origin !== location.origin || link.pathname === location.pathname) return;
+    const pageTransition = document.querySelector(".page-transition");
+    if (!pageTransition) return;
+    event.preventDefault();
+    pageTransition.classList.add("active");
+    window.setTimeout(() => { location.href = link.href; }, 260);
+  });
 });
 
 const transition = document.querySelector(".page-transition");
@@ -362,6 +364,7 @@ const translations = {
     navMarkets: "市場",
     navUpdates: "開發日誌",
     navDownload: "下載",
+    navLearning: "學習",
     mktUs: "美股",
     mktTw: "台股",
     mktHk: "港股",
@@ -425,6 +428,7 @@ const translations = {
     navMarkets: "Markets",
     navUpdates: "Dev log",
     navDownload: "Download",
+    navLearning: "Learn",
     mktUs: "US equities",
     mktTw: "Taiwan",
     mktHk: "Hong Kong",
