@@ -40,6 +40,13 @@ body::before { content: ""; position: fixed; inset: 0; z-index: 90; pointer-even
 .bg-layer-ambient i { position: absolute; width: 28vw; aspect-ratio: 1; border-radius: 50%; opacity: .14; background: var(--green); filter: blur(100px); animation: ambient-drift 16s ease-in-out infinite; }
 .bg-layer-ambient i:nth-child(1) { top: 4%; left: 8%; }.bg-layer-ambient i:nth-child(2) { top: 35%; right: 4%; background: var(--blue); animation-delay: -4s; }.bg-layer-ambient i:nth-child(3) { bottom: -10%; left: 35%; background: #895cff; animation-delay: -8s; }.bg-layer-ambient i:nth-child(4) { top: 55%; left: -12%; background: #1d7cff; animation-delay: -12s; }
 .bg-layer-data { z-index: 2; opacity: .24; }
+.bg-layer-grid { z-index: 3; opacity: .12; transform: translate3d(var(--grid-x, 0px), var(--grid-y, 0px), 0); transition: transform 700ms cubic-bezier(.16,1,.3,1), opacity 700ms cubic-bezier(.16,1,.3,1); background: linear-gradient(rgba(120,150,255,.16) 1px, transparent 1px), linear-gradient(90deg, rgba(120,150,255,.16) 1px, transparent 1px); background-size: 96px 96px; mask-image: linear-gradient(to bottom, transparent 0%, #000 34%, transparent 92%); transform-origin: center bottom; perspective: 800px; }
+.bg-layer-grid::after { content: ""; position: absolute; inset: 42% -10% -12%; background: inherit; transform: perspective(700px) rotateX(62deg) scale(1.35); transform-origin: center top; opacity: .5; }
+body.idle-mode .bg-layer-ambient i { animation-play-state: paused; opacity: .1; }
+body.idle-mode .bg-layer-data { opacity: .16; }
+body.idle-mode .bg-layer-grid { opacity: .07; }
+@media (max-width: 767px) { .bg-layer-ambient i:nth-child(n+3) { opacity: 0; }.bg-layer-grid { opacity: .07; background-size: 72px 72px; } }
+@media (prefers-reduced-motion: reduce) { .bg-layer-ambient, .bg-layer-ambient i, .bg-layer-data, .bg-layer-grid { animation: none !important; transition: none !important; }.bg-layer-data { opacity: 0; }.bg-layer-grid { opacity: .05; } }
 .content-layer { position: relative; z-index: 10; }
 body.overlay-depth .content-layer { opacity: .6; filter: blur(4px) scale(.96); transition: opacity 320ms cubic-bezier(.4,0,1,1), filter 320ms cubic-bezier(.4,0,1,1), transform 320ms cubic-bezier(.4,0,1,1); }
 body.overlay-depth .bg-layer-ambient { filter: blur(60px); }

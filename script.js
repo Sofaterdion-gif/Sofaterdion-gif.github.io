@@ -11,6 +11,11 @@ class BackgroundLayer {
     this.particles = [];
     this.frame = 0;
     this.resizeTimer = 0;
+    this.idleTimer = 0;
+    this.idle = false;
+    this.pointerFrame = 0;
+    this.pointerX = 0;
+    this.pointerY = 0;
     this.reduced = reduceMotion;
     this.resize = this.resize.bind(this);
     this.render = this.render.bind(this);
@@ -20,11 +25,44 @@ class BackgroundLayer {
       window.clearTimeout(this.resizeTimer);
       this.resizeTimer = window.setTimeout(this.resize, 160);
     }, { passive: true });
+    this.grid = document.querySelector(".bg-layer-grid");
+    this.resetIdle = this.resetIdle.bind(this);
+    ["pointermove", "pointerdown", "wheel", "touchstart"].forEach((eventName) => {
+      window.addEventListener(eventName, this.resetIdle, { passive: true });
+    });
+    this.resetIdle();
+    window.addEventListener("pointermove", (event) => {
+      if (!this.grid || this.pointerFrame || window.innerWidth < 768) return;
+      this.pointerX = ((event.clientX / window.innerWidth) - .5) * 16;
+      this.pointerY = ((event.clientY / window.innerHeight) - .5) * 10;
+      this.pointerFrame = requestAnimationFrame(() => {
+        this.grid.style.setProperty("--grid-x", `${this.pointerX}px`);
+        this.grid.style.setProperty("--grid-y", `${this.pointerY}px`);
+        this.pointerFrame = 0;
+      });
+    }, { passive: true });
     document.addEventListener("visibilitychange", () => {
-      if (document.hidden) cancelAnimationFrame(this.frame);
-      else this.frame = requestAnimationFrame(this.render);
+      if (document.hidden) {
+        cancelAnimationFrame(this.frame);
+        this.frame = 0;
+      } else {
+        this.resetIdle();
+        this.frame = requestAnimationFrame(this.render);
+      }
     });
     this.frame = requestAnimationFrame(this.render);
+  }
+
+  resetIdle() {
+    this.idle = false;
+    document.body.classList.remove("idle-mode");
+    window.clearTimeout(this.idleTimer);
+    if (!this.reduced) {
+      this.idleTimer = window.setTimeout(() => {
+        this.idle = true;
+        document.body.classList.add("idle-mode");
+      }, 5000);
+    }
   }
 
   resize() {
@@ -48,7 +86,7 @@ class BackgroundLayer {
     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
     context.fillStyle = "rgba(77,230,162,.65)";
     this.particles.forEach((particle) => {
-      particle.y -= particle.speed;
+      particle.y -= particle.speed * (this.idle ? .7 : 1);
       if (particle.y < -4) particle.y = window.innerHeight + 4;
       context.fillRect(particle.x, particle.y, particle.size, particle.size);
     });
