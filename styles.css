@@ -107,8 +107,11 @@ h1 em { color: var(--green); font-style: normal; }
 .chart-label small, .positive { color: var(--green); }
 .chart-grid svg { display: block; width: 100%; margin-top: 22px; }
 .chart-axis { stroke: #263140; stroke-width: 1; }
-.chart-line { fill: none; stroke: var(--green); stroke-width: 3; }
-.chart-area { fill: url(#area); }
+.chart-line { fill: none; stroke: var(--green); stroke-width: 3; stroke-dasharray: 760; stroke-dashoffset: 760; animation: chart-draw 2.2s cubic-bezier(.22,1,.36,1) forwards, chart-breathe 3.2s ease-in-out 2.2s infinite; }
+.chart-area { fill: url(#area); transform-origin: center bottom; animation: chart-area-pulse 3.2s ease-in-out 2.2s infinite; }
+@keyframes chart-draw { to { stroke-dashoffset: 0; } }
+@keyframes chart-breathe { 0%, 100% { opacity: .72; } 50% { opacity: 1; filter: drop-shadow(0 0 5px rgba(77,230,162,.55)); } }
+@keyframes chart-area-pulse { 0%, 100% { opacity: .45; } 50% { opacity: .75; } }
 .chart-footer { display: flex; justify-content: space-between; gap: 8px; color: #8b9aab; font-size: 10px; letter-spacing: .08em; }
 .intro-section { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: start; padding-top: 100px; }
 .intro-copy h2, .section-heading h2 { margin-bottom: 18px; font-size: clamp(34px, 5vw, 58px); line-height: 1.05; letter-spacing: -.05em; }
