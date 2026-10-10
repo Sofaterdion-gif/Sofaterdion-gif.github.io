@@ -25,7 +25,7 @@ if (loaderCode) {
 }
 const finishLoading = () => {
   if (reduceMotion) {
-    document.body.classList.remove("is-loading");
+    window.setTimeout(() => document.body.classList.remove("is-loading"), 1200);
     return;
   }
   window.setTimeout(() => {

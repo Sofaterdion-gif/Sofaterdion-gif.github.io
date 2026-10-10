@@ -319,4 +319,5 @@ body.download-started .download-link { color: var(--bg); background: var(--green
 @media (prefers-reduced-motion: reduce) {
   html.js body:not(.is-loading) .site-header, html.js body:not(.is-loading) main, html.js body:not(.is-loading) .site-footer { animation: none; }
   .site-loader::before, .site-loader::after, .loader-mark, .site-loader p, .site-loader > span, .loader-caret { animation: none; }
+  .site-loader.is-exiting { opacity: 0; }
 }
