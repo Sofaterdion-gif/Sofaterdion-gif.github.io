@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>Open Bell icon</title>
+  <rect width="64" height="64" rx="8" fill="#080b12"/>
+  <rect x="5" y="5" width="54" height="54" rx="5" fill="none" stroke="#4de6a2" stroke-width="2"/>
+  <path d="M16 42V22h5v15l8-15h5v20h-5V28l-8 14h-5Zm23 0V22h5v20h-5Z" fill="#4de6a2"/>
+  <circle cx="47" cy="16" r="3" fill="#ffb56d"/>
+</svg>
