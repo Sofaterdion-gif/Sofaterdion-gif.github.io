@@ -8,6 +8,21 @@ const loaderCodeText = [
   "market.connect('BTC/USDT');",
   "engine.ready();"
 ].join("\n");
+let pageLoaded = document.readyState === "complete";
+let codeComplete = !loaderCode;
+let loadingFinished = false;
+const maybeFinishLoading = () => {
+  if (!pageLoaded || !codeComplete || loadingFinished) return;
+  loadingFinished = true;
+  window.setTimeout(() => {
+    document.body.classList.add("boot-black");
+    document.querySelector(".site-loader")?.classList.add("is-exiting");
+  }, reduceMotion ? 900 : 500);
+  window.setTimeout(() => {
+    document.body.classList.remove("is-loading");
+    window.setTimeout(() => document.body.classList.remove("boot-black"), 180);
+  }, reduceMotion ? 1400 : 850);
+};
 if (loaderCode) {
   let codeIndex = 0;
   const typeCode = () => {
@@ -15,19 +30,16 @@ if (loaderCode) {
     if (codeIndex < loaderCodeText.length) {
       codeIndex += 1;
       window.setTimeout(typeCode, codeIndex % 6 === 0 ? 42 : 20);
+    } else {
+      codeComplete = true;
+      maybeFinishLoading();
     }
   };
   typeCode();
 }
 const finishLoading = () => {
-  window.setTimeout(() => {
-    document.body.classList.add("boot-black");
-    document.querySelector(".site-loader")?.classList.add("is-exiting");
-  }, reduceMotion ? 3000 : 2200);
-  window.setTimeout(() => {
-    document.body.classList.remove("is-loading");
-    window.setTimeout(() => document.body.classList.remove("boot-black"), 180);
-  }, reduceMotion ? 3500 : 2550);
+  pageLoaded = true;
+  maybeFinishLoading();
 };
 if (document.readyState === "complete") finishLoading();
 else window.addEventListener("load", finishLoading, { once: true });
