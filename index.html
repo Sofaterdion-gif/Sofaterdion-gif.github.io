@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Open Bell — Read the market. Play the day.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20261010-transition4">
+  <link rel="stylesheet" href="styles.css?v=20261011-status1">
   <link rel="stylesheet" href="loader.css?v=20261010-transition13">
   <title>Open Bell — Read the market. Play the day.</title>
 </head>
-<body class="home-page">
+<body class="home-page" id="top">
   <div class="bg-layer bg-layer-base" aria-hidden="true"></div>
   <div class="bg-layer bg-layer-ambient" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   <canvas class="bg-layer bg-layer-data" data-background-canvas aria-hidden="true"></canvas>
@@ -17,7 +17,7 @@
   <div class="page-transition" aria-hidden="true"><span>OPEN BELL</span></div>
   <div class="site-loader" aria-hidden="true">
     <div class="system-loader-orbit" aria-hidden="true"><i></i><i></i><i></i><b>OB</b></div>
-    <div class="loader-mark">OB</div><p>OPEN BELL / SYSTEM INIT</p><span>LOADING MARKET DATA · CALIBRATING INTERFACE</span>
+    <div class="loader-mark">OB</div><p>OPEN BELL / SYSTEM INIT</p><span>LOADING SIMULATION DATA · CALIBRATING INTERFACE</span>
     <pre class="loader-code" aria-hidden="true"><code id="loader-code-text"></code><b class="loader-caret">_</b></pre>
   </div>
   <header class="site-header home-header">
@@ -35,15 +35,19 @@
         <h1>Read the market.<br><em>Play the day.</em></h1>
         <p class="home-subtitle">先別急著猜下一根。坐下來，看清楚自己的每一次決定。</p>
         <div class="home-actions">
-          <a class="button button-primary" href="game.html">取得 Open Bell <span>↗</span></a>
+          <a class="button button-primary" href="#download">查看下載狀態 <span>↗</span></a>
           <a class="button button-ghost" href="explore.html">探索玩法 <span>→</span></a>
         </div>
-        <div class="home-meta"><span>WINDOWS / PC</span><span>REPLAY 0.5X — 4X</span><span>CAREER MODE</span></div>
+        <aside class="build-status-note" id="download" role="note">
+          <strong>BUILD STATUS / 尚未發布</strong>
+          <span>新版 Godot Windows 試玩版尚未上架。舊版 SFML 執行檔已停用；本頁行情與玩法畫面是互動示意，不是真實行情或目前可下載版本。</span>
+        </aside>
+        <div class="home-meta"><span>WINDOWS / PC</span><span>GODOT BUILD NOT PUBLISHED</span><span>DEVELOPMENT PREVIEW</span></div>
       </div>
       <div class="home-market-card" data-parallax>
-        <div class="terminal-top"><span>OPEN BELL / REPLAY</span><span class="terminal-status">LIVE</span></div>
+        <div class="terminal-top"><span>OPEN BELL / REPLAY</span><span class="terminal-status">SIMULATED</span></div>
         <div class="chart-grid">
-          <div class="chart-label">BTC / USDT <strong id="hero-price">42,680.40</strong><small id="hero-change">+0.00%</small></div>
+          <div class="chart-label">BTC / USDT · SAMPLE DATA <strong id="hero-price">42,680.40</strong><small id="hero-change">+0.00%</small></div>
           <svg viewBox="0 0 520 230" role="img" aria-label="Market chart preview">
             <defs><linearGradient id="area" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#00d9ff" stop-opacity=".24"/><stop offset="1" stop-color="#00d9ff" stop-opacity="0"/></linearGradient></defs>
             <path id="hero-chart-area" class="chart-area" d="M0 190 L42 177 L76 184 L109 140 L142 153 L177 111 L216 128 L250 89 L287 103 L320 67 L357 88 L392 50 L430 66 L468 26 L520 39 L520 230 L0 230Z"/>
@@ -56,7 +60,7 @@
     </section>
     <section class="home-modes" aria-labelledby="home-modes-title">
       <div class="home-modes-intro" data-reveal>
-        <p class="eyebrow">OPEN BELL / CHOOSE YOUR DAY</p>
+        <p class="eyebrow">OPEN BELL / GAME MODE CONCEPTS</p>
         <h2 id="home-modes-title">先選一種走法。<br><em>市場會自己說話。</em></h2>
         <p>不用急著把所有系統學完。從一段回放、一筆交易，或一天生涯開始。</p>
       </div>
@@ -82,8 +86,8 @@
   <script src="background-motion.js?v=20261010-transition2"></script>
   <script src="background-3d.js?v=20261010-3d1"></script>
   <script src="page-motion.js?v=20261010-architecture1"></script>
-  <script src="loader.js?v=20261010-transition5"></script>
+  <script src="loader.js?v=20261011-status1"></script>
   <script src="interaction.js?v=20261010-mode1"></script>
-  <script src="script.js?v=20261010-transition2"></script>
+  <script src="script.js?v=20261011-status1"></script>
 </body>
 </html>

@@ -38,10 +38,10 @@
   loader.appendChild(quote);
   const activity = document.createElement("div");
   activity.className = "loader-activity";
-  activity.innerHTML = "<b>LIVE EVENT</b><span>TAIWAN MARKET OPEN</span>";
+  activity.innerHTML = "<b>REPLAY MODE</b><span>SAMPLE DATA · NO LIVE FEED</span>";
   loader.appendChild(activity);
   const status = loader.querySelector("span");
-  const states = ["SYSTEM INIT", "LOADING MARKET DATA", "CALIBRATING INTERFACE", "SIGNAL READY"];
+  const states = ["SYSTEM INIT", "LOADING SIMULATION", "CALIBRATING INTERFACE", "SIMULATION READY"];
   let index = 0;
   const particles = document.createDocumentFragment();
   for (let particleIndex = 0; particleIndex < 60; particleIndex += 1) {
