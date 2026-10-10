@@ -88,7 +88,7 @@
         <p class="hero-text" data-i18n="heroText">一款把交易、回放與生涯選擇放在同一張桌上的模擬遊戲。選擇市場，推進每一根 K 線，留下自己的決策紀錄。</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#download"><span data-i18n="getOpenBell">取得 Open Bell</span> <span>↗</span></a>
-          <a class="button button-ghost" href="#game" data-i18n="exploreGame">探索玩法</a>
+          <a class="button button-ghost" href="game.html" data-i18n="exploreGame">探索玩法</a>
         </div>
         <div class="hero-meta">
           <span>Windows / PC</span><span>Replay 0.5x — 4x</span><span>Career mode</span>
@@ -97,11 +97,11 @@
       <div class="hero-terminal" aria-label="Open Bell market preview">
         <div class="terminal-top"><span class="terminal-title">OPEN BELL / REPLAY</span><span class="terminal-status">LIVE</span></div>
         <div class="chart-grid">
-          <div class="chart-label">BTC / USDT <strong>42,680.40</strong><small>+3.18%</small></div>
+          <div class="chart-label">BTC / USDT <strong id="hero-price">42,680.40</strong><small id="hero-change">+0.00%</small></div>
           <svg viewBox="0 0 520 230" role="img" aria-label="Market chart preview">
             <defs><linearGradient id="area" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#4de6a2" stop-opacity=".22"/><stop offset="1" stop-color="#4de6a2" stop-opacity="0"/></linearGradient></defs>
-            <path class="chart-area" d="M0 190 L42 177 L76 184 L109 140 L142 153 L177 111 L216 128 L250 89 L287 103 L320 67 L357 88 L392 50 L430 66 L468 26 L520 39 L520 230 L0 230Z"/>
-            <path class="chart-line" d="M0 190 L42 177 L76 184 L109 140 L142 153 L177 111 L216 128 L250 89 L287 103 L320 67 L357 88 L392 50 L430 66 L468 26 L520 39"/>
+            <path id="hero-chart-area" class="chart-area" d="M0 190 L42 177 L76 184 L109 140 L142 153 L177 111 L216 128 L250 89 L287 103 L320 67 L357 88 L392 50 L430 66 L468 26 L520 39 L520 230 L0 230Z"/>
+            <path id="hero-chart-line" class="chart-line" d="M0 190 L42 177 L76 184 L109 140 L142 153 L177 111 L216 128 L250 89 L287 103 L320 67 L357 88 L392 50 L430 66 L468 26 L520 39"/>
             <line x1="0" y1="205" x2="520" y2="205" class="chart-axis"/><line x1="0" y1="145" x2="520" y2="145" class="chart-axis"/><line x1="0" y1="85" x2="520" y2="85" class="chart-axis"/>
           </svg>
           <div class="chart-footer"><span>DAY 042 / 180</span><span>2.0x SPEED</span><span class="positive">▲ 8.42%</span></div>
@@ -206,20 +206,22 @@
       <button class="web-playtest-close" type="button" aria-label="Close test">×</button>
       <p class="eyebrow">OPEN BELL / WEB PLAYTEST</p>
       <h2 id="web-playtest-title">進入交易回放</h2>
-      <p class="web-playtest-note">這是網站內 HTML / CSS / JavaScript 互動試玩。行情會自動播放，你可以即時下單。</p>
       <div class="web-market-head"><span>BTC / USDT</span><strong id="web-price">42,680.40</strong><b id="web-change">+0.00%</b></div>
       <div class="web-chart" id="web-chart" aria-label="Live simulated market chart"></div>
       <div class="web-playtest-toolbar"><span id="web-day">DAY 042 / 180</span><button type="button" id="web-play-toggle">Ⅱ PAUSE</button><button type="button" id="web-step">STEP</button></div>
       <div class="web-trade-panel">
         <label for="web-quantity">QUANTITY</label>
         <input id="web-quantity" type="number" min="1" value="10">
+        <label for="web-leverage">LEVERAGE</label>
+        <select id="web-leverage"><option value="1">1x</option><option value="2">2x</option><option value="5">5x</option><option value="10">10x</option></select>
         <button type="button" class="web-buy" id="web-buy">BUY</button>
         <button type="button" class="web-sell" id="web-sell">SELL</button>
       </div>
       <p class="web-position" id="web-position">POSITION: FLAT · CASH: $100,000.00</p>
+      <div class="web-metrics"><span>LEVERAGE <b id="web-leverage-value">1x</b></span><span>UNREALIZED P/L <b id="web-unrealized">$0.00</b></span><span>REALIZED P/L <b id="web-realized">$0.00</b></span></div>
       <p class="web-trade-status" id="web-trade-status" aria-live="polite">MARKET OPEN · AUTO PLAY</p>
     </div>
   </div>
-  <script src="script.js?v=20261010-loader6"></script>
+  <script src="script.js?v=20261010-loader7"></script>
 </body>
 </html>

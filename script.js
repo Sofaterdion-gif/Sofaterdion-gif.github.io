@@ -109,6 +109,31 @@ document.addEventListener("keydown", (event) => {
 });
 
 const transition = document.querySelector(".page-transition");
+const heroPriceElement = document.querySelector("#hero-price");
+const heroChangeElement = document.querySelector("#hero-change");
+const heroLine = document.querySelector("#hero-chart-line");
+const heroArea = document.querySelector("#hero-chart-area");
+let heroPrice = 42680.4;
+let heroStartPrice = heroPrice;
+let heroPoints = [190, 177, 184, 140, 153, 111, 128, 89, 103, 67, 88, 50, 66, 26, 39];
+const updateHeroChart = () => {
+  if (!heroLine || !heroArea) return;
+  const direction = Math.random() < 0.5 ? -1 : 1;
+  heroPrice = Math.max(100, heroPrice + direction * (60 + Math.random() * 220));
+  heroPoints = heroPoints.slice(1);
+  const next = Math.max(24, Math.min(196, heroPoints.at(-1) - direction * (8 + Math.random() * 28)));
+  heroPoints.push(next);
+  const points = heroPoints.map((y, index) => `${Math.round(index * (520 / (heroPoints.length - 1)))} ${Math.round(y)}`).join(" L");
+  heroLine.setAttribute("d", `M${points}`);
+  heroArea.setAttribute("d", `M${points} L520 230 L0 230Z`);
+  if (heroPriceElement) heroPriceElement.textContent = heroPrice.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  if (heroChangeElement) {
+    const change = ((heroPrice - heroStartPrice) / heroStartPrice) * 100;
+    heroChangeElement.textContent = `${change >= 0 ? "+" : ""}${change.toFixed(2)}%`;
+    heroChangeElement.classList.toggle("negative", change < 0);
+  }
+};
+window.setInterval(updateHeroChart, 1100);
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (event) => {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -180,6 +205,13 @@ document.querySelectorAll("a[href*='OpenBell-Playtest.exe']").forEach((link) => 
   let playtestUnits = 0;
   let playtestRunning = true;
   let candleCount = 0;
+  let playtestLeverage = 1;
+  let averageEntry = 0;
+  let realizedPnl = 0;
+  const leverageInput = document.querySelector("#web-leverage");
+  const leverageValue = document.querySelector("#web-leverage-value");
+  const unrealizedElement = document.querySelector("#web-unrealized");
+  const realizedElement = document.querySelector("#web-realized");
 
   const renderPlaytest = () => {
     const change = ((playtestPrice - playtestStartPrice) / playtestStartPrice) * 100;
@@ -190,6 +222,16 @@ document.querySelectorAll("a[href*='OpenBell-Playtest.exe']").forEach((link) => 
     }
     if (dayElement) dayElement.textContent = `DAY ${String(playtestDay).padStart(3, "0")} / 180`;
     if (positionElement) positionElement.textContent = `POSITION: ${playtestUnits ? `${playtestUnits} BTC` : "FLAT"} · CASH: $${playtestCash.toLocaleString("en-US", { minimumFractionDigits: 2 })}`;
+    const unrealized = playtestUnits * (playtestPrice - averageEntry) * playtestLeverage;
+    if (leverageValue) leverageValue.textContent = `${playtestLeverage}x`;
+    if (unrealizedElement) {
+      unrealizedElement.textContent = `${unrealized >= 0 ? "+" : ""}$${unrealized.toFixed(2)}`;
+      unrealizedElement.classList.toggle("negative", unrealized < 0);
+    }
+    if (realizedElement) {
+      realizedElement.textContent = `${realizedPnl >= 0 ? "+" : ""}$${realizedPnl.toFixed(2)}`;
+      realizedElement.classList.toggle("negative", realizedPnl < 0);
+    }
     if (chartElement) {
       const candle = document.createElement("i");
       const direction = candleCount++ % 2 === 0 ? 1 : -1;
@@ -246,14 +288,19 @@ document.querySelectorAll("a[href*='OpenBell-Playtest.exe']").forEach((link) => 
     playtestRunning ? startPlaytest() : stopPlaytest();
   });
   stepButton?.addEventListener("click", stepPlaytest);
+  leverageInput?.addEventListener("change", () => {
+    playtestLeverage = Number(leverageInput.value) || 1;
+    renderPlaytest();
+  });
   document.querySelector("#web-buy")?.addEventListener("click", () => {
     const quantity = Math.max(1, Number(quantityInput?.value) || 1);
-    const cost = quantity * playtestPrice;
+    const cost = quantity * playtestPrice / playtestLeverage;
     if (cost > playtestCash) {
       statusElement.textContent = "ORDER REJECTED · NOT ENOUGH CASH";
       return;
     }
     playtestCash -= cost;
+    averageEntry = playtestUnits ? ((averageEntry * playtestUnits) + (playtestPrice * quantity)) / (playtestUnits + quantity) : playtestPrice;
     playtestUnits += quantity;
     statusElement.textContent = `BUY FILLED · ${quantity} BTC @ $${playtestPrice.toFixed(2)}`;
     renderPlaytest();
@@ -264,8 +311,10 @@ document.querySelectorAll("a[href*='OpenBell-Playtest.exe']").forEach((link) => 
       statusElement.textContent = "ORDER REJECTED · POSITION TOO SMALL";
       return;
     }
-    playtestCash += quantity * playtestPrice;
+    playtestCash += quantity * playtestPrice / playtestLeverage;
+    realizedPnl += quantity * (playtestPrice - averageEntry) * playtestLeverage;
     playtestUnits -= quantity;
+    if (!playtestUnits) averageEntry = 0;
     statusElement.textContent = `SELL FILLED · ${quantity} BTC @ $${playtestPrice.toFixed(2)}`;
     renderPlaytest();
   });
