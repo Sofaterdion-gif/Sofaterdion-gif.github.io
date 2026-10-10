@@ -58,19 +58,25 @@ h1, h2, h3, p { margin-top: 0; }
   border: 0; padding: 8px 0; background: transparent; color: inherit; cursor: pointer;
 }
 .nav-dropdown-menu {
-  position: absolute; top: calc(100% + 8px); left: 0; z-index: 35;
-  display: grid; min-width: 190px; padding: 8px;
-  border: 1px solid var(--line); background: var(--panel);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, .4);
+  position: fixed; inset: 0; z-index: 35;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  padding: 110px 24px 48px; background: rgba(0, 0, 0, .7);
+  -webkit-backdrop-filter: blur(30px); backdrop-filter: blur(30px);
   opacity: 0; visibility: hidden; pointer-events: none;
-  transform: translateY(-8px);
-  transition: opacity .2s ease, transform .2s ease, visibility .2s;
+  transform: translateY(-18px) scale(.98);
+  transition: opacity .35s ease, transform .45s cubic-bezier(.22, 1, .36, 1), visibility .35s;
 }
 .nav-dropdown.open .nav-dropdown-menu {
-  opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0);
+  opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0) scale(1);
 }
-.nav-dropdown-menu a { padding: 8px 10px; color: var(--text); }
-.nav-dropdown-menu a:hover { color: var(--green); background: rgba(77, 230, 162, .06); }
+.nav-dropdown-menu a { width: min(620px, 100%); padding: 18px 24px; border-bottom: 1px solid rgba(255,255,255,.12); color: var(--text); font-size: clamp(24px, 4vw, 48px); font-weight: 700; letter-spacing: -.04em; text-align: center; opacity: 0; transform: translateY(18px); transition: color .25s ease, opacity .4s ease, transform .5s cubic-bezier(.22, 1, .36, 1); }
+.nav-dropdown.open .nav-dropdown-menu a { opacity: 1; transform: translateY(0); }
+.nav-dropdown.open .nav-dropdown-menu a:nth-child(2) { transition-delay: .05s; }
+.nav-dropdown.open .nav-dropdown-menu a:nth-child(3) { transition-delay: .1s; }
+.nav-dropdown.open .nav-dropdown-menu a:nth-child(4) { transition-delay: .15s; }
+.nav-dropdown.open .nav-dropdown-menu a:nth-child(5) { transition-delay: .2s; }
+.nav-dropdown-menu a:hover { color: var(--green); }
+body.nav-overlay-open { overflow: hidden; }
 .language-picker select {
   appearance: none; padding: 5px 24px 5px 9px; border: 1px solid var(--line); border-radius: 2px;
   background: var(--panel); color: var(--muted); font-size: 12px; cursor: pointer;

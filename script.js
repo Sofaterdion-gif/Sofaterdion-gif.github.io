@@ -60,6 +60,7 @@ const closeDropdown = ({ returnFocus = false } = {}) => {
   if (!dropdown || !dropdownToggle) return;
   dropdown.classList.remove("open");
   dropdownToggle.setAttribute("aria-expanded", "false");
+  document.body.classList.remove("nav-overlay-open");
   if (returnFocus) dropdownToggle.focus();
 };
 
@@ -68,6 +69,7 @@ if (dropdown && dropdownToggle) {
     event.stopPropagation();
     const open = dropdown.classList.toggle("open");
     dropdownToggle.setAttribute("aria-expanded", String(open));
+    document.body.classList.toggle("nav-overlay-open", open);
   });
   dropdown.addEventListener("focusin", (event) => {
     if (event.target === dropdownToggle) return;
@@ -88,7 +90,11 @@ if (dropdown && dropdownToggle) {
     const open = event.deltaY < 0;
     dropdown.classList.toggle("open", open);
     dropdownToggle.setAttribute("aria-expanded", String(open));
+    document.body.classList.toggle("nav-overlay-open", open);
   }, { passive: false });
+  dropdown.querySelector(".nav-dropdown-menu")?.addEventListener("click", (event) => {
+    if (event.target === event.currentTarget) closeDropdown();
+  });
 }
 
 document.addEventListener("keydown", (event) => {
