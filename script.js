@@ -2,6 +2,103 @@ document.documentElement.classList.add("js");
 document.body.classList.add("is-loading");
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const navigationState = window.OpenBellNavigationState = window.OpenBellNavigationState || { isAnimating: false };
+
+class BackgroundLayer {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.context = canvas?.getContext("2d");
+    this.particles = [];
+    this.frame = 0;
+    this.resizeTimer = 0;
+    this.reduced = reduceMotion;
+    this.resize = this.resize.bind(this);
+    this.render = this.render.bind(this);
+    if (!this.context || this.reduced) return;
+    this.resize();
+    window.addEventListener("resize", () => {
+      window.clearTimeout(this.resizeTimer);
+      this.resizeTimer = window.setTimeout(this.resize, 160);
+    }, { passive: true });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) cancelAnimationFrame(this.frame);
+      else this.frame = requestAnimationFrame(this.render);
+    });
+    this.frame = requestAnimationFrame(this.render);
+  }
+
+  resize() {
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    this.canvas.width = Math.floor(window.innerWidth * ratio);
+    this.canvas.height = Math.floor(window.innerHeight * ratio);
+    this.canvas.style.width = `${window.innerWidth}px`;
+    this.canvas.style.height = `${window.innerHeight}px`;
+    this.context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    const count = window.innerWidth < 768 ? 25 : 60;
+    this.particles = Array.from({ length: count }, () => ({
+      x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight,
+      speed: (window.innerWidth < 768 ? .08 : .16) + Math.random() * .2,
+      size: Math.random() * 1.6 + .5
+    }));
+  }
+
+  render() {
+    if (document.hidden) return;
+    const { context } = this;
+    context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    context.fillStyle = "rgba(77,230,162,.65)";
+    this.particles.forEach((particle) => {
+      particle.y -= particle.speed;
+      if (particle.y < -4) particle.y = window.innerHeight + 4;
+      context.fillRect(particle.x, particle.y, particle.size, particle.size);
+    });
+    this.frame = requestAnimationFrame(this.render);
+  }
+}
+
+class ScrollReveal {
+  constructor() {
+    this.items = [...document.querySelectorAll(".reveal, [data-reveal]")];
+    if (!this.items.length) return;
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      this.items.forEach((item) => item.classList.add("is-visible"));
+      return;
+    }
+    this.observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: .15 });
+    this.items.forEach((item) => {
+      [...item.children].slice(0, 5).forEach((child, index) => child.style.setProperty("--reveal-delay", `${index * 80}ms`));
+      this.observer.observe(item);
+    });
+  }
+}
+
+class OverlayManager {
+  constructor() {
+    this.overlays = [...document.querySelectorAll(".nav-dropdown-menu, .app-menu-overlay, .web-playtest")];
+    this.observe();
+  }
+
+  observe() {
+    this.overlays.forEach((overlay) => {
+      const sync = () => {
+        const active = overlay.classList.contains("open") || overlay.classList.contains("is-open") || overlay.getAttribute("aria-hidden") === "false";
+        document.body.classList.toggle("overlay-depth", active);
+      };
+      new MutationObserver(sync).observe(overlay, { attributes: true, attributeFilter: ["class", "aria-hidden"] });
+      sync();
+    });
+  }
+}
+
+new BackgroundLayer(document.querySelector("[data-background-canvas]"));
+new ScrollReveal();
+new OverlayManager();
 const loaderCode = document.querySelector("#loader-code-text");
 const loaderCodeText = [
   "boot.openbell({ mode: 'replay' });",
@@ -270,13 +367,17 @@ class AppNavigation {
       return;
     }
     this.locked = animate;
+    navigationState.isAnimating = animate;
     current?.classList.remove("is-active");
     current?.setAttribute("aria-hidden", "true");
     target.classList.add("is-active");
     target.setAttribute("aria-hidden", "false");
     this.index = next;
     this.updateHash();
-    if (animate) window.setTimeout(() => { this.locked = false; }, 560);
+    if (animate) window.setTimeout(() => {
+      this.locked = false;
+      navigationState.isAnimating = false;
+    }, 560);
   }
 
   updateHash() {
