@@ -140,6 +140,22 @@ document.querySelectorAll('a[href$=".html"]').forEach((link) => {
 });
 
 const transition = document.querySelector(".page-transition");
+const parallaxElements = document.querySelectorAll("[data-parallax]");
+if (parallaxElements.length && !reduceMotion) {
+  let parallaxFrame = 0;
+  window.addEventListener("pointermove", (event) => {
+    if (parallaxFrame) return;
+    parallaxFrame = window.requestAnimationFrame(() => {
+      const x = (event.clientX / window.innerWidth - .5) * 2;
+      const y = (event.clientY / window.innerHeight - .5) * 2;
+      parallaxElements.forEach((element) => {
+        element.style.setProperty("--parallax-x", `${x * -4}deg`);
+        element.style.setProperty("--parallax-y", `${y * 3}deg`);
+      });
+      parallaxFrame = 0;
+    });
+  }, { passive: true });
+}
 
 // AppNavigation 將玩法頁視為單一 App：不重新載入頁面，只切換 section 的 transform、opacity 與焦點。
 class AppNavigation {
