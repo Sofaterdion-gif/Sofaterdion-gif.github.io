@@ -173,6 +173,7 @@ const translations = {
     updateDlcTitle: "DLC 資料夾",
     updateDlcText: "官方 DLC 目錄自動辨識與安裝",
     madeIn: "台灣製造（中華民國） · 為了把市場再讀一次。",
+    creatorNotice: "創作者：Tirde Studio · 版權所有。",
     backTop: "回到頂部 ↑"
   },
   en: {
@@ -232,6 +233,7 @@ const translations = {
     updateDlcTitle: "DLC folders",
     updateDlcText: "Automatic detection and installation of official DLC folders",
     madeIn: "Made in Taiwan (Republic of China) · Made for replaying the market.",
+    creatorNotice: "Created by Tirde Studio · All rights reserved.",
     backTop: "Back to top ↑"
   }
 };
