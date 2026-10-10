@@ -1,7 +1,7 @@
 document.documentElement.classList.add("js");
 document.body.classList.add("is-loading");
 
-const finishLoading = () => window.setTimeout(() => document.body.classList.remove("is-loading"), 900);
+const finishLoading = () => window.setTimeout(() => document.body.classList.remove("is-loading"), 1400);
 if (document.readyState === "complete") finishLoading();
 else window.addEventListener("load", finishLoading, { once: true });
 
