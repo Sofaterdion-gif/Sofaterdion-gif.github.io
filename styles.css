@@ -359,6 +359,46 @@ body.language-changing { filter: blur(3px); transition: filter .16s ease; }
   .web-metrics { grid-template-columns: 1fr; }
 }
 
+/* 3D scene language: depth is carried by transforms, not layout changes. */
+.home-page, .explore-page, .presentation-page {
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+.content-layer, .home-hero, .explore-shell, .app-shell, .presentation-shell {
+  transform-style: preserve-3d;
+}
+.home-hero-copy { transform: translate3d(calc(var(--scene-x, 0px) * .35), calc(var(--scene-y, 0px) * .35), 60px) rotate(-1deg); }
+.home-market-card { position: relative; transform: perspective(1100px) translate3d(calc(var(--scene-x, 0px) * -.25), calc(var(--scene-y, 0px) * -.25), 28px) rotateY(calc(-6deg + var(--tilt-y, 0deg))) rotateX(var(--tilt-x, 0deg)) rotateZ(1.2deg); }
+.home-market-card::after, .explore-card::after, .app-section-visual::after, .learning-card::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 5;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.5) 48%, transparent 60%);
+  background-size: 220% 100%;
+  background-position: 140% 0;
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+.home-market-card:hover::after, .explore-card:hover::after, .app-section-visual:hover::after, .learning-card:hover::after {
+  opacity: .42;
+  animation: sheen-sweep 1s cubic-bezier(.16,1,.3,1) both;
+}
+.explore-card, .learning-card { position: relative; transform: perspective(900px) translate3d(calc(var(--scene-x, 0px) * .15), calc(var(--scene-y, 0px) * .15), 20px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); transform-style: preserve-3d; }
+.explore-card strong, .explore-card p, .explore-card b { transform: translateZ(18px); }
+.app-section-visual { transform: perspective(1200px) translateZ(24px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) rotate(-.45deg); }
+.site-header .brand, .site-nav { transform: translateZ(45px); }
+@keyframes sheen-sweep { from { background-position: 140% 0; } to { background-position: -40% 0; } }
+@media (max-width: 800px) {
+  .home-hero-copy, .home-market-card, .explore-card, .learning-card, .app-section-visual { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-hero-copy, .home-market-card, .explore-card, .learning-card, .app-section-visual { transform: none !important; }
+  .home-market-card::after, .explore-card::after, .app-section-visual::after, .learning-card::after { animation: none !important; opacity: 0 !important; }
+}
+
 .site-nav::-webkit-scrollbar { height: 2px; }
 .site-nav::-webkit-scrollbar-thumb { background: var(--green); }
 .nav-dropdown-toggle { transition: color .25s ease, letter-spacing .25s ease; }
