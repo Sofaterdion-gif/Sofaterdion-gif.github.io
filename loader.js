@@ -72,10 +72,18 @@
     observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
   }
   window.OpenBellLoader = {
+    released: false,
     complete() {
+      if (this.released) return;
+      this.released = true;
       loader.classList.add("is-complete");
       window.setTimeout(() => loader.classList.add("is-exiting"), reduced ? 80 : 520);
+      window.setTimeout(() => {
+        document.body.classList.remove("is-loading", "boot-black");
+        document.body.classList.add("typing-ready");
+      }, reduced ? 220 : 1250);
     }
   };
+  window.setTimeout(() => window.OpenBellLoader.complete(), reduced ? 1800 : 7200);
   window.addEventListener("beforeunload", () => window.clearInterval(timer), { once: true });
 })();
