@@ -760,3 +760,78 @@ body.mode-modal-open { overflow: hidden; }
 @keyframes mode-point-in { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
 @media (max-width: 800px) { .home-mode-card, .home-mode-card:nth-child(1), .home-mode-card:nth-child(2), .home-mode-card:nth-child(3) { --base-x: 0px; --base-y: 0px; --base-r: 0deg; }.home-mode-card:hover ~ .home-mode-card, .home-mode-grid:has(.home-mode-card:hover) .home-mode-card:not(:hover) { filter: none; transform: translate3d(0, 4px, 0) scale(.99); }.mode-modal { padding: 14px; }.mode-modal-panel { padding: 42px 24px 28px; } }
 @media (prefers-reduced-motion: reduce) { .home-mode-card, .home-mode-card:nth-child(1), .home-mode-card:nth-child(2), .home-mode-card:nth-child(3), .mode-modal-panel { transform: none !important; transition: none !important; }.home-mode-card:hover ~ .home-mode-card, .home-mode-grid:has(.home-mode-card:hover) .home-mode-card:not(:hover) { filter: none; } }
+
+/* Keep the transition layer out of document flow: the old off-screen transform
+   was being counted as scrollable overflow and created a blank tail on the home page. */
+.page-transition {
+  transform: none;
+  contain: paint;
+}
+.page-transition.active { transform: none; }
+
+/* Bring back the earlier deep-space violet layer without losing the warmer palette. */
+:root { --violet: #a78bfa; --violet-soft: rgba(167,139,250,.18); }
+body {
+  background-image:
+    radial-gradient(ellipse at 82% 16%, rgba(167,139,250,.16), transparent 28%),
+    radial-gradient(ellipse at 78% 12%, rgba(101,224,192,.12), transparent 34%),
+    radial-gradient(ellipse at 12% 86%, rgba(239,141,99,.09), transparent 30%),
+    linear-gradient(135deg, #101518 0%, #182428 54%, #19303d 78%, #273052 100%);
+}
+.home-page, .explore-page, .presentation-page {
+  background-image:
+    radial-gradient(ellipse at 84% 14%, rgba(167,139,250,.14), transparent 30%),
+    linear-gradient(135deg, #101518 0%, #182428 54%, #19303d 78%, #273052 100%);
+}
+.bg-layer-base {
+  background:
+    radial-gradient(ellipse at 82% 14%, rgba(167,139,250,.16), transparent 30%),
+    radial-gradient(ellipse at 72% 18%, rgba(101,224,192,.12), transparent 34%),
+    radial-gradient(ellipse at 18% 78%, rgba(239,141,99,.08), transparent 30%),
+    linear-gradient(145deg, #101518 0%, #17252a 52%, #123d3d 78%, #273052 100%);
+}
+.bg-layer-grid {
+  background:
+    linear-gradient(rgba(0,217,255,.13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(167,139,250,.18) 1px, transparent 1px);
+}
+.home-mode-card, .home-market-card, .explore-card, .app-section-visual, .learning-card {
+  border-color: rgba(167,139,250,.28);
+  box-shadow: 0 18px 55px rgba(0,0,0,.28), 0 0 32px rgba(167,139,250,.08), inset 0 1px 0 rgba(255,255,255,.12);
+}
+.home-mode-card:hover, .explore-card:hover {
+  border-color: rgba(167,139,250,.72);
+  box-shadow: 0 24px 64px rgba(0,0,0,.4), 0 0 36px rgba(167,139,250,.18), 0 0 18px rgba(101,224,192,.12);
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-transition { transform: none !important; }
+}
+
+/* Typography enters from quiet space instead of appearing all at once. */
+@keyframes text-fade-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+html.js body:not(.is-loading) .home-hero-copy > *,
+html.js body:not(.is-loading) .home-modes-intro > *,
+html.js body:not(.is-loading) .home-footer > * {
+  opacity: 0;
+  animation: text-fade-in 620ms cubic-bezier(.16, 1, .3, 1) forwards;
+}
+html.js body:not(.is-loading) .home-hero-copy > *:nth-child(1) { animation-delay: 80ms; }
+html.js body:not(.is-loading) .home-hero-copy > *:nth-child(2) { animation-delay: 160ms; }
+html.js body:not(.is-loading) .home-hero-copy > *:nth-child(3) { animation-delay: 240ms; }
+html.js body:not(.is-loading) .home-hero-copy > *:nth-child(4) { animation-delay: 320ms; }
+html.js body:not(.is-loading) .home-hero-copy > *:nth-child(5) { animation-delay: 400ms; }
+html.js body:not(.is-loading) .home-modes-intro > *:nth-child(1) { animation-delay: 100ms; }
+html.js body:not(.is-loading) .home-modes-intro > *:nth-child(2) { animation-delay: 180ms; }
+html.js body:not(.is-loading) .home-modes-intro > *:nth-child(3) { animation-delay: 260ms; }
+html.js body:not(.is-loading) .home-footer > *:nth-child(2) { animation-delay: 120ms; }
+@media (prefers-reduced-motion: reduce) {
+  html.js body:not(.is-loading) .home-hero-copy > *,
+  html.js body:not(.is-loading) .home-modes-intro > *,
+  html.js body:not(.is-loading) .home-footer > * {
+    opacity: 1;
+    animation: none;
+  }
+}
