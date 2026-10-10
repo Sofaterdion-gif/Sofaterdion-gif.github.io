@@ -535,7 +535,6 @@ function setLanguage(language) {
   });
   try { localStorage.setItem("open-bell-language", currentLanguage); } catch (_) { /* Storage can be blocked in private browsing. */ }
   if (languageSelect) languageSelect.value = currentLanguage;
-  if (toggle) toggle.setAttribute("aria-label", copy.menu);
   renderMarket();
 }
 
