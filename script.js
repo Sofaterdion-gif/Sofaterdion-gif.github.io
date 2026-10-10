@@ -134,9 +134,9 @@ class OverlayManager {
   }
 }
 
-new BackgroundLayer(document.querySelector("[data-background-canvas]"));
-new ScrollReveal();
-new OverlayManager();
+if (!window.OpenBellBackgroundMotion) new BackgroundLayer(document.querySelector("[data-background-canvas]"));
+if (!window.OpenBellPageMotion) new ScrollReveal();
+if (!window.OpenBellPageMotion) new OverlayManager();
 const loaderCode = document.querySelector("#loader-code-text");
 const loaderCodeText = [
   "boot.openbell({ mode: 'replay' });",

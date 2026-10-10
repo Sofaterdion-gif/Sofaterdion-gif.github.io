@@ -3,239 +3,59 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Open Bell 是台灣製作的市場回放與交易模擬遊戲，支援 Windows PC、股票、加密市場、Replay 與 Career mode。">
-  <meta name="author" content="Tirde Studio">
-  <meta name="robots" content="index, follow, max-image-preview:large">
-  <link rel="canonical" href="https://openbell.me/">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Open Bell">
-  <meta property="og:title" content="Open Bell — Market Replay Trading Simulation">
-  <meta property="og:description" content="台灣製作的市場回放與交易模擬遊戲。探索股票、加密市場、Replay 與 Career mode。">
-  <meta property="og:url" content="https://openbell.me/">
-  <meta property="og:image" content="https://openbell.me/open-bell-cover.svg">
-  <meta property="og:image:alt" content="Open Bell 市場回放交易模擬遊戲封面">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Open Bell — Market Replay Trading Simulation">
-  <meta name="twitter:description" content="台灣製作的市場回放與交易模擬遊戲，Windows PC 試玩版開發中。">
-  <meta name="twitter:image" content="https://openbell.me/open-bell-cover.svg">
-  <meta name="theme-color" content="#080b12">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=20261010">
-  <link rel="apple-touch-icon" href="favicon.svg?v=20261010">
-  <title>Open Bell — Market Replay</title>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "VideoGame",
-    "name": "Open Bell",
-    "alternateName": "Open Bell Market Replay",
-    "url": "https://openbell.me/",
-    "description": "A market replay and trading simulation game made in Taiwan, with stock markets, crypto markets, replay controls and career mode.",
-    "genre": ["Simulation", "Strategy", "Trading game"],
-    "applicationCategory": "Game",
-    "operatingSystem": "Windows",
-    "image": "https://openbell.me/open-bell-cover.svg",
-    "author": {
-      "@type": "Organization",
-      "name": "Tirde Studio",
-      "url": "https://openbell.me/"
-    },
-    "inLanguage": ["zh-Hant", "en"]
-  }
-  </script>
-  <link rel="stylesheet" href="styles.css?v=20261010-cmyk3d">
+  <meta name="description" content="Open Bell — Read the market. Play the day.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=20261010-architecture1">
+  <title>Open Bell — Read the market. Play the day.</title>
 </head>
-<body>
+<body class="home-page">
   <div class="bg-layer bg-layer-base" aria-hidden="true"></div>
   <div class="bg-layer bg-layer-ambient" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   <canvas class="bg-layer bg-layer-data" data-background-canvas aria-hidden="true"></canvas>
   <div class="bg-layer bg-layer-grid" aria-hidden="true"></div>
   <div class="page-transition" aria-hidden="true"><span>OPEN BELL</span></div>
   <div class="site-loader" aria-hidden="true">
-    <div class="loader-mark">OB</div>
-    <p>OPEN BELL</p>
-    <span>LOADING MARKET REPLAY</span>
+    <div class="loader-mark">OB</div><p>OPEN BELL</p><span>LOADING MARKET REPLAY</span>
     <pre class="loader-code" aria-hidden="true"><code id="loader-code-text"></code><b class="loader-caret">_</b></pre>
   </div>
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="Open Bell home">
-      <span class="brand-mark">OB</span>
-      <span>OPEN BELL</span>
-    </a>
-    <nav id="site-nav" class="site-nav" aria-label="Main navigation" data-i18n-aria-label="mainNav">
-      <div class="nav-dropdown">
-        <button class="nav-dropdown-toggle" type="button" aria-expanded="false"><span data-i18n="explore">探索</span> <span>⌄</span></button>
-        <div class="nav-dropdown-menu" role="dialog" aria-modal="true" aria-label="Explore Open Bell">
-          <div class="nav-menu-panel">
-            <div class="nav-menu-header">
-              <span>EXPLORE / OPEN BELL</span>
-              <button class="nav-menu-close" type="button" aria-label="Close explore menu">Close <span aria-hidden="true">×</span></button>
-            </div>
-            <div class="nav-menu-links">
-              <a class="page-link" href="game.html#0"><span class="nav-card-index">01</span><span class="nav-card-copy"><strong data-i18n="navAbout">理念</strong><small>WHY OPEN BELL</small></span><span class="nav-card-arrow">↗</span></a>
-              <a class="page-link" href="game.html#1"><span class="nav-card-index">02</span><span class="nav-card-copy"><strong data-i18n="navGame">玩法</strong><small>TRADE / REPLAY / CAREER</small></span><span class="nav-card-arrow">↗</span></a>
-              <a class="page-link" href="game.html#2"><span class="nav-card-index">03</span><span class="nav-card-copy"><strong data-i18n="navScreens">動態畫面</strong><small>LIVE MARKET DESK</small></span><span class="nav-card-arrow">↗</span></a>
-              <a class="page-link" href="game.html#3"><span class="nav-card-index">04</span><span class="nav-card-copy"><strong data-i18n="navMarkets">市場</strong><small>SCENARIOS / RULES</small></span><span class="nav-card-arrow">↗</span></a>
-              <a class="page-link" href="game.html#0"><span class="nav-card-index">05</span><span class="nav-card-copy"><strong data-i18n="navUpdates">開發日誌</strong><small>BUILD THE BELL</small></span><span class="nav-card-arrow">↗</span></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a class="nav-link" href="learning.html" data-i18n="navLearning">學習</a>
-      <a class="page-link" href="#download" data-i18n="navDownload">下載</a>
-      <label class="language-picker">
-        <span class="sr-only" data-i18n="languageLabel">Language</span>
-        <select id="language-select" aria-label="Language" data-i18n-aria-label="languageLabel">
-          <option value="zh">繁中</option>
-          <option value="en">EN</option>
-        </select>
-      </label>
+  <header class="site-header home-header">
+    <a class="brand" href="index.html" aria-label="Open Bell home"><span class="brand-mark">OB</span><span>OPEN BELL</span></a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="nav-link" href="explore.html">探索</a>
+      <a class="nav-link" href="game.html">玩法</a>
+      <a class="nav-link" href="learning.html">學習</a>
     </nav>
   </header>
-
-  <main id="top" class="content-layer">
-    <section class="hero section-wrap">
-      <div class="hero-copy">
+  <main class="home-shell content-layer">
+    <section class="home-hero" data-reveal>
+      <div class="home-hero-copy">
         <p class="eyebrow"><span class="live-dot"></span> MARKET REPLAY / OPEN BELL</p>
         <h1>Read the market.<br><em>Play the day.</em></h1>
-        <p class="hero-text" data-i18n="heroText">一款把交易、回放與生涯選擇放在同一張桌上的模擬遊戲。選擇市場，推進每一根 K 線，留下自己的決策紀錄。</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#download"><span data-i18n="getOpenBell">取得 Open Bell</span> <span>↗</span></a>
-          <a class="button button-ghost" href="game.html" data-i18n="exploreGame">探索玩法</a>
+        <p class="home-subtitle">把交易、回放與生涯選擇放在同一張桌上。每一根 K 線，都能重新閱讀。</p>
+        <div class="home-actions">
+          <a class="button button-primary" href="game.html">取得 Open Bell <span>↗</span></a>
+          <a class="button button-ghost" href="explore.html">探索玩法 <span>→</span></a>
         </div>
-        <div class="hero-meta">
-          <span>Windows / PC</span><span>Replay 0.5x — 4x</span><span>Career mode</span>
-        </div>
+        <div class="home-meta"><span>WINDOWS / PC</span><span>REPLAY 0.5X — 4X</span><span>CAREER MODE</span></div>
       </div>
-      <div class="hero-terminal hero-parallax" aria-label="Open Bell market preview" data-parallax>
-        <div class="terminal-top"><span class="terminal-title">OPEN BELL / REPLAY</span><span class="terminal-status">LIVE</span></div>
+      <div class="home-market-card" data-parallax>
+        <div class="terminal-top"><span>OPEN BELL / REPLAY</span><span class="terminal-status">LIVE</span></div>
         <div class="chart-grid">
           <div class="chart-label">BTC / USDT <strong id="hero-price">42,680.40</strong><small id="hero-change">+0.00%</small></div>
           <svg viewBox="0 0 520 230" role="img" aria-label="Market chart preview">
-            <defs><linearGradient id="area" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#4de6a2" stop-opacity=".22"/><stop offset="1" stop-color="#4de6a2" stop-opacity="0"/></linearGradient></defs>
+            <defs><linearGradient id="area" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#00d9ff" stop-opacity=".24"/><stop offset="1" stop-color="#00d9ff" stop-opacity="0"/></linearGradient></defs>
             <path id="hero-chart-area" class="chart-area" d="M0 190 L42 177 L76 184 L109 140 L142 153 L177 111 L216 128 L250 89 L287 103 L320 67 L357 88 L392 50 L430 66 L468 26 L520 39 L520 230 L0 230Z"/>
             <path id="hero-chart-line" class="chart-line" d="M0 190 L42 177 L76 184 L109 140 L142 153 L177 111 L216 128 L250 89 L287 103 L320 67 L357 88 L392 50 L430 66 L468 26 L520 39"/>
             <line x1="0" y1="205" x2="520" y2="205" class="chart-axis"/><line x1="0" y1="145" x2="520" y2="145" class="chart-axis"/><line x1="0" y1="85" x2="520" y2="85" class="chart-axis"/>
           </svg>
-          <div class="chart-footer"><span>DAY 042 / 180</span><span>2.0x SPEED</span><span class="positive">▲ 8.42%</span></div>
+          <div class="chart-footer"><span>DAY 042 / 180</span><span>2.0X SPEED</span><span class="positive">▲ 8.42%</span></div>
         </div>
       </div>
-      <div class="hero-orbit hero-orbit-one" aria-hidden="true"></div>
-      <div class="hero-orbit hero-orbit-two" aria-hidden="true"></div>
-    </section>
-
-    <section id="about" class="section-wrap intro-section reveal">
-      <div class="intro-copy">
-        <p class="eyebrow" data-i18n="aboutEyebrow">ABOUT OPEN BELL</p>
-        <h2 data-i18n="aboutTitle">把市場變成<br><em>可以反覆閱讀的日子。</em></h2>
-        <p data-i18n="aboutText">Open Bell 不是即時投資工具，而是一款以決策、節奏與回放為核心的交易模擬遊戲。你可以在安全的遊戲世界裡試錯、觀察，再重新走一次。</p>
-      </div>
-      <div class="intro-points">
-        <div><strong>01</strong><span data-i18n="point1Title">看懂每一根 K 線</span><small data-i18n="point1Text">用回放重新理解市場節奏。</small></div>
-        <div><strong>02</strong><span data-i18n="point2Title">建立自己的交易習慣</span><small data-i18n="point2Text">數量、百分比與不同市場規則。</small></div>
-        <div><strong>03</strong><span data-i18n="point3Title">走自己的散戶人生</span><small data-i18n="point3Text">工作、研究、移動與管理生活。</small></div>
-      </div>
-    </section>
-
-    <section id="game" class="section-wrap section reveal">
-      <div class="section-heading"><p class="eyebrow">THE LOOP</p><h2 data-i18n="gameTitle">每一天，都有一個選擇。</h2><p data-i18n="gameText">從第一筆下單到最後一次復盤，Open Bell 把市場變成一段可以反覆閱讀的旅程。</p></div>
-      <div class="feature-grid">
-        <article class="feature-card reveal"><span class="feature-number">01</span><h3 data-i18n="tradeTitle">讓每一次決策，都有價值。</h3><p data-i18n="tradeText">以部位、槓桿與風險邊界建立可重複的交易流程。你不是在追逐價格，而是在訓練判斷、執行與承擔結果的能力。<br><em>「紀律，是自由最可靠的起點。」</em></p><span class="feature-icon">↗</span></article>
-        <article class="feature-card accent reveal"><span class="feature-number">02</span><h3 data-i18n="replayTitle">把時間，變成你的優勢。</h3><p data-i18n="replayText">用播放、暫停、單步與 0.5x 到 4x 倍速拆解市場節奏。每一次回放都讓模糊的直覺變成可驗證、可修正的策略。<br><em>「經驗不是記得發生過什麼，而是看懂為什麼。」</em></p><span class="feature-icon">▶</span></article>
-        <article class="feature-card reveal"><span class="feature-number">03</span><h3 data-i18n="careerTitle">你管理的，不只是資金。</h3><p data-i18n="careerText">在研究、工作、移動與生活之間配置注意力，建立屬於自己的長期路線。真正的成長，是讓每個選擇都更接近你想成為的人。<br><em>「先選擇方向，再讓時間證明你。」</em></p><span class="feature-icon">⌁</span></article>
-      </div>
-    </section>
-
-    <section id="screens" class="section-wrap section screens-section reveal">
-      <div class="section-heading">
-        <p class="eyebrow">IN-GAME SCREENS</p>
-        <h2 data-i18n="screensTitle">市場正在呼吸。</h2>
-        <p data-i18n="screensText">把市場帶回你的桌面：即時行情、清晰決策與可重播的交易節奏，讓每一次觀察都成為下一次進步的起點。</p>
-      </div>
-      <div class="device-showcase">
-        <figure class="desktop-device">
-          <div class="device-bar"><span>OPEN BELL</span><span class="device-live">● LIVE PLAYTEST</span></div>
-          <div class="desktop-screen">
-            <div class="screen-sidebar"><b>MARKETS</b><span>US EQUITIES</span><span>CRYPTO</span><span>CAREER</span><span>REPLAY</span></div>
-            <div class="screen-main">
-              <div class="screen-title"><span>BTC / USDT</span><strong id="screen-price">42,680.40</strong><small id="screen-change">+0.00%</small></div>
-              <div class="screen-chart" id="screen-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-              <div class="screen-controls"><span id="screen-day">DAY 042 / 180</span><button>▶ PLAY</button><button>2.0x</button><button>STEP</button></div>
-            </div>
-            <div class="screen-order"><b>ORDER</b><small>QUANTITY</small><strong>10</strong><button>BUY</button><button>SELL</button></div>
-          </div>
-          <figcaption><b>Windows / PC</b><span class="screen-live-label">LIVE REPLAY</span></figcaption>
-        </figure>
-        <figure class="phone-device">
-          <div class="phone-speaker"></div>
-          <div class="phone-screen"><span class="phone-brand">OB</span><b>CAREER</b><div class="phone-chart"></div><strong data-i18n="mobileCareer">散戶人生</strong><small data-i18n="mobileCareerText">移動 · 研究 · 交易</small><button data-i18n="mobileStart">開始測試</button></div>
-          <figcaption><b data-i18n="mobilePlatform">行動版</b><span class="screen-live-label">LIVE MARKET</span></figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section id="markets" class="market-section section reveal">
-      <div class="section-wrap market-layout">
-        <div class="section-heading"><p class="eyebrow">SIX WORLDS</p><h2 data-i18n="marketTitle">一張桌，六個市場。</h2><p data-i18n="marketText">從熟悉的股票到高波動的加密市場，每個市場都有不同的節奏與風險。</p></div>
-        <div class="market-list">
-          <button type="button" data-market="us" class="selected"><b>US</b><span data-i18n="mktUs">美股</span><small>AAPL · TSLA · GOOG</small></button>
-          <button type="button" data-market="tw"><b>TW</b><span data-i18n="mktTw">台股</span><small>2330 · 2317 · 2454</small></button>
-          <button type="button" data-market="hk"><b>HK</b><span data-i18n="mktHk">港股</span><small>0700 · 9988 · 0005</small></button>
-          <button type="button" data-market="crypto"><b>CRYPTO</b><span data-i18n="mktCrypto">加密</span><small>BTC · ETH · SOL</small></button>
-          <button type="button" data-market="funds"><b>FUNDS</b><span data-i18n="mktFunds">基金</span><small>VT · BND · 0050</small></button>
-          <button type="button" data-market="futures"><b>FUTURES</b><span data-i18n="mktFutures">期貨</span><small>ES · NQ · GC</small></button>
-        </div>
-        <div class="market-detail" id="market-detail" aria-live="polite">
-          <p class="eyebrow" id="market-detail-kicker">US</p>
-          <h3 id="market-detail-title">美股</h3>
-          <p id="market-detail-text">常規時段、財報與隔夜跳空。用回放看開盤那一段怎麼走完。</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="download" class="section-wrap section download-section reveal">
-      <div class="download-card">
-        <div class="download-cover"><img src="open-bell-cover.svg" alt="Open Bell 開發中試玩版封面" data-i18n-alt="coverAlt"></div>
-        <div>
-          <p class="eyebrow">GET OPEN BELL</p>
-          <span class="build-badge"><span class="live-dot"></span><span data-i18n="playtestBadge">目前可玩試玩版 · 開發中</span></span>
-          <h2 data-i18n="downloadTitle">把市場帶回桌面。</h2>
-          <p data-i18n="downloadText">目前版本仍在開發中，內容、平衡與介面都可能變動；這不是最終版本。</p>
-        </div>
-        <div class="download-actions"><a class="button button-primary" id="download-link" href="/OpenBell-Playtest.exe?v=20261010"><span data-i18n="downloadBtn">取得目前版本</span> <span>↓</span></a><a class="text-link" href="https://openbell.me/">openbell.me ↗</a></div>
-      </div>
-      <p class="playtest-note" data-i18n="playtestNote">試玩版狀態：Windows / PC 優先 · 行動版仍為測試階段 · 請以開發日誌為準</p>
-    </section>
-
-    <section id="updates" class="section-wrap section updates reveal">
-      <div class="section-heading"><p class="eyebrow">DEV LOG</p><h2 data-i18n="updatesTitle">正在建造。</h2></div>
-      <div class="update-row"><time>10.2026</time><strong data-i18n="updateWebTitle">Open Bell 網頁基礎頁</strong><span data-i18n="updateWebText">官網首頁、遊戲特色、下載入口</span></div>
-      <div class="update-row"><time>10.2026</time><strong>Replay controls</strong><span data-i18n="updateReplayText">播放、單步與 0.5x — 4x 倍速</span></div>
-      <div class="update-row"><time>10.2026</time><strong data-i18n="updateDlcTitle">DLC 資料夾</strong><span data-i18n="updateDlcText">官方 DLC 目錄自動辨識與安裝</span></div>
     </section>
   </main>
-
-  <footer class="site-footer section-wrap"><span>© 2026 Open Bell</span><span data-i18n="creatorNotice">Tirde Studio · Copyright © 2026 Tirde Studio · Open Bell™</span><span data-i18n="madeIn">台灣製造（中華民國） · 為了把市場再讀一次。</span><a class="page-link" href="#top" data-i18n="backTop">回到頂部 ↑</a></footer>
-  <div class="web-playtest" id="web-playtest" hidden aria-hidden="true">
-    <div class="web-playtest-card" role="dialog" aria-modal="true" aria-labelledby="web-playtest-title">
-      <button class="web-playtest-close" type="button" aria-label="Close test">×</button>
-      <p class="eyebrow">OPEN BELL / WEB PLAYTEST</p>
-      <h2 id="web-playtest-title">進入交易回放</h2>
-      <div class="web-market-head"><span>BTC / USDT</span><strong id="web-price">42,680.40</strong><b id="web-change">+0.00%</b></div>
-      <div class="web-chart" id="web-chart" aria-label="Live simulated market chart"></div>
-      <div class="web-playtest-toolbar"><span id="web-day">DAY 042 / 180</span><button type="button" id="web-play-toggle">Ⅱ PAUSE</button><button type="button" id="web-step">STEP</button></div>
-      <div class="web-trade-panel">
-        <label for="web-quantity">QUANTITY</label>
-        <input id="web-quantity" type="number" min="1" value="10">
-        <label for="web-leverage">LEVERAGE</label>
-        <select id="web-leverage"><option value="1">1x</option><option value="2">2x</option><option value="5">5x</option><option value="10">10x</option></select>
-        <button type="button" class="web-buy" id="web-buy">BUY</button>
-        <button type="button" class="web-sell" id="web-sell">SELL</button>
-      </div>
-      <p class="web-position" id="web-position">POSITION: FLAT · CASH: $100,000.00</p>
-      <div class="web-metrics"><span>LEVERAGE <b id="web-leverage-value">1x</b></span><span>UNREALIZED P/L <b id="web-unrealized">$0.00</b></span><span>REALIZED P/L <b id="web-realized">$0.00</b></span></div>
-      <p class="web-trade-status" id="web-trade-status" aria-live="polite">MARKET OPEN · AUTO PLAY</p>
-    </div>
-  </div>
-  <script src="script.js?v=20261010-cmyk3d"></script>
+  <footer class="home-footer content-layer"><span>© 2026 Open Bell</span><span>深夜金融市場 · 深空 · 玻璃介面</span></footer>
+  <script src="background-motion.js?v=20261010-architecture1"></script>
+  <script src="page-motion.js?v=20261010-architecture1"></script>
+  <script src="script.js?v=20261010-architecture1"></script>
 </body>
 </html>
