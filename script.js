@@ -140,7 +140,7 @@ if (!window.OpenBellPageMotion) new OverlayManager();
 const loaderCode = document.querySelector("#loader-code-text");
 const loaderCodeText = [
   "boot.openbell({ mode: 'replay' });",
-  "market.connect('BTC/USDT');",
+  "replay.load('sample-day-042');",
   "engine.ready();"
 ].join("\n");
 let pageLoaded = document.readyState === "complete";
