@@ -134,6 +134,34 @@ const updateHeroChart = () => {
   }
 };
 window.setInterval(updateHeroChart, 1100);
+const screenPrice = document.querySelector("#screen-price");
+const screenChange = document.querySelector("#screen-change");
+const screenDay = document.querySelector("#screen-day");
+const screenChart = document.querySelector("#screen-chart");
+let screenValue = 42680.4;
+let screenStart = screenValue;
+let screenDayValue = 42;
+let screenCandle = 0;
+const updateScreen = () => {
+  const direction = screenCandle++ % 2 === 0 ? 1 : -1;
+  screenValue = Math.max(100, screenValue + direction * (55 + Math.random() * 230));
+  const change = ((screenValue - screenStart) / screenStart) * 100;
+  if (screenPrice) screenPrice.textContent = screenValue.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  if (screenChange) {
+    screenChange.textContent = `${change >= 0 ? "+" : ""}${change.toFixed(2)}%`;
+    screenChange.classList.toggle("negative", change < 0);
+  }
+  if (screenDay) screenDay.textContent = `DAY ${String(Math.min(180, ++screenDayValue)).padStart(3, "0")} / 180`;
+  if (screenChart) {
+    const candle = document.createElement("i");
+    candle.className = direction > 0 ? "up" : "down";
+    candle.style.setProperty("--candle-height", `${24 + Math.random() * 42}%`);
+    candle.style.setProperty("--candle-offset", `${10 + Math.random() * 46}%`);
+    screenChart.appendChild(candle);
+    while (screenChart.children.length > 18) screenChart.firstElementChild.remove();
+  }
+};
+window.setInterval(updateScreen, 1050);
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (event) => {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -354,14 +382,17 @@ const translations = {
     point3Text: "工作、研究、移動與管理生活。",
     gameTitle: "每一天，都有一個選擇。",
     gameText: "從第一筆下單到最後一次復盤，Open Bell 把市場變成一段可以反覆閱讀的旅程。",
-    tradeText: "買入、賣出、放空、回補，使用數量或資金百分比建立自己的節奏。",
-    replayText: "播放、暫停、單步與 0.5x 到 4x 倍速，重新走過每一根 K 線。",
-    careerText: "選擇職場或散戶人生，移動、工作、研究、管理資金與生活。",
-    screensTitle: "介面示意，並非實機截圖。",
-    screensText: "目前頁面上的桌面與手機畫面是以 HTML/CSS 製作的介面示意；儲存庫尚未提供實機截圖。實際畫面將在收到遊戲截圖後更新。",
-    pcStatus: "介面示意 · 非實機畫面",
+    tradeTitle: "讓每一次決策，都有價值。",
+    tradeText: "以部位、槓桿與風險邊界建立可重複的交易流程。你不是在追逐價格，而是在訓練判斷、執行與承擔結果的能力。<br><em>「紀律，是自由最可靠的起點。」</em>",
+    replayTitle: "把時間，變成你的優勢。",
+    replayText: "用播放、暫停、單步與 0.5x 到 4x 倍速拆解市場節奏。每一次回放都讓模糊的直覺變成可驗證、可修正的策略。<br><em>「經驗不是記得發生過什麼，而是看懂為什麼。」</em>",
+    careerTitle: "你管理的，不只是資金。",
+    careerText: "在研究、工作、移動與生活之間配置注意力，建立屬於自己的長期路線。真正的成長，是讓每個選擇都更接近你想成為的人。<br><em>「先選擇方向，再讓時間證明你。」</em>",
+    screensTitle: "市場正在呼吸。",
+    screensText: "把市場帶回你的桌面：即時行情、清晰決策與可重播的交易節奏，讓每一次觀察都成為下一次進步的起點。",
+    pcStatus: "LIVE REPLAY",
     mobilePlatform: "行動版概念",
-    mobileStatus: "介面示意 · 非實機畫面",
+    mobileStatus: "LIVE MARKET",
     mobileCareer: "散戶人生",
     mobileCareerText: "移動 · 研究 · 交易",
     mobileStart: "開始測試",
@@ -414,14 +445,17 @@ const translations = {
     point3Text: "Work, research, travel, and manage everyday life.",
     gameTitle: "Every day brings a choice.",
     gameText: "From the first order to the final review, Open Bell turns the market into a journey you can revisit.",
-    tradeText: "Buy, sell, short, and cover. Set your own rhythm using quantities or a percentage of your funds.",
-    replayText: "Play, pause, step through, or replay at 0.5x to 4x speed, one candle at a time.",
-    careerText: "Choose a career or retail-trader path. Travel, work, research, and manage money and life.",
-    screensTitle: "Interface mockups, not actual gameplay screenshots.",
-    screensText: "The desktop and mobile screens on this page are HTML/CSS interface mockups. No in-game screenshots are currently included in the repository; they can be added once provided.",
-    pcStatus: "UI mockup · Not actual gameplay",
+    tradeTitle: "Make every decision count.",
+    tradeText: "Build a repeatable process around position size, leverage, and risk limits. You are not chasing price; you are training judgment, execution, and ownership of the result.<br><em>“Discipline is the most reliable beginning of freedom.”</em>",
+    replayTitle: "Turn time into your edge.",
+    replayText: "Use play, pause, step, and 0.5x to 4x speed to unpack market rhythm. Every replay turns a vague instinct into a strategy you can test and refine.<br><em>“Experience is not remembering what happened; it is understanding why.”</em>",
+    careerTitle: "You manage more than money.",
+    careerText: "Allocate attention across research, work, movement, and life to build a long-term path of your own. Growth is bringing every choice closer to who you want to become.<br><em>“Choose the direction first, then let time prove you.”</em>",
+    screensTitle: "The market is breathing.",
+    screensText: "Bring the market to your desk: live movement, clear decisions, and a replayable rhythm that turns every observation into your next advantage.",
+    pcStatus: "LIVE REPLAY",
     mobilePlatform: "Mobile concept",
-    mobileStatus: "UI mockup · Not actual gameplay",
+    mobileStatus: "LIVE MARKET",
     mobileCareer: "Retail trader path",
     mobileCareerText: "Travel · Research · Trade",
     mobileStart: "Start test",

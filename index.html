@@ -125,17 +125,17 @@
     <section id="game" class="section-wrap section reveal">
       <div class="section-heading"><p class="eyebrow">THE LOOP</p><h2 data-i18n="gameTitle">每一天，都有一個選擇。</h2><p data-i18n="gameText">從第一筆下單到最後一次復盤，Open Bell 把市場變成一段可以反覆閱讀的旅程。</p></div>
       <div class="feature-grid">
-        <article class="feature-card reveal"><span class="feature-number">01</span><h3>Trade</h3><p data-i18n="tradeText">買入、賣出、放空、回補，使用數量或資金百分比建立自己的節奏。</p><span class="feature-icon">↗</span></article>
-        <article class="feature-card accent reveal"><span class="feature-number">02</span><h3>Replay</h3><p data-i18n="replayText">播放、暫停、單步與 0.5x 到 4x 倍速，重新走過每一根 K 線。</p><span class="feature-icon">▶</span></article>
-        <article class="feature-card reveal"><span class="feature-number">03</span><h3>Career</h3><p data-i18n="careerText">選擇職場或散戶人生，移動、工作、研究、管理資金與生活。</p><span class="feature-icon">⌁</span></article>
+        <article class="feature-card reveal"><span class="feature-number">01</span><h3 data-i18n="tradeTitle">讓每一次決策，都有價值。</h3><p data-i18n="tradeText">以部位、槓桿與風險邊界建立可重複的交易流程。你不是在追逐價格，而是在訓練判斷、執行與承擔結果的能力。<br><em>「紀律，是自由最可靠的起點。」</em></p><span class="feature-icon">↗</span></article>
+        <article class="feature-card accent reveal"><span class="feature-number">02</span><h3 data-i18n="replayTitle">把時間，變成你的優勢。</h3><p data-i18n="replayText">用播放、暫停、單步與 0.5x 到 4x 倍速拆解市場節奏。每一次回放都讓模糊的直覺變成可驗證、可修正的策略。<br><em>「經驗不是記得發生過什麼，而是看懂為什麼。」</em></p><span class="feature-icon">▶</span></article>
+        <article class="feature-card reveal"><span class="feature-number">03</span><h3 data-i18n="careerTitle">你管理的，不只是資金。</h3><p data-i18n="careerText">在研究、工作、移動與生活之間配置注意力，建立屬於自己的長期路線。真正的成長，是讓每個選擇都更接近你想成為的人。<br><em>「先選擇方向，再讓時間證明你。」</em></p><span class="feature-icon">⌁</span></article>
       </div>
     </section>
 
     <section id="screens" class="section-wrap section screens-section reveal">
       <div class="section-heading">
         <p class="eyebrow">IN-GAME SCREENS</p>
-        <h2 data-i18n="screensTitle">介面示意，並非實機截圖。</h2>
-        <p data-i18n="screensText">目前頁面上的桌面與手機畫面是以 HTML/CSS 製作的介面示意；儲存庫尚未提供實機截圖。實際畫面將在收到遊戲截圖後更新。</p>
+        <h2 data-i18n="screensTitle">市場正在呼吸。</h2>
+        <p data-i18n="screensText">把市場帶回你的桌面：即時行情、清晰決策與可重播的交易節奏，讓每一次觀察都成為下一次進步的起點。</p>
       </div>
       <div class="device-showcase">
         <figure class="desktop-device">
@@ -143,18 +143,18 @@
           <div class="desktop-screen">
             <div class="screen-sidebar"><b>MARKETS</b><span>US EQUITIES</span><span>CRYPTO</span><span>CAREER</span><span>REPLAY</span></div>
             <div class="screen-main">
-              <div class="screen-title"><span>BTC / USDT</span><strong>42,680.40</strong><small>+3.18%</small></div>
-              <div class="screen-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-              <div class="screen-controls"><span>DAY 042 / 180</span><button>▶ PLAY</button><button>2.0x</button><button>STEP</button></div>
+              <div class="screen-title"><span>BTC / USDT</span><strong id="screen-price">42,680.40</strong><small id="screen-change">+0.00%</small></div>
+              <div class="screen-chart" id="screen-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="screen-controls"><span id="screen-day">DAY 042 / 180</span><button>▶ PLAY</button><button>2.0x</button><button>STEP</button></div>
             </div>
             <div class="screen-order"><b>ORDER</b><small>QUANTITY</small><strong>10</strong><button>BUY</button><button>SELL</button></div>
           </div>
-          <figcaption><b>Windows / PC</b><span data-i18n="pcStatus">介面示意 · 非實機畫面</span></figcaption>
+          <figcaption><b>Windows / PC</b><span class="screen-live-label">LIVE REPLAY</span></figcaption>
         </figure>
         <figure class="phone-device">
           <div class="phone-speaker"></div>
           <div class="phone-screen"><span class="phone-brand">OB</span><b>CAREER</b><div class="phone-chart"></div><strong data-i18n="mobileCareer">散戶人生</strong><small data-i18n="mobileCareerText">移動 · 研究 · 交易</small><button data-i18n="mobileStart">開始測試</button></div>
-          <figcaption><b data-i18n="mobilePlatform">行動版概念</b><span data-i18n="mobileStatus">介面示意 · 非實機畫面</span></figcaption>
+          <figcaption><b data-i18n="mobilePlatform">行動版</b><span class="screen-live-label">LIVE MARKET</span></figcaption>
         </figure>
       </div>
     </section>

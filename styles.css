@@ -148,7 +148,13 @@ h1 em { color: var(--green); font-style: normal; }
 .screen-title strong { color: var(--text); font-size: 26px; }
 .screen-title small { color: var(--green); }
 .screen-chart { position: relative; height: 180px; margin-top: 23px; overflow: hidden; background: repeating-linear-gradient(0deg, transparent 0 44px, #263140 45px), repeating-linear-gradient(90deg, transparent 0 70px, #263140 71px); }
-.screen-chart::after { position: absolute; inset: 20px 0; content: ""; background: linear-gradient(145deg, transparent 0 25%, var(--green) 25.5% 26.5%, transparent 27% 38%, var(--green) 38.5% 39.5%, transparent 40% 54%, var(--green) 54.5% 55.5%, transparent 56% 69%, var(--green) 69.5% 70.5%, transparent 71%); opacity: .9; clip-path: polygon(0 80%, 12% 68%, 24% 73%, 38% 43%, 50% 57%, 63% 29%, 75% 43%, 88% 12%, 100% 25%, 100% 100%, 0 100%); }
+.screen-chart::after { position: absolute; inset: 20px 0; content: ""; background: linear-gradient(145deg, transparent 0 25%, var(--green) 25.5% 26.5%, transparent 27% 38%, var(--green) 38.5% 39.5%, transparent 40% 54%, var(--green) 54.5% 55.5%, transparent 56% 69%, var(--green) 69.5% 70.5%, transparent 71%); opacity: .22; clip-path: polygon(0 80%, 12% 68%, 24% 73%, 38% 43%, 50% 57%, 63% 29%, 75% 43%, 88% 12%, 100% 25%, 100% 100%, 0 100%); }
+.screen-chart i { position: relative; z-index: 1; display: inline-block; width: 5%; height: 100%; }
+.screen-chart i::before, .screen-chart i::after { position: absolute; left: 50%; content: ""; transform: translateX(-50%); }
+.screen-chart i::before { bottom: var(--candle-offset); width: 1px; height: calc(var(--candle-height) + 18%); background: var(--green); }
+.screen-chart i::after { bottom: var(--candle-offset); width: 9px; height: var(--candle-height); background: var(--green); box-shadow: 0 0 12px rgba(77,230,162,.5); }
+.screen-chart i.down::before, .screen-chart i.down::after { background: #ff5968; }
+.screen-chart i.down::after { box-shadow: 0 0 12px rgba(255,89,104,.45); }
 .screen-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 18px; color: #748396; font-size: 10px; }
 .screen-controls button, .screen-order button, .phone-screen button { border: 1px solid #385248; padding: 7px 9px; background: #142b25; color: var(--green); cursor: default; }
 .screen-order { display: flex; flex-direction: column; gap: 13px; padding: 22px 15px; border-left: 1px solid var(--line); color: #8795a5; font-size: 10px; }
@@ -157,6 +163,7 @@ h1 em { color: var(--green); font-style: normal; }
 .screen-order button:nth-of-type(2) { background: #2b1a20; color: #ff9b9b; }
 .device-showcase figcaption { display: flex; justify-content: space-between; gap: 10px; margin-top: 14px; color: #8b9aab; font-size: 11px; }
 .device-showcase figcaption b { color: var(--text); }
+.screen-live-label { color: var(--green); letter-spacing: .12em; }
 .phone-device { position: relative; margin: 0; padding: 10px 8px 14px; border: 5px solid #263140; border-radius: 25px; background: var(--bg); box-shadow: 12px 15px 0 rgba(120, 150, 255, .1); }
 .phone-speaker { width: 48px; height: 5px; margin: 1px auto 10px; border-radius: 5px; background: var(--line); }
 .phone-screen { display: flex; min-height: 285px; flex-direction: column; align-items: center; gap: 12px; padding: 20px 12px; background: linear-gradient(150deg, #111d2b, #0c131d); text-align: center; }
