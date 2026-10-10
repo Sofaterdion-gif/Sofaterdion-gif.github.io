@@ -152,11 +152,7 @@ const maybeFinishLoading = () => {
   window.setTimeout(() => {
     document.body.classList.add("boot-black");
     window.OpenBellLoader?.complete();
-  }, reduceMotion ? 900 : 500);
-  window.setTimeout(() => {
-    document.body.classList.remove("is-loading");
-    window.setTimeout(() => document.body.classList.remove("boot-black"), 180);
-  }, reduceMotion ? 1400 : 1400);
+  }, 8800);
 };
 const loadingFailsafe = window.setTimeout(() => {
   if (loadingFinished) return;

@@ -6,7 +6,7 @@
   const states = ["SYSTEM INIT", "LOADING MARKET DATA", "CALIBRATING INTERFACE", "SIGNAL READY"];
   let index = 0;
   const particles = document.createDocumentFragment();
-  for (let particleIndex = 0; particleIndex < 14; particleIndex += 1) {
+  for (let particleIndex = 0; particleIndex < 60; particleIndex += 1) {
     const particle = document.createElement("i");
     particle.className = "loader-particle";
     particle.style.setProperty("--particle-x", `${Math.random() * 100}%`);
@@ -15,14 +15,19 @@
     particles.appendChild(particle);
   }
   loader.appendChild(particles);
+  const taiwan = document.createElement("div");
+  taiwan.className = "loader-taiwan";
+  taiwan.innerHTML = '<svg viewBox="0 0 120 240" aria-hidden="true"><path d="M72 5 85 18 82 35 94 52 88 70 98 88 91 103 97 121 84 137 86 153 73 168 76 185 63 198 61 218 49 235 39 224 42 207 33 193 39 176 30 160 38 143 31 126 41 110 36 94 47 77 43 60 56 45 54 28 65 17Z"/></svg>';
+  loader.appendChild(taiwan);
   const burst = document.createElement("div");
   burst.className = "loader-burst";
   for (let lineIndex = 0; lineIndex < 22; lineIndex += 1) {
     const line = document.createElement("i");
     line.className = "loader-burst-line";
     line.style.setProperty("--burst-angle", `${lineIndex * (360 / 22)}deg`);
+    line.style.setProperty("--burst-hue", `${(lineIndex * 360) / 22}`);
     line.style.setProperty("--burst-distance", `${120 + Math.random() * 130}px`);
-    line.style.setProperty("--burst-delay", `${1500 + lineIndex * 28}ms`);
+    line.style.setProperty("--burst-delay", `${lineIndex * 12}ms`);
     burst.appendChild(line);
   }
   loader.appendChild(burst);
@@ -92,6 +97,6 @@
       }
     }
   };
-  window.setTimeout(() => window.OpenBellLoader.complete(), reduced ? 1800 : 7200);
+  window.setTimeout(() => window.OpenBellLoader.complete(), 8800);
   window.addEventListener("beforeunload", () => window.clearInterval(timer), { once: true });
 })();
