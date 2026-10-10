@@ -69,14 +69,15 @@
     animation: none;
   }
   .system-loader-orbit {
-    animation: loader-reduced-pulse 1.8s ease-in-out infinite;
+    animation: loader-reduced-pulse 1.8s ease-in-out infinite !important;
   }
   .site-loader.is-complete .system-loader-orbit {
     animation: loader-core-burst 620ms ease-out both;
   }
   .site-loader.is-complete .loader-burst-line {
-    animation: loader-firework 620ms var(--burst-delay) ease-out both;
+    animation: loader-firework 620ms var(--burst-delay) ease-out both !important;
   }
+  .site-loader:not(.is-complete) .system-loader-orbit { animation-iteration-count: infinite !important; }
   .site-loader::before { transform: none; }
 }
 @keyframes loader-reduced-pulse {
