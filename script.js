@@ -179,6 +179,7 @@ document.querySelectorAll("a[href*='OpenBell-Playtest.exe']").forEach((link) => 
   let playtestCash = 100000;
   let playtestUnits = 0;
   let playtestRunning = true;
+  let candleCount = 0;
 
   const renderPlaytest = () => {
     const change = ((playtestPrice - playtestStartPrice) / playtestStartPrice) * 100;
@@ -191,7 +192,7 @@ document.querySelectorAll("a[href*='OpenBell-Playtest.exe']").forEach((link) => 
     if (positionElement) positionElement.textContent = `POSITION: ${playtestUnits ? `${playtestUnits} BTC` : "FLAT"} · CASH: $${playtestCash.toLocaleString("en-US", { minimumFractionDigits: 2 })}`;
     if (chartElement) {
       const candle = document.createElement("i");
-      const direction = Math.random() < 0.5 ? -1 : 1;
+      const direction = candleCount++ % 2 === 0 ? 1 : -1;
       const bodyHeight = 18 + Math.random() * 30;
       const wickHeight = bodyHeight + 18 + Math.random() * 24;
       const bodyOffset = 10 + Math.random() * Math.max(8, 78 - bodyHeight);
@@ -205,7 +206,7 @@ document.querySelectorAll("a[href*='OpenBell-Playtest.exe']").forEach((link) => 
   };
 
   const stepPlaytest = () => {
-    const direction = Math.random() < 0.5 ? -1 : 1;
+    const direction = candleCount % 2 === 0 ? 1 : -1;
     const move = 80 + Math.random() * 260;
     playtestPrice = Math.max(100, playtestPrice + direction * move);
     playtestDay = Math.min(180, playtestDay + 1);
