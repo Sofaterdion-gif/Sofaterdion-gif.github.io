@@ -9,33 +9,25 @@ const loaderCodeText = [
   "engine.ready();"
 ].join("\n");
 if (loaderCode) {
-  if (reduceMotion) {
-    loaderCode.textContent = loaderCodeText;
-  } else {
-    let codeIndex = 0;
-    const typeCode = () => {
-      loaderCode.textContent = loaderCodeText.slice(0, codeIndex);
-      if (codeIndex < loaderCodeText.length) {
-        codeIndex += 1;
-        window.setTimeout(typeCode, codeIndex % 6 === 0 ? 42 : 20);
-      }
-    };
-    typeCode();
-  }
+  let codeIndex = 0;
+  const typeCode = () => {
+    loaderCode.textContent = loaderCodeText.slice(0, codeIndex);
+    if (codeIndex < loaderCodeText.length) {
+      codeIndex += 1;
+      window.setTimeout(typeCode, codeIndex % 6 === 0 ? 42 : 20);
+    }
+  };
+  typeCode();
 }
 const finishLoading = () => {
-  if (reduceMotion) {
-    window.setTimeout(() => document.body.classList.remove("is-loading"), 3200);
-    return;
-  }
   window.setTimeout(() => {
     document.body.classList.add("boot-black");
     document.querySelector(".site-loader")?.classList.add("is-exiting");
-  }, 2200);
+  }, reduceMotion ? 3000 : 2200);
   window.setTimeout(() => {
     document.body.classList.remove("is-loading");
     window.setTimeout(() => document.body.classList.remove("boot-black"), 180);
-  }, 3800);
+  }, reduceMotion ? 3500 : 2550);
 };
 if (document.readyState === "complete") finishLoading();
 else window.addEventListener("load", finishLoading, { once: true });
