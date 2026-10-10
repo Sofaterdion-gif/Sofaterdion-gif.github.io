@@ -151,12 +151,12 @@ const maybeFinishLoading = () => {
   loadingFinished = true;
   window.setTimeout(() => {
     document.body.classList.add("boot-black");
-    document.querySelector(".site-loader")?.classList.add("is-exiting");
+    window.OpenBellLoader?.complete();
   }, reduceMotion ? 900 : 500);
   window.setTimeout(() => {
     document.body.classList.remove("is-loading");
     window.setTimeout(() => document.body.classList.remove("boot-black"), 180);
-  }, reduceMotion ? 1400 : 850);
+  }, reduceMotion ? 1400 : 1400);
 };
 if (loaderCode) {
   let codeIndex = 0;
@@ -262,15 +262,33 @@ document.addEventListener("keydown", (event) => {
   closeNav();
 });
 
-document.querySelectorAll('a[href$=".html"]').forEach((link) => {
+document.querySelectorAll('a[href*=".html"]').forEach((link) => {
   link.addEventListener("click", (event) => {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     if (link.origin !== location.origin || link.pathname === location.pathname) return;
     const pageTransition = document.querySelector(".page-transition");
     if (!pageTransition) return;
     event.preventDefault();
+    if (navigationState.isAnimating || pageTransition.classList.contains("active")) return;
+    if (!pageTransition.querySelector(".transition-burst-line")) {
+      const burst = document.createElement("div");
+      burst.className = "transition-burst";
+      for (let lineIndex = 0; lineIndex < 18; lineIndex += 1) {
+        const line = document.createElement("i");
+        line.className = "transition-burst-line";
+        burst.appendChild(line);
+      }
+      pageTransition.appendChild(burst);
+    }
+    pageTransition.querySelectorAll(".transition-burst-line").forEach((line) => {
+      line.style.setProperty("--burst-angle", `${Math.random() * 360}deg`);
+      line.style.setProperty("--burst-distance", `${110 + Math.random() * 170}px`);
+      line.style.setProperty("--burst-delay", `${Math.random() * 90}ms`);
+    });
     pageTransition.classList.add("active");
-    window.setTimeout(() => { location.href = link.href; }, 260);
+    pageTransition.dataset.phase = "gather";
+    window.setTimeout(() => { pageTransition.dataset.phase = "burst"; }, 620);
+    window.setTimeout(() => { location.href = link.href; }, 980);
   });
 });
 

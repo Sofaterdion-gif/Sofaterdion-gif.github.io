@@ -15,6 +15,17 @@
     particles.appendChild(particle);
   }
   loader.appendChild(particles);
+  const burst = document.createElement("div");
+  burst.className = "loader-burst";
+  for (let lineIndex = 0; lineIndex < 22; lineIndex += 1) {
+    const line = document.createElement("i");
+    line.className = "loader-burst-line";
+    line.style.setProperty("--burst-angle", `${lineIndex * (360 / 22)}deg`);
+    line.style.setProperty("--burst-distance", `${120 + Math.random() * 130}px`);
+    line.style.setProperty("--burst-delay", `${Math.random() * 120}ms`);
+    burst.appendChild(line);
+  }
+  loader.appendChild(burst);
 
   let timer = 0;
   const updateStatus = () => {
@@ -60,5 +71,11 @@
     });
     observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
   }
+  window.OpenBellLoader = {
+    complete() {
+      loader.classList.add("is-complete");
+      window.setTimeout(() => loader.classList.add("is-exiting"), reduced ? 80 : 520);
+    }
+  };
   window.addEventListener("beforeunload", () => window.clearInterval(timer), { once: true });
 })();
