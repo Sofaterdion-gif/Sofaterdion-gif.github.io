@@ -827,11 +827,38 @@ html.js body:not(.is-loading) .home-modes-intro > *:nth-child(1) { animation-del
 html.js body:not(.is-loading) .home-modes-intro > *:nth-child(2) { animation-delay: 180ms; }
 html.js body:not(.is-loading) .home-modes-intro > *:nth-child(3) { animation-delay: 260ms; }
 html.js body:not(.is-loading) .home-footer > *:nth-child(2) { animation-delay: 120ms; }
+/* Character-level writing effect replaces the old whole-line fade on the home page. */
+html.js body:not(.typing-ready) .home-hero-copy .typing-char,
+html.js body:not(.typing-ready) .home-modes-intro .typing-char,
+html.js body:not(.typing-ready) .home-mode-card .typing-char {
+  opacity: 0;
+}
+html.js body.typing-ready .typing-char {
+  display: inline-block;
+  opacity: 0;
+  animation: character-write-in 260ms cubic-bezier(.16,1,.3,1) var(--char-delay) forwards;
+}
+html.js body.typing-ready .home-mode-card .typing-char {
+  animation-delay: calc(180ms + var(--char-delay));
+}
+@keyframes character-write-in {
+  from { opacity: 0; transform: translateY(7px); filter: blur(2px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
 @media (prefers-reduced-motion: reduce) {
   html.js body:not(.is-loading) .home-hero-copy > *,
   html.js body:not(.is-loading) .home-modes-intro > *,
   html.js body:not(.is-loading) .home-footer > * {
     opacity: 1;
     animation: none;
+  }
+  html.js body.typing-ready .typing-char,
+  html.js body:not(.typing-ready) .home-hero-copy .typing-char,
+  html.js body:not(.typing-ready) .home-modes-intro .typing-char,
+  html.js body:not(.typing-ready) .home-mode-card .typing-char {
+    opacity: 1;
+    animation: none;
+    transform: none;
+    filter: none;
   }
 }
