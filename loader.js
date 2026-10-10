@@ -22,7 +22,7 @@
     line.className = "loader-burst-line";
     line.style.setProperty("--burst-angle", `${lineIndex * (360 / 22)}deg`);
     line.style.setProperty("--burst-distance", `${120 + Math.random() * 130}px`);
-    line.style.setProperty("--burst-delay", `${Math.random() * 120}ms`);
+    line.style.setProperty("--burst-delay", `${1500 + lineIndex * 28}ms`);
     burst.appendChild(line);
   }
   loader.appendChild(burst);
@@ -83,10 +83,10 @@
         document.body.classList.remove("is-loading", "boot-black");
         document.body.classList.add("typing-ready");
       };
-      const burstLine = loader.querySelector(".loader-burst-line");
-      if (burstLine) {
-        burstLine.addEventListener("animationend", release, { once: true });
-        window.setTimeout(release, reduced ? 1200 : 1800);
+      const burstLines = loader.querySelectorAll(".loader-burst-line");
+      const finalBurstLine = burstLines[burstLines.length - 1];
+      if (finalBurstLine) {
+        finalBurstLine.addEventListener("animationend", release, { once: true });
       } else {
         release();
       }

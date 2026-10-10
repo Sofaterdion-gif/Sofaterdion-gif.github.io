@@ -589,9 +589,9 @@ h1 { font-size: var(--display-xl); line-height: .94; letter-spacing: -.075em; }
   .device-showcase figcaption { flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) {
-  *:not(.site-loader):not(.site-loader *),
-  *:not(.site-loader):not(.site-loader *)::before,
-  *:not(.site-loader):not(.site-loader *)::after {
+  *:not(.site-loader):not(.site-loader *):not(#system-loader):not(#system-loader *):not(.loader-wrapper):not(.loader-wrapper *),
+  *:not(.site-loader):not(.site-loader *):not(#system-loader):not(#system-loader *):not(.loader-wrapper):not(.loader-wrapper *)::before,
+  *:not(.site-loader):not(.site-loader *):not(#system-loader):not(#system-loader *):not(.loader-wrapper):not(.loader-wrapper *)::after {
     scroll-behavior: auto !important;
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
