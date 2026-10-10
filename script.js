@@ -25,7 +25,7 @@ if (loaderCode) {
 }
 const finishLoading = () => {
   if (reduceMotion) {
-    window.setTimeout(() => document.body.classList.remove("is-loading"), 1200);
+    window.setTimeout(() => document.body.classList.remove("is-loading"), 3200);
     return;
   }
   window.setTimeout(() => {
@@ -35,7 +35,7 @@ const finishLoading = () => {
   window.setTimeout(() => {
     document.body.classList.remove("is-loading");
     window.setTimeout(() => document.body.classList.remove("boot-black"), 180);
-  }, 2550);
+  }, 3800);
 };
 if (document.readyState === "complete") finishLoading();
 else window.addEventListener("load", finishLoading, { once: true });
