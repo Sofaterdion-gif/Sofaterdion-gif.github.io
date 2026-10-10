@@ -220,7 +220,7 @@ body.playtest-open { overflow: hidden; }
 .site-footer a { color: var(--green); }
 
 /* Loader, page transition, and scroll reveals */
-.site-loader { position: fixed; inset: 0; z-index: 100; display: grid; place-content: center; justify-items: center; gap: 10px; overflow: hidden; background: var(--bg); color: var(--green); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .65s ease, visibility .65s ease; }
+.site-loader { position: fixed; inset: 0; z-index: 100; display: grid; place-content: center; justify-items: center; gap: 10px; overflow: hidden; background: var(--bg); color: var(--green); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .65s ease, visibility .65s ease, background .12s ease; }
 .site-loader::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent 0 5px, rgba(77,230,162,.035) 6px 7px); opacity: .7; animation: loader-scan 1.2s linear infinite; }
 .site-loader::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--green); box-shadow: 0 0 18px 3px rgba(77,230,162,.65); animation: loader-line 1.25s ease-in-out infinite; }
 body.is-loading .site-loader { opacity: 1; visibility: visible; }
@@ -229,10 +229,16 @@ body.is-loading .site-loader { opacity: 1; visibility: visible; }
 .site-loader p { margin: 0; font-size: 12px; font-weight: 800; letter-spacing: .2em; animation: loader-copy .7s ease both; }
 .site-loader > span { color: var(--muted); font-size: 9px; letter-spacing: .16em; animation: loader-copy .7s .15s ease both; }
 body.is-loading .site-header, body.is-loading main, body.is-loading .site-footer { opacity: 0; }
+body.boot-black { background: #000; }
+body.boot-black .site-loader { background: #000; }
+.loader-code { position: relative; z-index: 1; width: min(360px, calc(100vw - 48px)); margin: 12px 0 0; color: #7af0bc; font: 11px/1.7 "SFMono-Regular", Consolas, monospace; text-align: left; white-space: pre-wrap; }
+.loader-caret { color: var(--green); animation: caret-blink .65s steps(1) infinite; }
+.site-loader.is-exiting { opacity: 0; background: #000; }
 @keyframes loader-mark { 0%, 100% { transform: scale(.92) rotate(0); box-shadow: 0 0 0 rgba(77,230,162,0); } 50% { transform: scale(1) rotate(45deg); box-shadow: 0 0 28px rgba(77,230,162,.2); } }
 @keyframes loader-copy { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes loader-line { 0% { transform: translateY(-5px); opacity: 0; } 20%, 80% { opacity: 1; } 100% { transform: translateY(100vh); opacity: 0; } }
 @keyframes loader-scan { from { transform: translateY(-8px); } to { transform: translateY(8px); } }
+@keyframes caret-blink { 0%, 45% { opacity: 1; } 46%, 100% { opacity: 0; } }
 .page-transition { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; overflow: hidden; background: rgba(8, 11, 18, .48); color: var(--green); font-size: 12px; font-weight: 800; letter-spacing: .28em; pointer-events: none; opacity: 0; visibility: hidden; transform: translateY(100%); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); transition: transform .42s cubic-bezier(.76, 0, .24, 1), opacity .2s ease, visibility .42s; }
 .page-transition.active { opacity: 1; visibility: visible; transform: translateY(0); }
 .page-transition span { opacity: 0; transform: translateY(12px); transition: opacity .2s ease, transform .2s ease; }
@@ -312,5 +318,5 @@ body.download-started .download-link { color: var(--bg); background: var(--green
 @keyframes download-pulse { 0% { transform: scale(1); } 35% { transform: scale(1.012); box-shadow: 0 0 0 8px rgba(77,230,162,.08); } 100% { transform: scale(1); } }
 @media (prefers-reduced-motion: reduce) {
   html.js body:not(.is-loading) .site-header, html.js body:not(.is-loading) main, html.js body:not(.is-loading) .site-footer { animation: none; }
-  .site-loader::before, .site-loader::after, .loader-mark, .site-loader p, .site-loader > span { animation: none; }
+  .site-loader::before, .site-loader::after, .loader-mark, .site-loader p, .site-loader > span, .loader-caret { animation: none; }
 }

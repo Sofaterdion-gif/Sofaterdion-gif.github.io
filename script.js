@@ -1,7 +1,42 @@
 document.documentElement.classList.add("js");
 document.body.classList.add("is-loading");
 
-const finishLoading = () => window.setTimeout(() => document.body.classList.remove("is-loading"), 1400);
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const loaderCode = document.querySelector("#loader-code-text");
+const loaderCodeText = [
+  "boot.openbell({ mode: 'replay' });",
+  "market.connect('BTC/USDT');",
+  "engine.ready();"
+].join("\n");
+if (loaderCode) {
+  if (reduceMotion) {
+    loaderCode.textContent = loaderCodeText;
+  } else {
+    let codeIndex = 0;
+    const typeCode = () => {
+      loaderCode.textContent = loaderCodeText.slice(0, codeIndex);
+      if (codeIndex < loaderCodeText.length) {
+        codeIndex += 1;
+        window.setTimeout(typeCode, codeIndex % 6 === 0 ? 42 : 20);
+      }
+    };
+    typeCode();
+  }
+}
+const finishLoading = () => {
+  if (reduceMotion) {
+    document.body.classList.remove("is-loading");
+    return;
+  }
+  window.setTimeout(() => {
+    document.body.classList.add("boot-black");
+    document.querySelector(".site-loader")?.classList.add("is-exiting");
+  }, 2200);
+  window.setTimeout(() => {
+    document.body.classList.remove("is-loading");
+    window.setTimeout(() => document.body.classList.remove("boot-black"), 180);
+  }, 2550);
+};
 if (document.readyState === "complete") finishLoading();
 else window.addEventListener("load", finishLoading, { once: true });
 
@@ -64,7 +99,6 @@ document.addEventListener("keydown", (event) => {
 });
 
 const transition = document.querySelector(".page-transition");
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (event) => {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
