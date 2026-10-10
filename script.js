@@ -140,6 +140,46 @@ document.querySelectorAll('a[href$=".html"]').forEach((link) => {
 });
 
 const transition = document.querySelector(".page-transition");
+const carousel = document.querySelector("[data-carousel]");
+if (carousel) {
+  const slides = [
+    { key: "trade", kicker: "01 / TRADE", title: "先做決定，市場才開始說話。", description: "設定數量、槓桿與部位，觀察每一根 K 線如何改變你的資金、風險與選擇。每筆交易都留下可回看的痕跡。", stats: ["POSITION", "LEVERAGE", "P / L"] },
+    { key: "replay", kicker: "02 / REPLAY", title: "把時間放慢，直到你看懂節奏。", description: "播放、暫停、單步與倍速回放。不是追逐下一根，而是理解上一根為什麼發生，讓直覺變成可驗證的方法。", stats: ["0.5×", "1×", "2×", "4×"] },
+    { key: "career", kicker: "03 / CAREER", title: "你的資金之外，還有你的生活。", description: "研究、工作、移動、等待。選擇如何分配時間與注意力，讓交易不只是單一畫面，而是一段完整的人生路線。", stats: ["TIME", "SKILL", "CAPITAL"] }
+  ];
+  let slideIndex = 0;
+  const kicker = carousel.querySelector("[data-carousel-kicker]");
+  const title = carousel.querySelector("[data-carousel-title]");
+  const description = carousel.querySelector("[data-carousel-description]");
+  const stats = carousel.querySelector("[data-carousel-stats]");
+  const count = carousel.querySelector("[data-carousel-count]");
+  const dots = carousel.querySelector(".carousel-dots");
+  slides.forEach((slide, index) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.setAttribute("aria-label", `前往第 ${index + 1} 頁`);
+    dot.addEventListener("click", () => showSlide(index));
+    dots.append(dot);
+  });
+  const showSlide = (nextIndex) => {
+    slideIndex = (nextIndex + slides.length) % slides.length;
+    const slide = slides[slideIndex];
+    kicker.textContent = slide.kicker;
+    title.textContent = slide.title;
+    description.textContent = slide.description;
+    stats.innerHTML = slide.stats.map((stat) => `<span>${stat}</span>`).join("");
+    count.textContent = `${String(slideIndex + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
+    carousel.querySelectorAll("[data-carousel-art]").forEach((art) => art.classList.toggle("is-hidden", art.dataset.carouselArt !== slide.key));
+    dots.querySelectorAll("button").forEach((dot, index) => dot.classList.toggle("active", index === slideIndex));
+  };
+  carousel.querySelector("[data-carousel-prev]").addEventListener("click", () => showSlide(slideIndex - 1));
+  carousel.querySelector("[data-carousel-next]").addEventListener("click", () => showSlide(slideIndex + 1));
+  carousel.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") showSlide(slideIndex - 1);
+    if (event.key === "ArrowRight") showSlide(slideIndex + 1);
+  });
+  showSlide(0);
+}
 const heroPriceElement = document.querySelector("#hero-price");
 const heroChangeElement = document.querySelector("#hero-change");
 const heroLine = document.querySelector("#hero-chart-line");
