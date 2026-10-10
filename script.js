@@ -140,46 +140,136 @@ document.querySelectorAll('a[href$=".html"]').forEach((link) => {
 });
 
 const transition = document.querySelector(".page-transition");
-const carousel = document.querySelector("[data-carousel]");
-if (carousel) {
-  const slides = [
-    { key: "trade", kicker: "01 / TRADE", title: "先做決定，市場才開始說話。", description: "設定數量、槓桿與部位，觀察每一根 K 線如何改變你的資金、風險與選擇。每筆交易都留下可回看的痕跡。", stats: ["POSITION", "LEVERAGE", "P / L"] },
-    { key: "replay", kicker: "02 / REPLAY", title: "把時間放慢，直到你看懂節奏。", description: "播放、暫停、單步與倍速回放。不是追逐下一根，而是理解上一根為什麼發生，讓直覺變成可驗證的方法。", stats: ["0.5×", "1×", "2×", "4×"] },
-    { key: "career", kicker: "03 / CAREER", title: "你的資金之外，還有你的生活。", description: "研究、工作、移動、等待。選擇如何分配時間與注意力，讓交易不只是單一畫面，而是一段完整的人生路線。", stats: ["TIME", "SKILL", "CAPITAL"] }
-  ];
-  let slideIndex = 0;
-  const kicker = carousel.querySelector("[data-carousel-kicker]");
-  const title = carousel.querySelector("[data-carousel-title]");
-  const description = carousel.querySelector("[data-carousel-description]");
-  const stats = carousel.querySelector("[data-carousel-stats]");
-  const count = carousel.querySelector("[data-carousel-count]");
-  const dots = carousel.querySelector(".carousel-dots");
-  slides.forEach((slide, index) => {
-    const dot = document.createElement("button");
-    dot.type = "button";
-    dot.setAttribute("aria-label", `前往第 ${index + 1} 頁`);
-    dot.addEventListener("click", () => showSlide(index));
-    dots.append(dot);
-  });
-  const showSlide = (nextIndex) => {
-    slideIndex = (nextIndex + slides.length) % slides.length;
-    const slide = slides[slideIndex];
-    kicker.textContent = slide.kicker;
-    title.textContent = slide.title;
-    description.textContent = slide.description;
-    stats.innerHTML = slide.stats.map((stat) => `<span>${stat}</span>`).join("");
-    count.textContent = `${String(slideIndex + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
-    carousel.querySelectorAll("[data-carousel-art]").forEach((art) => art.classList.toggle("is-hidden", art.dataset.carouselArt !== slide.key));
-    dots.querySelectorAll("button").forEach((dot, index) => dot.classList.toggle("active", index === slideIndex));
-  };
-  carousel.querySelector("[data-carousel-prev]").addEventListener("click", () => showSlide(slideIndex - 1));
-  carousel.querySelector("[data-carousel-next]").addEventListener("click", () => showSlide(slideIndex + 1));
-  carousel.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowLeft") showSlide(slideIndex - 1);
-    if (event.key === "ArrowRight") showSlide(slideIndex + 1);
-  });
-  showSlide(0);
+
+// AppNavigation 將玩法頁視為單一 App：不重新載入頁面，只切換 section 的 transform、opacity 與焦點。
+class AppNavigation {
+  constructor(root) {
+    this.root = root;
+    this.sections = [...root.querySelectorAll("[data-app-section]")];
+    this.menu = document.querySelector("#app-menu");
+    this.menuToggle = document.querySelector(".app-menu-toggle");
+    this.menuItems = [...document.querySelectorAll("[data-go-to]")];
+    this.locked = false;
+    this.menuOpen = false;
+    this.index = this.sections.findIndex((section) => section.dataset.appSection === location.hash.slice(1));
+    this.index = this.index < 0 ? 0 : this.index;
+    this.touchStart = null;
+    this.sections.forEach((section, index) => {
+      section.classList.toggle("is-active", index === this.index);
+      section.setAttribute("aria-hidden", String(index !== this.index));
+    });
+    this.bind();
+    this.updateHash();
+  }
+
+  bind() {
+    this.menuToggle?.addEventListener("click", () => this.toggleMenu());
+    this.menu?.querySelectorAll("[data-menu-close]").forEach((element) => element.addEventListener("click", () => this.closeMenu(true)));
+    this.menuItems.forEach((item) => item.addEventListener("click", () => {
+      this.closeMenu(false);
+      this.show(Number(item.dataset.goTo));
+    }));
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        this.closeMenu(true);
+        return;
+      }
+      if (this.menuOpen && event.key === "Tab") {
+        const focusables = [this.menu.querySelector("[data-menu-close]"), ...this.menuItems];
+        const first = focusables[0];
+        const last = focusables.at(-1);
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+        return;
+      }
+      if (this.menuOpen || this.locked) return;
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") this.show(this.index + 1);
+      if (event.key === "ArrowLeft" || event.key === "ArrowUp") this.show(this.index - 1);
+    });
+    this.root.addEventListener("wheel", (event) => {
+      if (Math.abs(event.deltaY) < 20 || this.locked) return;
+      event.preventDefault();
+      this.show(this.index + (event.deltaY > 0 ? 1 : -1));
+    }, { passive: false });
+    this.root.addEventListener("touchstart", (event) => {
+      this.touchStart = event.changedTouches[0];
+    }, { passive: true });
+    this.root.addEventListener("touchend", (event) => {
+      if (!this.touchStart || this.locked) return;
+      const touch = event.changedTouches[0];
+      const dx = touch.clientX - this.touchStart.clientX;
+      const dy = touch.clientY - this.touchStart.clientY;
+      const startY = this.touchStart.clientY;
+      this.touchStart = null;
+      if (Math.max(Math.abs(dx), Math.abs(dy)) < 48) return;
+      if (!this.menuOpen && startY < 80 && dy > 48) {
+        this.openMenu();
+        return;
+      }
+      if (this.menuOpen) return;
+      this.show(this.index + (Math.abs(dx) > Math.abs(dy) ? (dx < 0 ? 1 : -1) : (dy < 0 ? 1 : -1)));
+    }, { passive: true });
+  }
+
+  toggleMenu() {
+    if (this.menuOpen) this.closeMenu(true);
+    else this.openMenu();
+  }
+
+  openMenu() {
+    if (this.locked || !this.menu) return;
+    // 選單動畫由 CSS 控制；JS 只負責狀態、捲動鎖定與焦點，避免 layout thrashing。
+    this.menuOpen = true;
+    this.menu.classList.add("is-open");
+    this.menuToggle?.setAttribute("aria-expanded", "true");
+    document.body.classList.add("app-navigation-locked");
+    window.setTimeout(() => this.menuItems[0]?.focus(), 520);
+  }
+
+  closeMenu(returnFocus) {
+    if (!this.menu || !this.menuOpen) return;
+    this.menuOpen = false;
+    this.menu.classList.remove("is-open");
+    this.menuToggle?.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("app-navigation-locked");
+    if (returnFocus) window.setTimeout(() => this.menuToggle?.focus(), 520);
+  }
+
+  // 轉場期間鎖定輸入，避免快速連點造成兩個 section 同時取得 active 狀態。
+  show(nextIndex, animate = true) {
+    if (this.locked || !this.sections.length) return;
+    const next = (nextIndex + this.sections.length) % this.sections.length;
+    const current = this.sections[this.index];
+    const target = this.sections[next];
+    if (current === target) {
+      if (!animate) {
+        target.classList.add("is-active");
+        target.setAttribute("aria-hidden", "false");
+      }
+      return;
+    }
+    this.locked = animate;
+    current?.classList.remove("is-active");
+    current?.setAttribute("aria-hidden", "true");
+    target.classList.add("is-active");
+    target.setAttribute("aria-hidden", "false");
+    this.index = next;
+    this.updateHash();
+    if (animate) window.setTimeout(() => { this.locked = false; }, 560);
+  }
+
+  updateHash() {
+    history.replaceState(null, "", `#${this.index}`);
+  }
 }
+
+const appNavigationRoot = document.querySelector("[data-app-navigation]");
+if (appNavigationRoot) new AppNavigation(appNavigationRoot);
 const heroPriceElement = document.querySelector("#hero-price");
 const heroChangeElement = document.querySelector("#hero-change");
 const heroLine = document.querySelector("#hero-chart-line");

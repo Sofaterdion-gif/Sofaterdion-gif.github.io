@@ -6,7 +6,7 @@
   <title>玩法 — Open Bell Market Replay</title>
   <meta name="description" content="探索 Open Bell 的交易、回放、市場與生涯玩法。">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20261010-presentation1">
+  <link rel="stylesheet" href="styles.css?v=20261010-liquidglass1">
 </head>
 <body class="presentation-page">
   <div class="page-transition" aria-hidden="true"><span>OPEN BELL / PLAYBOOK</span></div>
@@ -16,47 +16,84 @@
   </div>
   <header class="site-header">
     <a class="brand" href="index.html#top"><span class="brand-mark">OB</span><span>OPEN BELL</span></a>
-    <nav class="site-nav"><a class="nav-link" href="index.html">首頁</a><a class="nav-link" href="learning.html">學習</a></nav>
+    <nav class="site-nav" aria-label="玩法導覽">
+      <button class="nav-dropdown-toggle app-menu-toggle" type="button" aria-expanded="false" aria-controls="app-menu">導覽 <span>⌄</span></button>
+      <a class="nav-link" href="index.html">首頁</a><a class="nav-link" href="learning.html">學習</a>
+    </nav>
   </header>
-  <main class="presentation-shell">
-    <section class="presentation-hero">
+  <div class="app-menu-overlay" id="app-menu" role="dialog" aria-modal="true" aria-label="Open Bell 導覽">
+    <div class="app-menu-scrim" data-menu-close></div>
+    <div class="app-menu-panel">
+      <div class="app-menu-bar"><span>OPEN BELL / CONTROL CENTER</span><button type="button" data-menu-close aria-label="關閉導覽">關閉 ×</button></div>
+      <div class="app-menu-grid">
+        <button type="button" class="app-menu-item" data-go-to="0"><b>01</b><strong>開始</strong><small>THE MARKET IS A STORY</small></button>
+        <button type="button" class="app-menu-item" data-go-to="1"><b>02</b><strong>交易</strong><small>POSITION / LEVERAGE / P&L</small></button>
+        <button type="button" class="app-menu-item" data-go-to="2"><b>03</b><strong>回放</strong><small>SLOW DOWN THE DAY</small></button>
+        <button type="button" class="app-menu-item" data-go-to="3"><b>04</b><strong>生涯</strong><small>TIME / SKILL / CAPITAL</small></button>
+      </div>
+    </div>
+  </div>
+  <main class="app-shell" data-app-navigation>
+    <section class="app-section is-active" data-app-section="0" aria-hidden="false">
       <div class="presentation-content">
         <p class="presentation-kicker">OPEN BELL / PLAYBOOK</p>
         <h1>不是看盤。<br><em>是重新走過一天。</em></h1>
         <p>把每一次決策拆成可以閱讀、可以重播、可以重新選擇的市場旅程。</p>
         <div class="presentation-stat"><span>TRADE</span><span>REPLAY</span><span>CAREER</span></div>
-        <span class="scroll-cue">SCROLL TO EXPLORE ↓</span>
+        <span class="scroll-cue">SWIPE OR USE ← → TO EXPLORE</span>
       </div>
     </section>
-    <section class="playbook-carousel" aria-label="玩法導覽" data-carousel>
-      <div class="carousel-visual">
-        <div class="carousel-visual-top"><span>OPEN BELL / PLAYBOOK</span><span data-carousel-count>01 / 03</span></div>
-        <div class="carousel-art" data-carousel-art="trade">
+    <section class="app-section app-section-split" data-app-section="1" aria-hidden="true">
+      <div class="app-section-visual">
+        <div class="carousel-visual-top"><span>OPEN BELL / TRADE</span><span>02 / 04</span></div>
+        <div class="carousel-art">
           <div class="art-price"><small>BTC / USDT</small><strong>42,680.40</strong><em>+2.84%</em></div>
           <div class="art-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
           <div class="art-metrics"><span>POSITION <b>0.42 BTC</b></span><span>LEVERAGE <b>2×</b></span><span>P / L <b>+1,204</b></span></div>
         </div>
-        <div class="carousel-art is-hidden" data-carousel-art="replay">
+        </div>
+      </div>
+      <div class="app-section-copy">
+        <p class="presentation-kicker">02 / TRADE</p>
+        <h2>先做決定，市場才開始說話。</h2>
+        <p>設定數量、槓桿與部位，觀察每一根 K 線如何改變你的資金、風險與選擇。每筆交易都留下可回看的痕跡。</p>
+        <div class="presentation-stat"><span>POSITION</span><span>LEVERAGE</span><span>P / L</span></div>
+      </div>
+    </section>
+    <section class="app-section app-section-split" data-app-section="2" aria-hidden="true">
+      <div class="app-section-visual">
+        <div class="carousel-visual-top"><span>OPEN BELL / REPLAY</span><span>03 / 04</span></div>
+        <div class="carousel-art">
           <div class="replay-grid"><span>DAY 051</span><strong>REPLAY</strong><small>01:24:08</small></div>
           <div class="replay-track"><b></b><i></i><i></i><i></i><i></i><i></i></div>
           <div class="replay-controls"><span>◀</span><strong>Ⅱ</strong><span>▶</span><em>0.5×　1×　2×　4×</em></div>
         </div>
-        <div class="carousel-art is-hidden" data-carousel-art="career">
+      </div>
+      <div class="app-section-copy">
+        <p class="presentation-kicker">03 / REPLAY</p>
+        <h2>把時間放慢，直到你看懂節奏。</h2>
+        <p>播放、暫停、單步與倍速回放。不是追逐下一根，而是理解上一根為什麼發生，讓直覺變成可驗證的方法。</p>
+        <div class="presentation-stat"><span>0.5×</span><span>1×</span><span>2×</span><span>4×</span></div>
+      </div>
+    </section>
+    <section class="app-section app-section-split" data-app-section="3" aria-hidden="true">
+      <div class="app-section-visual">
+        <div class="carousel-visual-top"><span>OPEN BELL / CAREER</span><span>04 / 04</span></div>
+        <div class="carousel-art">
           <div class="career-orbit"><span>CAPITAL</span><b>TIME</b><i>SKILL</i></div>
           <div class="career-route"><span>RESEARCH</span><b>TRADE</b><i>RECOVER</i></div>
           <small class="career-caption">YOUR DAY / YOUR RULES</small>
         </div>
       </div>
-      <div class="carousel-copy">
-        <p class="presentation-kicker" data-carousel-kicker>01 / TRADE</p>
-        <h2 data-carousel-title>先做決定，市場才開始說話。</h2>
-        <p data-carousel-description>設定數量、槓桿與部位，觀察每一根 K 線如何改變你的資金、風險與選擇。每筆交易都留下可回看的痕跡。</p>
-        <div class="presentation-stat" data-carousel-stats><span>POSITION</span><span>LEVERAGE</span><span>P / L</span></div>
-        <div class="carousel-controls"><button type="button" data-carousel-prev aria-label="上一頁">←</button><div class="carousel-dots" role="tablist"></div><button type="button" data-carousel-next aria-label="下一頁">→</button></div>
+      <div class="app-section-copy">
+        <p class="presentation-kicker">04 / CAREER</p>
+        <h2>你的資金之外，還有你的生活。</h2>
+        <p>研究、工作、移動、等待。選擇如何分配時間與注意力，讓交易不只是單一畫面，而是一段完整的人生路線。</p>
+        <a class="button button-primary" href="index.html#download">取得 Open Bell ↗</a>
       </div>
     </section>
   </main>
   <footer class="site-footer section-wrap"><span>© 2026 Open Bell</span><span>Tirde Studio · Open Bell™</span></footer>
-  <script src="script.js?v=20261010-presentation1"></script>
+  <script src="script.js?v=20261010-liquidglass1"></script>
 </body>
 </html>
