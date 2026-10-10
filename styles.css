@@ -589,7 +589,14 @@ h1 { font-size: var(--display-xl); line-height: .94; letter-spacing: -.075em; }
   .device-showcase figcaption { flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  *:not(.site-loader):not(.site-loader *),
+  *:not(.site-loader):not(.site-loader *)::before,
+  *:not(.site-loader):not(.site-loader *)::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
   .js .reveal { opacity: 1; transform: none; }
   .page-transition { opacity: 0; visibility: hidden; pointer-events: none; }
 }
@@ -611,9 +618,6 @@ body.download-started .download-link { color: var(--bg); background: var(--green
 @keyframes download-pulse { 0% { transform: scale(1); } 35% { transform: scale(1.012); box-shadow: 0 0 0 8px rgba(77,230,162,.08); } 100% { transform: scale(1); } }
 @media (prefers-reduced-motion: reduce) {
   html.js body:not(.is-loading) .site-header, html.js body:not(.is-loading) main, html.js body:not(.is-loading) .site-footer { animation: none; }
-  .site-loader::before, .site-loader::after, .loader-mark, .site-loader p, .site-loader > span, .loader-caret { animation: none; }
-  .site-loader { opacity: 1; visibility: visible; }
-  .site-loader.is-exiting { opacity: 0; }
 }
 
 /* Interactive replay controls override the decorative mockup defaults above. */

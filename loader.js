@@ -75,13 +75,21 @@
     released: false,
     complete() {
       if (this.released) return;
-      this.released = true;
       loader.classList.add("is-complete");
-      window.setTimeout(() => loader.classList.add("is-exiting"), reduced ? 80 : 520);
-      window.setTimeout(() => {
+      const release = () => {
+        if (this.released) return;
+        this.released = true;
+        loader.classList.add("is-exiting");
         document.body.classList.remove("is-loading", "boot-black");
         document.body.classList.add("typing-ready");
-      }, reduced ? 220 : 1250);
+      };
+      const burstLine = loader.querySelector(".loader-burst-line");
+      if (burstLine) {
+        burstLine.addEventListener("animationend", release, { once: true });
+        window.setTimeout(release, reduced ? 1200 : 1800);
+      } else {
+        release();
+      }
     }
   };
   window.setTimeout(() => window.OpenBellLoader.complete(), reduced ? 1800 : 7200);
