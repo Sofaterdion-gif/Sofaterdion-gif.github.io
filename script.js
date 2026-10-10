@@ -113,6 +113,109 @@ document.querySelectorAll("a[href*='OpenBell-Playtest.exe']").forEach((link) => 
     document.body.classList.add("download-started");
     window.setTimeout(() => document.body.classList.remove("download-started"), 900);
   });
+
+  const playtest = document.querySelector("#web-playtest");
+  const playtestOpeners = document.querySelectorAll("[data-web-playtest], .phone-screen button");
+  const playtestClose = document.querySelector(".web-playtest-close");
+  const priceElement = document.querySelector("#web-price");
+  const changeElement = document.querySelector("#web-change");
+  const dayElement = document.querySelector("#web-day");
+  const chartElement = document.querySelector("#web-chart");
+  const playToggle = document.querySelector("#web-play-toggle");
+  const stepButton = document.querySelector("#web-step");
+  const quantityInput = document.querySelector("#web-quantity");
+  const positionElement = document.querySelector("#web-position");
+  const statusElement = document.querySelector("#web-trade-status");
+  let playtestTimer = null;
+  let playtestPrice = 42680.4;
+  let playtestStartPrice = playtestPrice;
+  let playtestDay = 42;
+  let playtestCash = 100000;
+  let playtestUnits = 0;
+  let playtestRunning = true;
+
+  const renderPlaytest = () => {
+    const change = ((playtestPrice - playtestStartPrice) / playtestStartPrice) * 100;
+    if (priceElement) priceElement.textContent = playtestPrice.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    if (changeElement) {
+      changeElement.textContent = `${change >= 0 ? "+" : ""}${change.toFixed(2)}%`;
+      changeElement.classList.toggle("negative", change < 0);
+    }
+    if (dayElement) dayElement.textContent = `DAY ${String(playtestDay).padStart(3, "0")} / 180`;
+    if (positionElement) positionElement.textContent = `POSITION: ${playtestUnits ? `${playtestUnits} BTC` : "FLAT"} · CASH: $${playtestCash.toLocaleString("en-US", { minimumFractionDigits: 2 })}`;
+    if (chartElement) {
+      const bar = document.createElement("i");
+      bar.style.height = `${Math.max(12, Math.min(94, 50 + change * 8 + Math.random() * 20))}%`;
+      bar.className = change >= 0 ? "up" : "down";
+      chartElement.appendChild(bar);
+      while (chartElement.children.length > 28) chartElement.firstElementChild.remove();
+    }
+  };
+
+  const stepPlaytest = () => {
+    playtestPrice = Math.max(100, playtestPrice + (Math.random() - 0.46) * 420);
+    playtestDay = Math.min(180, playtestDay + 1);
+    renderPlaytest();
+  };
+  const startPlaytest = () => {
+    if (playtestTimer || !playtestRunning) return;
+    playtestTimer = window.setInterval(stepPlaytest, 850);
+  };
+  const stopPlaytest = () => {
+    window.clearInterval(playtestTimer);
+    playtestTimer = null;
+  };
+  const closePlaytest = () => {
+    stopPlaytest();
+    if (!playtest) return;
+    playtest.hidden = true;
+    playtest.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("playtest-open");
+  };
+  const openPlaytest = () => {
+    if (!playtest) return;
+    playtest.hidden = false;
+    playtest.setAttribute("aria-hidden", "false");
+    document.body.classList.add("playtest-open");
+    playtestRunning = true;
+    startPlaytest();
+    window.setTimeout(() => playtestClose?.focus(), 0);
+  };
+  playtestOpeners.forEach((opener) => opener.addEventListener("click", openPlaytest));
+  playtestClose?.addEventListener("click", closePlaytest);
+  playtest?.addEventListener("click", (event) => { if (event.target === playtest) closePlaytest(); });
+  playToggle?.addEventListener("click", () => {
+    playtestRunning = !playtestRunning;
+    playToggle.textContent = playtestRunning ? "Ⅱ PAUSE" : "▶ PLAY";
+    statusElement.textContent = playtestRunning ? "MARKET OPEN · AUTO PLAY" : "MARKET PAUSED · STEP READY";
+    playtestRunning ? startPlaytest() : stopPlaytest();
+  });
+  stepButton?.addEventListener("click", stepPlaytest);
+  document.querySelector("#web-buy")?.addEventListener("click", () => {
+    const quantity = Math.max(1, Number(quantityInput?.value) || 1);
+    const cost = quantity * playtestPrice;
+    if (cost > playtestCash) {
+      statusElement.textContent = "ORDER REJECTED · NOT ENOUGH CASH";
+      return;
+    }
+    playtestCash -= cost;
+    playtestUnits += quantity;
+    statusElement.textContent = `BUY FILLED · ${quantity} BTC @ $${playtestPrice.toFixed(2)}`;
+    renderPlaytest();
+  });
+  document.querySelector("#web-sell")?.addEventListener("click", () => {
+    const quantity = Math.max(1, Number(quantityInput?.value) || 1);
+    if (quantity > playtestUnits) {
+      statusElement.textContent = "ORDER REJECTED · POSITION TOO SMALL";
+      return;
+    }
+    playtestCash += quantity * playtestPrice;
+    playtestUnits -= quantity;
+    statusElement.textContent = `SELL FILLED · ${quantity} BTC @ $${playtestPrice.toFixed(2)}`;
+    renderPlaytest();
+  });
+  document.addEventListener("keydown", (event) => { if (event.key === "Escape" && playtest && !playtest.hidden) closePlaytest(); });
+  renderPlaytest();
 });
 
 const translations = {

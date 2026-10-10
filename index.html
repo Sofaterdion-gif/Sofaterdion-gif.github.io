@@ -198,6 +198,25 @@
   </main>
 
   <footer class="site-footer section-wrap"><span>© 2026 Open Bell</span><span data-i18n="creatorNotice">Tirde Studio · Copyright © 2026 Tirde Studio · Open Bell™</span><span data-i18n="madeIn">台灣製造（中華民國） · 為了把市場再讀一次。</span><a class="page-link" href="#top" data-i18n="backTop">回到頂部 ↑</a></footer>
+  <div class="web-playtest" id="web-playtest" hidden aria-hidden="true">
+    <div class="web-playtest-card" role="dialog" aria-modal="true" aria-labelledby="web-playtest-title">
+      <button class="web-playtest-close" type="button" aria-label="Close test">×</button>
+      <p class="eyebrow">OPEN BELL / WEB PLAYTEST</p>
+      <h2 id="web-playtest-title">進入交易回放</h2>
+      <p class="web-playtest-note">這是網站內 HTML / CSS / JavaScript 互動試玩。行情會自動播放，你可以即時下單。</p>
+      <div class="web-market-head"><span>BTC / USDT</span><strong id="web-price">42,680.40</strong><b id="web-change">+0.00%</b></div>
+      <div class="web-chart" id="web-chart" aria-label="Live simulated market chart"></div>
+      <div class="web-playtest-toolbar"><span id="web-day">DAY 042 / 180</span><button type="button" id="web-play-toggle">Ⅱ PAUSE</button><button type="button" id="web-step">STEP</button></div>
+      <div class="web-trade-panel">
+        <label for="web-quantity">QUANTITY</label>
+        <input id="web-quantity" type="number" min="1" value="10">
+        <button type="button" class="web-buy" id="web-buy">BUY</button>
+        <button type="button" class="web-sell" id="web-sell">SELL</button>
+      </div>
+      <p class="web-position" id="web-position">POSITION: FLAT · CASH: $100,000.00</p>
+      <p class="web-trade-status" id="web-trade-status" aria-live="polite">MARKET OPEN · AUTO PLAY</p>
+    </div>
+  </div>
   <script src="script.js?v=20261010-chart1"></script>
 </body>
 </html>

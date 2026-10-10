@@ -165,6 +165,30 @@ h1 em { color: var(--green); font-style: normal; }
 .phone-screen strong { font-size: 17px; }
 .phone-screen small { color: var(--muted); }
 .phone-screen button { width: 100%; margin-top: auto; }
+.phone-screen button { cursor: pointer; }
+.web-playtest[hidden] { display: none; }
+.web-playtest { position: fixed; inset: 0; z-index: 120; display: grid; place-items: center; padding: 20px; background: rgba(4, 7, 12, .78); backdrop-filter: blur(12px); }
+.web-playtest-card { width: min(560px, 100%); max-height: min(760px, 92vh); overflow: auto; padding: 28px; border: 1px solid var(--green); background: var(--panel); box-shadow: 0 24px 80px rgba(0, 0, 0, .55); animation: playtest-in .35s cubic-bezier(.22,1,.36,1) both; }
+.web-playtest-close { float: right; border: 1px solid var(--line); background: transparent; color: var(--text); font-size: 24px; line-height: 1; cursor: pointer; }
+.web-playtest-note, .web-position, .web-trade-status { color: var(--muted); font-size: 12px; }
+.web-market-head { display: flex; align-items: baseline; gap: 12px; margin-top: 22px; }
+.web-market-head strong { color: var(--text); font-size: 30px; }
+.web-market-head b { color: var(--green); }
+.web-market-head b.negative { color: #ff9b9b; }
+.web-chart { display: flex; align-items: end; gap: 4px; height: 170px; margin: 18px 0; padding: 12px; border: 1px solid var(--line); background: repeating-linear-gradient(0deg, transparent 0 37px, #263140 38px); }
+.web-chart i { flex: 1; min-width: 4px; background: var(--green); animation: bar-in .3s ease both; }
+.web-chart i.down { background: #ff9b9b; }
+.web-playtest-toolbar, .web-trade-panel { display: flex; align-items: center; gap: 8px; }
+.web-playtest-toolbar { justify-content: space-between; color: var(--muted); font-size: 11px; }
+.web-playtest-toolbar button, .web-trade-panel button { border: 1px solid #385248; padding: 8px 12px; background: #142b25; color: var(--green); cursor: pointer; }
+.web-trade-panel { margin-top: 18px; }
+.web-trade-panel label { color: var(--muted); font-size: 11px; }
+.web-trade-panel input { width: 80px; border: 1px solid var(--line); padding: 8px; background: #080b12; color: var(--text); }
+.web-trade-panel .web-sell { border-color: #633842; background: #2b1a20; color: #ff9b9b; }
+body.playtest-open { overflow: hidden; }
+@keyframes playtest-in { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes bar-in { from { transform: scaleY(0); transform-origin: bottom; } to { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) { .web-playtest-card, .web-chart i { animation: none; } }
 
 /* Markets and downloads */
 .market-section { margin-top: 130px; border-block: 1px solid var(--line); background: var(--panel); }
