@@ -65,17 +65,28 @@
     </section>
     <section class="app-section app-section-split" data-app-section="2" aria-hidden="true">
       <div class="app-section-visual">
-        <div class="carousel-visual-top"><span>OPEN BELL / REPLAY</span><span>03 / 04</span></div>
+        <div class="carousel-visual-top"><span data-replay-kicker>OPEN BELL / REPLAY</span><button class="replay-page-switch" type="button" data-replay-page aria-label="切換回放與分析視圖">03 / 04</button></div>
         <div class="carousel-art">
-          <div class="replay-grid"><span>DAY 051</span><strong>REPLAY</strong><small>01:24:08</small></div>
-          <div class="replay-track"><b></b><i></i><i></i><i></i><i></i><i></i></div>
-          <div class="replay-controls"><span>◀</span><strong>Ⅱ</strong><span>▶</span><em>0.5×　1×　2×　4×</em></div>
+          <div class="replay-grid"><span data-replay-day>DAY 051</span><strong data-replay-title>REPLAY</strong><small data-replay-time>01:24:08</small></div>
+          <div class="replay-chart-wrap"><canvas class="replay-chart" data-replay-chart aria-label="動態市場回放圖表"></canvas><b class="replay-progress" data-replay-progress></b></div>
+          <div class="replay-track" aria-hidden="true"><b data-replay-track></b><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="replay-controls" aria-label="回放控制列">
+            <button type="button" data-replay-step="-1" aria-label="倒退一根 K 線">◀</button>
+            <button type="button" class="replay-play" data-replay-play aria-label="播放">▶</button>
+            <button type="button" data-replay-step="1" aria-label="快進一根 K 線">▶</button>
+            <span class="replay-speeds" aria-label="播放速度">
+              <button type="button" data-replay-speed="0.5">0.5×</button>
+              <button type="button" data-replay-speed="1" class="is-selected">1×</button>
+              <button type="button" data-replay-speed="2">2×</button>
+              <button type="button" data-replay-speed="4">4×</button>
+            </span>
+          </div>
         </div>
       </div>
       <div class="app-section-copy">
-        <p class="presentation-kicker">03 / REPLAY</p>
-        <h2>把時間放慢，直到你看懂節奏。</h2>
-        <p>播放、暫停、單步與倍速回放。不是追逐下一根，而是理解上一根為什麼發生，讓直覺變成可驗證的方法。</p>
+        <p class="presentation-kicker" data-replay-copy-kicker>03 / REPLAY</p>
+        <h2 data-replay-copy-title>把時間放慢，直到你看懂節奏。</h2>
+        <p data-replay-copy-text>播放、暫停、單步與倍速回放。不是追逐下一根，而是理解上一根為什麼發生，讓直覺變成可驗證的方法。</p>
         <div class="presentation-stat"><span>0.5×</span><span>1×</span><span>2×</span><span>4×</span></div>
       </div>
     </section>

@@ -877,3 +877,145 @@ document.querySelectorAll(".market-list button").forEach((market) => {
     renderMarket();
   });
 });
+
+// Replay simulator: the presentation window stays lightweight, but behaves like a real player.
+const replayChart = document.querySelector("[data-replay-chart]");
+if (replayChart) {
+  const replayCanvas = replayChart;
+  const replayContext = replayCanvas.getContext("2d");
+  const replayProgress = document.querySelector("[data-replay-progress]");
+  const replayTrack = document.querySelector("[data-replay-track]");
+  const replayPlay = document.querySelector("[data-replay-play]");
+  const replayPage = document.querySelector("[data-replay-page]");
+  const replayTitle = document.querySelector("[data-replay-title]");
+  const replayKicker = document.querySelector("[data-replay-kicker]");
+  const replayTime = document.querySelector("[data-replay-time]");
+  const replayCopyKicker = document.querySelector("[data-replay-copy-kicker]");
+  const replayCopyTitle = document.querySelector("[data-replay-copy-title]");
+  const replayCopyText = document.querySelector("[data-replay-copy-text]");
+  const replaySpeeds = [...document.querySelectorAll("[data-replay-speed]")];
+  const replaySteps = [...document.querySelectorAll("[data-replay-step]")];
+  const replayData = [42, 47, 44, 52, 49, 57, 54, 61, 58, 66, 63, 72, 68, 75, 71, 79, 76, 84, 81, 88, 86, 92, 89, 96, 93, 101, 98, 106, 103, 110];
+  let replayIndex = 9;
+  let replaySpeed = 1;
+  let replayPlaying = false;
+  let replayMode = "replay";
+  let replayFrame = 0;
+  let replayLastTime = 0;
+
+  function resizeReplayCanvas() {
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    const rect = replayCanvas.getBoundingClientRect();
+    replayCanvas.width = Math.max(1, Math.round(rect.width * ratio));
+    replayCanvas.height = Math.max(1, Math.round(rect.height * ratio));
+    replayContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+    drawReplayChart();
+  }
+
+  function drawReplayChart() {
+    const width = replayCanvas.clientWidth;
+    const height = replayCanvas.clientHeight;
+    if (!width || !height) return;
+    replayContext.clearRect(0, 0, width, height);
+    const visible = replayData.slice(0, Math.max(2, Math.floor(replayIndex) + 1));
+    const min = Math.min(...replayData) - 8;
+    const max = Math.max(...replayData) + 8;
+    const xStep = width / (replayData.length - 1);
+    const y = (value) => height - ((value - min) / (max - min)) * (height - 20) - 10;
+
+    replayContext.lineWidth = 1;
+    replayContext.strokeStyle = "rgba(255,255,255,.08)";
+    for (let line = 1; line < 4; line += 1) {
+      replayContext.beginPath();
+      replayContext.moveTo(0, (height / 4) * line);
+      replayContext.lineTo(width, (height / 4) * line);
+      replayContext.stroke();
+    }
+
+    if (replayMode === "analysis") {
+      replayContext.beginPath();
+      visible.forEach((value, index) => {
+        const pointX = index * xStep;
+        index ? replayContext.lineTo(pointX, y(value)) : replayContext.moveTo(pointX, y(value));
+      });
+      replayContext.strokeStyle = "#00ffff";
+      replayContext.lineWidth = 2;
+      replayContext.shadowColor = "rgba(0,255,255,.65)";
+      replayContext.shadowBlur = 8;
+      replayContext.stroke();
+      replayContext.shadowBlur = 0;
+    } else {
+      visible.forEach((close, index) => {
+        const open = index ? replayData[index - 1] : close - 3;
+        const high = Math.max(open, close) + 3;
+        const low = Math.min(open, close) - 3;
+        const pointX = index * xStep;
+        const candleWidth = Math.max(3, Math.min(10, xStep * .42));
+        replayContext.strokeStyle = close >= open ? "#4de6a2" : "#ff6b78";
+        replayContext.fillStyle = replayContext.strokeStyle;
+        replayContext.beginPath();
+        replayContext.moveTo(pointX, y(high));
+        replayContext.lineTo(pointX, y(low));
+        replayContext.stroke();
+        replayContext.fillRect(pointX - candleWidth / 2, y(Math.max(open, close)), candleWidth, Math.max(2, Math.abs(y(open) - y(close))));
+      });
+    }
+    const percent = Math.max(0, Math.min(100, (replayIndex / (replayData.length - 1)) * 100));
+    replayProgress.style.width = `${percent}%`;
+    replayTrack.style.width = `${percent}%`;
+    replayTime.textContent = `01:${String(24 + Math.floor(replayIndex / 6)).padStart(2, "0")}:${String(Math.floor(replayIndex * 7) % 60).padStart(2, "0")}`;
+  }
+
+  function animateReplay(timestamp) {
+    if (!replayPlaying) {
+      replayFrame = 0;
+      return;
+    }
+    if (!replayLastTime) replayLastTime = timestamp;
+    const elapsed = timestamp - replayLastTime;
+    if (elapsed > 130 / replaySpeed) {
+      replayIndex += .22 * replaySpeed;
+      replayLastTime = timestamp;
+      if (replayIndex >= replayData.length - 1) {
+        replayIndex = replayData.length - 1;
+        replayPlaying = false;
+        replayPlay.textContent = "▶";
+        replayPlay.setAttribute("aria-label", "播放");
+      }
+      drawReplayChart();
+    }
+    replayFrame = window.requestAnimationFrame(animateReplay);
+  }
+
+  function setReplayPlaying(playing) {
+    replayPlaying = playing;
+    replayLastTime = 0;
+    replayPlay.textContent = playing ? "Ⅱ" : "▶";
+    replayPlay.setAttribute("aria-label", playing ? "暫停" : "播放");
+    if (playing && !replayFrame) replayFrame = window.requestAnimationFrame(animateReplay);
+  }
+
+  replayPlay.addEventListener("click", () => setReplayPlaying(!replayPlaying));
+  replaySteps.forEach((button) => button.addEventListener("click", () => {
+    replayIndex = Math.max(0, Math.min(replayData.length - 1, replayIndex + Number(button.dataset.replayStep) * 1.5));
+    drawReplayChart();
+  }));
+  replaySpeeds.forEach((button) => button.addEventListener("click", () => {
+    replaySpeed = Number(button.dataset.replaySpeed);
+    replaySpeeds.forEach((item) => item.classList.toggle("is-selected", item === button));
+  }));
+  replayPage.addEventListener("click", () => {
+    replayMode = replayMode === "replay" ? "analysis" : "replay";
+    replayPage.textContent = replayMode === "replay" ? "03 / 04" : "04 / 04";
+    replayKicker.textContent = replayMode === "replay" ? "OPEN BELL / REPLAY" : "OPEN BELL / ANALYSIS";
+    replayTitle.textContent = replayMode === "replay" ? "REPLAY" : "ANALYSIS";
+    replayCopyKicker.textContent = replayMode === "replay" ? "03 / REPLAY" : "04 / ANALYSIS";
+    replayCopyTitle.textContent = replayMode === "replay" ? "把時間放慢，直到你看懂節奏。" : "讓每一個波動留下證據。";
+    replayCopyText.textContent = replayMode === "replay"
+      ? "播放、暫停、單步與倍速回放。不是追逐下一根，而是理解上一根為什麼發生，讓直覺變成可驗證的方法。"
+      : "把價格路徑、趨勢與節奏放在同一個視圖，辨認市場結構，讓每一次判斷都能回到數據。";
+    drawReplayChart();
+  });
+  window.addEventListener("resize", resizeReplayCanvas, { passive: true });
+  resizeReplayCanvas();
+}
