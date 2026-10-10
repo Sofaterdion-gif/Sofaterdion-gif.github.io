@@ -36,6 +36,12 @@ if (loaderCode) {
     }
   };
   typeCode();
+  window.setTimeout(() => {
+    if (codeComplete) return;
+    loaderCode.textContent = loaderCodeText;
+    codeComplete = true;
+    maybeFinishLoading();
+  }, 4500);
 }
 const finishLoading = () => {
   pageLoaded = true;
@@ -151,7 +157,9 @@ document.querySelectorAll("a[href*='OpenBell-Playtest.exe']").forEach((link) => 
     document.body.classList.add("download-started");
     window.setTimeout(() => document.body.classList.remove("download-started"), 900);
   });
+});
 
+{
   const playtest = document.querySelector("#web-playtest");
   const playtestOpeners = document.querySelectorAll("[data-web-playtest], .phone-screen button");
   const playtestClose = document.querySelector(".web-playtest-close");
@@ -254,7 +262,7 @@ document.querySelectorAll("a[href*='OpenBell-Playtest.exe']").forEach((link) => 
   });
   document.addEventListener("keydown", (event) => { if (event.key === "Escape" && playtest && !playtest.hidden) closePlaytest(); });
   renderPlaytest();
-});
+}
 
 const translations = {
   zh: {
