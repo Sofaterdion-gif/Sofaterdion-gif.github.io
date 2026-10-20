@@ -542,7 +542,7 @@ document.querySelectorAll("button, .button, .text-link, .nav-link").forEach((ele
   });
 });
 
-document.querySelectorAll("a[href*='OpenBell-Playtest.exe']").forEach((link) => {
+document.querySelectorAll("a[href*='OpenBell-Playtest']").forEach((link) => {
   link.classList.add("download-link");
   link.addEventListener("click", () => {
     document.body.classList.add("download-started");
