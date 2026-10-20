@@ -1004,6 +1004,11 @@ html.js body.typing-ready .home-mode-card .typing-char {
 @media (max-width: 860px) { .claude-feature { grid-template-columns: 1fr; } .clawd-walker { transform-origin: left bottom; } }
 @media (prefers-reduced-motion: reduce) { .gameplay-shots img { transition: none; } }
 
+/* 小克立繪：圖片本身有呼吸般的輕微起伏（以腳底為軸），與遊戲內的待機動作呼應。 */
+.claude-stage .claude-art { display: block; width: auto; height: min(68vh, 620px); max-width: 100%; margin: 12px auto 0; transform-origin: 50% 100%; animation: claude-breathe 5.2s ease-in-out infinite; filter: drop-shadow(0 18px 30px rgba(217,119,87,.25)); }
+@keyframes claude-breathe { 0%, 100% { transform: scale(1, 1) rotate(0deg); } 50% { transform: scale(1.006, 1.014) rotate(.35deg); } }
+@media (prefers-reduced-motion: reduce) { .claude-stage .claude-art { animation: none; } }
+
 /* ===== v0.3.0 新玩法 ===== */
 .new-features { width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding: clamp(40px, 6vw, 90px) 0; display: grid; gap: clamp(20px, 3vw, 36px); }
 .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--grid-gap); }
