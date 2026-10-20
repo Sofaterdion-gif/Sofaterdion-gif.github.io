@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Open Bell — Read the market. Play the day.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20261020-eras1">
+  <link rel="stylesheet" href="styles.css?v=20261020-claude1">
   <link rel="stylesheet" href="loader.css?v=20261010-transition13">
   <title>Open Bell — Read the market. Play the day.</title>
 </head>
@@ -52,6 +52,41 @@
           </svg>
           <div class="chart-footer"><span>DAY 042 / 180</span><span>2.0X SPEED</span><span class="positive">▲ 8.42%</span></div>
         </div>
+      </div>
+    </section>
+    <section class="claude-feature" aria-labelledby="claude-feature-title">
+      <div class="claude-feature-copy" data-reveal>
+        <p class="eyebrow">CLAUDE × OPEN BELL</p>
+        <h2 id="claude-feature-title">帶著書，牽著 Clawd，<br><em>慢慢走過每一根 K 線。</em></h2>
+        <p>Open Bell 的復盤夥伴：由 Claude 化身的少女，手捧一本交易筆記，牽著小小的 Clawd，在流動的行情上散步。她不替你下單，只陪你把每一次決定看清楚。</p>
+        <ul class="claude-feature-points">
+          <li><b>智能復盤</b><span>每局結算後，指出你的進出場習慣。</span></li>
+          <li><b>生涯手冊</b><span>升遷與資金規則，一本翻到底。</span></li>
+          <li><b>Clawd 同行</b><span>點一下頁面底部散步的 Clawd，牠會跳起來跟你說話。</span></li>
+        </ul>
+      </div>
+      <figure class="claude-stage" data-reveal>
+        <canvas data-claude-scene role="img" aria-label="Claude 擬人化少女手捧書本、牽著 Clawd 在流動的 K 線上散步"></canvas>
+        <figcaption>遊戲內首頁立繪 · 動畫即時繪製</figcaption>
+      </figure>
+    </section>
+    <section class="gameplay-showcase" aria-labelledby="gameplay-title">
+      <div class="gameplay-intro" data-reveal>
+        <p class="eyebrow">GAMEPLAY / 實機畫面</p>
+        <h2 id="gameplay-title">真實遊戲畫面。<br><em>沒有特效包裝。</em></h2>
+        <p>以下皆為 Windows 版 Open Bell 實機錄製：從首頁入口、抽一張模式卡、開局，到做多、放空、平倉與績效復盤。</p>
+      </div>
+      <div class="gameplay-video" data-reveal>
+        <video controls preload="metadata" playsinline muted loop poster="media/gameplay-poster.jpg" aria-label="Open Bell 實機遊玩影片">
+          <source src="media/openbell-gameplay.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="gameplay-shots">
+        <figure data-reveal><img src="media/shot-home.jpg" alt="Open Bell 首頁入口" loading="lazy" width="1280" height="720"><figcaption>首頁入口</figcaption></figure>
+        <figure data-reveal><img src="media/shot-cards.jpg" alt="抽卡選模式" loading="lazy" width="1280" height="720"><figcaption>抽一張模式卡</figcaption></figure>
+        <figure data-reveal><img src="media/shot-setup.jpg" alt="開局設定" loading="lazy" width="1280" height="720"><figcaption>開局設定</figcaption></figure>
+        <figure data-reveal><img src="media/shot-trade.jpg" alt="交易工作台" loading="lazy" width="1280" height="720"><figcaption>交易工作台</figcaption></figure>
+        <figure data-reveal><img src="media/shot-review.jpg" alt="績效總覽與智能復盤" loading="lazy" width="1280" height="720"><figcaption>績效與智能復盤</figcaption></figure>
       </div>
     </section>
     <section class="home-modes" aria-labelledby="home-modes-title">
@@ -104,6 +139,7 @@
       <a class="button button-primary mode-modal-enter" data-modal-enter href="game.html">進入模式 ↗</a>
     </article>
   </div>
+  <div class="clawd-walker" aria-hidden="false"><span class="clawd-bubble" data-clawd-bubble role="status"></span><canvas data-clawd-walker aria-label="會走路的 Clawd，點一下會跳"></canvas></div>
   <footer class="home-footer content-layer"><span>© 2026 Open Bell</span><span>Tirde Studio · Open Bell™</span></footer>
   <script src="background-motion.js?v=20261010-transition2"></script>
   <script src="background-3d.js?v=20261010-3d1"></script>
@@ -111,5 +147,6 @@
   <script src="loader.js?v=20261010-transition5"></script>
   <script src="interaction.js?v=20261010-mode1"></script>
   <script src="script.js?v=20261020-zip1"></script>
+  <script src="claude-scene.js?v=20261020-claude1" defer></script>
 </body>
 </html>

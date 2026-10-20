@@ -975,3 +975,31 @@ html.js body.typing-ready .home-mode-card .typing-char {
 /* The glass .button rule above replaces the primary fill, so give primary buttons readable text on glass. */
 .button-primary { border-color: var(--green); background: rgba(101,224,192,.13); color: var(--green); }
 .button-primary:hover, .button-primary:focus-visible { background: rgba(101,224,192,.22); color: #eafff9; }
+/* ===== Claude × Open Bell ===== */
+.claude-feature, .gameplay-showcase { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+.claude-feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(24px, 4vw, 64px); align-items: center; padding: clamp(48px, 8vw, 110px) 0; }
+.claude-feature h2, .gameplay-intro h2 { font-size: clamp(1.9rem, 3.3vw, 3rem); line-height: 1.1; letter-spacing: -.05em; margin: 14px 0 20px; }
+.claude-feature h2 em, .gameplay-intro h2 em { color: #d97757; font-style: normal; }
+.claude-feature-copy p, .gameplay-intro p { color: var(--muted); line-height: 1.8; max-width: 52ch; }
+.claude-feature-points { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 12px; }
+.claude-feature-points li { display: grid; gap: 2px; padding: 12px 16px; border: 1px solid var(--glass-line); border-left: 3px solid #d97757; border-radius: 10px; background: var(--glass); }
+.claude-feature-points b { font-family: var(--mono); font-size: .78rem; letter-spacing: .12em; color: #eea184; }
+.claude-feature-points span { color: var(--muted); font-size: .95rem; }
+.claude-stage { margin: 0; border: 1px solid var(--glass-line); border-radius: 20px; background: radial-gradient(ellipse at 50% 90%, rgba(217,119,87,.16), transparent 60%), rgba(8, 12, 14, .72); box-shadow: var(--shadow-glass); overflow: hidden; }
+.claude-stage canvas { display: block; width: 100%; aspect-ratio: 640 / 560; }
+.claude-stage figcaption { padding: 10px 16px; font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; color: var(--muted); border-top: 1px solid var(--glass-line); }
+.gameplay-showcase { padding: clamp(40px, 6vw, 90px) 0; display: grid; gap: clamp(20px, 3vw, 36px); }
+.gameplay-video video { display: block; width: 100%; max-height: 80vh; border-radius: 16px; border: 1px solid var(--glass-line); background: #000; box-shadow: var(--shadow-glass); }
+.gameplay-shots { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 860px) { .gameplay-shots { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.gameplay-shots figure { margin: 0; border: 1px solid var(--glass-line); border-radius: 12px; overflow: hidden; background: var(--glass); }
+.gameplay-shots img { display: block; width: 100%; height: auto; transition: transform .4s ease; }
+.gameplay-shots figure:hover img { transform: scale(1.03); }
+.gameplay-shots figcaption { padding: 8px 12px; font-size: .85rem; color: var(--muted); }
+.clawd-walker { position: fixed; left: 0; bottom: 0; z-index: 30; width: 120px; height: 90px; pointer-events: none; will-change: transform; }
+.clawd-walker canvas { width: 120px; height: 90px; display: block; cursor: pointer; pointer-events: auto; }
+.clawd-bubble { position: absolute; left: 50%; bottom: 82px; transform: translateX(-50%); white-space: nowrap; padding: 6px 12px; border-radius: 12px; background: #f4efe6; color: #1f1b19; font-size: .82rem; font-weight: 600; opacity: 0; transition: opacity .25s ease; pointer-events: none; }
+.clawd-bubble.show { opacity: 1; }
+.clawd-bubble::after { content: ""; position: absolute; left: 50%; bottom: -5px; width: 10px; height: 10px; background: inherit; transform: translateX(-50%) rotate(45deg); }
+@media (max-width: 860px) { .claude-feature { grid-template-columns: 1fr; } .clawd-walker { transform-origin: left bottom; } }
+@media (prefers-reduced-motion: reduce) { .gameplay-shots img { transition: none; } }
