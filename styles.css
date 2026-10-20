@@ -1003,3 +1003,11 @@ html.js body.typing-ready .home-mode-card .typing-char {
 .clawd-bubble::after { content: ""; position: absolute; left: 50%; bottom: -5px; width: 10px; height: 10px; background: inherit; transform: translateX(-50%) rotate(45deg); }
 @media (max-width: 860px) { .claude-feature { grid-template-columns: 1fr; } .clawd-walker { transform-origin: left bottom; } }
 @media (prefers-reduced-motion: reduce) { .gameplay-shots img { transition: none; } }
+
+/* ===== v0.3.0 新玩法 ===== */
+.new-features { width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding: clamp(40px, 6vw, 90px) 0; display: grid; gap: clamp(20px, 3vw, 36px); }
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--grid-gap); }
+.feature-card { border: 1px solid var(--glass-line); border-radius: 14px; overflow: hidden; background: var(--glass); }
+.feature-card img { display: block; width: 100%; height: auto; }
+.feature-card h3 { margin: 14px 16px 6px; font-size: 1.05rem; color: #eea184; }
+.feature-card p { margin: 0 16px 16px; color: var(--muted); line-height: 1.7; font-size: .92rem; }
