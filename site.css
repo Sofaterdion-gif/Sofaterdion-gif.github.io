@@ -1,4 +1,6 @@
 /* Open Bell 首頁（2026-10 改版）：紫色星空＋琉金，現代無襯線內文（Noto Sans TC／Inter），標題用 Noto Serif TC。 */
+@font-face { font-family: "LXGW WenKai TC"; src: url("fonts/lxgw-wenkai-tc-regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "LXGW WenKai TC"; src: url("fonts/lxgw-wenkai-tc-medium.woff2") format("woff2"); font-weight: 500 700; font-display: swap; }
 :root {
   --bg: #0a0714;
   --bg-2: #120c22;
@@ -16,7 +18,7 @@
   --red: #ff6b7d;
   --radius: 18px;
   --sans: "Inter", "Noto Sans TC", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --serif: "Noto Serif TC", "Noto Serif JP", Georgia, serif;
+  --serif: "LXGW WenKai TC", "Noto Serif TC", "Noto Serif JP", Georgia, serif;
   --max: 1180px;
   color-scheme: dark;
 }
@@ -206,3 +208,38 @@ footer a:hover { color: var(--text); }
   .shots { grid-template-columns: 1fr; }
   .cast { grid-auto-columns: 72%; }
 }
+
+/* 角色故事視窗 */
+.person:focus-visible { outline: 2px solid var(--gold-2); outline-offset: 3px; }
+.person::after { content: "點開看故事 ↗"; display: block; margin-top: 6px; font-size: 12px; color: var(--gold-2); opacity: 0; transform: translateY(4px); transition: opacity .25s, transform .25s; }
+.person:hover::after, .person:focus-visible::after { opacity: 1; transform: none; }
+.story-dialog { border: 1px solid var(--line-strong); border-radius: 22px; padding: 0; width: min(920px, calc(100vw - 32px)); max-height: calc(100vh - 48px);
+  background: linear-gradient(180deg, #1d1538, #0f0a1f); color: var(--text); box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6); overflow: auto; }
+.story-dialog::backdrop { background: rgba(6, 4, 14, 0.72); backdrop-filter: blur(6px); }
+.story-dialog[open] { animation: storyIn .28s ease; }
+@keyframes storyIn { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
+.story-close { position: absolute; right: 14px; top: 10px; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.06); color: var(--text); font-size: 22px; cursor: pointer; }
+.story-close:hover { border-color: var(--gold-2); color: var(--gold-1); }
+.story-grid { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 28px; padding: 28px; }
+.story-grid figure { margin: 0; display: flex; align-items: flex-end; justify-content: center; background: radial-gradient(ellipse at 50% 80%, rgba(142, 116, 255, 0.28), transparent 70%); border-radius: 16px; }
+.story-grid img { width: 100%; max-height: 520px; object-fit: contain; object-position: bottom; }
+.story-body h3 { font-family: var(--serif); font-size: 32px; margin: 0; }
+.story-role { color: var(--gold-2); font-size: 14px; margin: 4px 0 14px; }
+.story-body dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 0 0 14px; font-size: 14px; }
+.story-body dt { color: var(--muted); }
+.story-body dd { margin: 0; }
+.story-bio { line-height: 1.85; color: #d9d2ee; font-size: 15px; margin: 0 0 16px; }
+.story-teaser { border-left: 2px solid var(--gold-3); padding: 4px 0 4px 14px; margin: 0 0 16px; font-size: 14px; color: #cfc6e6; }
+.story-teaser b, .story-chapters b { display: block; color: var(--gold-1); font-size: 13px; margin-bottom: 6px; letter-spacing: .04em; }
+.story-teaser p { margin: 0 0 6px; line-height: 1.7; }
+.story-chapters ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 18px; font-size: 13.5px; }
+.story-chapters li { color: #cfc6e6; }
+.story-chapters li span { color: var(--gold-3); font-variant-numeric: tabular-nums; margin-right: 8px; }
+.story-note { margin-top: 14px; color: var(--muted); font-size: 12.5px; }
+@media (max-width: 720px) {
+  .story-grid { grid-template-columns: 1fr; padding: 20px; gap: 16px; }
+  .story-grid img { max-height: 300px; }
+  .story-chapters ol { grid-template-columns: 1fr; }
+}
+
+.story-bio, .story-teaser p, .hero p.lead { font-family: var(--serif); }

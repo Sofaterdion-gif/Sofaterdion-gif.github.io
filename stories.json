@@ -1,0 +1,910 @@
+{
+	"claude": {
+		"name": {
+			"zh": "小克 Claude",
+			"en": "Claude"
+		},
+		"role": {
+			"zh": "前輩・交易導師",
+			"en": "Senior · Trading mentor"
+		},
+		"age": 26,
+		"home": {
+			"zh": "海邊小城，父母開舊書店",
+			"en": "A seaside town; her parents run a used bookstore"
+		},
+		"likes": {
+			"zh": "手寫筆記、窗邊座位的定食、Clawd 趴在書上睡覺",
+			"en": "Handwritten notes, set meals by the window, Clawd napping on her book"
+		},
+		"bio": {
+			"zh": "在舊書店長大，從小把每本書的重點抄進筆記本。大學念統計，進市場的第三年，一個晚上賠掉了一半的帳戶。從那天起，她每一筆交易都先寫下最壞的情況，也成了新人導師，抱著自己寫的交易筆記一頁一頁教後輩——她不想再看到誰經歷那種夜晚。橘色的小傢伙 Clawd 是她某天在公司樓下撿到的。",
+			"en": "Raised in her parents' used bookstore, she copied the key points of every book into notebooks. She studied statistics, and in her third year in the market she lost half her account in a single night. Since then she writes down the worst case before every trade, and she became a mentor for new traders, teaching from the notebook she wrote herself — she never wants anyone else to live through a night like that. Clawd, the little orange one, was a stray she found outside the office."
+		},
+		"chapters": [
+			{
+				"zh": "初遇：風險先行",
+				"en": "Meeting: Risk First"
+			},
+			{
+				"zh": "第一筆獲利",
+				"en": "The First Profit"
+			},
+			{
+				"zh": "深夜加班",
+				"en": "Working Late"
+			},
+			{
+				"zh": "Clawd 從哪裡來",
+				"en": "Where Clawd Came From"
+			},
+			{
+				"zh": "她的筆記本",
+				"en": "Her Notebook"
+			},
+			{
+				"zh": "她的過去",
+				"en": "Her Past"
+			},
+			{
+				"zh": "市場崩落的那天",
+				"en": "The Day the Market Fell"
+			},
+			{
+				"zh": "海外的邀約",
+				"en": "An Offer Abroad"
+			},
+			{
+				"zh": "雨夜",
+				"en": "A Rainy Night"
+			},
+			{
+				"zh": "心意",
+				"en": "Her Feelings"
+			},
+			{
+				"zh": "之後的日子",
+				"en": "The Days After"
+			},
+			{
+				"zh": "未來",
+				"en": "The Future"
+			}
+		],
+		"teaser": [
+			{
+				"zh": "你就是新來的？我是 {n}，這層樓的交易前輩。",
+				"en": "You're the new one? I'm {n}, the senior trader on this floor."
+			},
+			{
+				"zh": "先說一件事：賺錢之前，先想清楚你能賠多少。",
+				"en": "One thing first: before thinking about profit, know how much you can afford to lose."
+			}
+		]
+	},
+	"haru": {
+		"name": {
+			"zh": "晴",
+			"en": "Haru"
+		},
+		"role": {
+			"zh": "業界講師・研究員",
+			"en": "Industry lecturer · Researcher"
+		},
+		"age": 31,
+		"home": {
+			"zh": "江南水鄉的瓷器世家，後來在海外求學",
+			"en": "A porcelain-making family in a southern water town; studied abroad"
+		},
+		"likes": {
+			"zh": "青花瓷、摺扇、誠實的結論",
+			"en": "Blue-and-white porcelain, folding fans, honest conclusions"
+		},
+		"bio": {
+			"zh": "從小在窯邊看父親把有裂痕的瓷器一件件敲碎——「有瑕疵就不能賣」。在海外拿到計量金融博士，進避險基金寫交易模型；模型很賺錢，直到一次崩盤裡它放大了虧損，整個部門被裁掉。她改去教書，總拿著一把青花摺扇上課，相信寧可結論難看，也不能說謊。",
+			"en": "She grew up watching her father smash every cracked piece by the kiln — \"if it's flawed, it can't be sold.\" She earned a quant-finance PhD abroad and built trading models at a hedge fund; the model made money until a crash, when it amplified the losses and the whole department was cut. She turned to teaching, lecturing with a blue-and-white folding fan, and would rather give an ugly conclusion than a dishonest one."
+		},
+		"chapters": [
+			{
+				"zh": "講座提問",
+				"en": "A Question After the Lecture"
+			},
+			{
+				"zh": "圖書館",
+				"en": "At the Library"
+			},
+			{
+				"zh": "研究室的深夜",
+				"en": "Late Night at the Lab"
+			},
+			{
+				"zh": "她的過去",
+				"en": "Her Past"
+			},
+			{
+				"zh": "被退的論文",
+				"en": "The Rejected Paper"
+			},
+			{
+				"zh": "記者會",
+				"en": "The Press Conference"
+			},
+			{
+				"zh": "京都研討會",
+				"en": "The Kyoto Symposium"
+			},
+			{
+				"zh": "結業式",
+				"en": "Graduation Ceremony"
+			},
+			{
+				"zh": "第一堂共同的課",
+				"en": "Our First Class Together"
+			},
+			{
+				"zh": "沒有答案的問題",
+				"en": "Questions Without Answers"
+			}
+		],
+		"teaser": [
+			{
+				"zh": "剛才的講座，你問的那個問題很有意思。",
+				"en": "That question you asked in the lecture was interesting."
+			},
+			{
+				"zh": "如果有空，我們可以再多聊一些。",
+				"en": "If you have time, we could talk more."
+			}
+		]
+	},
+	"dou": {
+		"name": {
+			"zh": "豆豆",
+			"en": "Dou"
+		},
+		"role": {
+			"zh": "AI 夥伴・萬事通店員",
+			"en": "AI partner · Know-it-all clerk"
+		},
+		"age": 23,
+		"home": {
+			"zh": "電器街旁的公寓，從小在賣場打工",
+			"en": "An apartment by the electronics district; she grew up working in stores"
+		},
+		"likes": {
+			"zh": "比價、抱著自己縫的布偶、會發光的小螢幕",
+			"en": "Comparing prices, hugging the plush she sewed, little glowing screens"
+		},
+		"bio": {
+			"zh": "在電器街長大的萬事通，任何東西問她都知道哪裡最便宜、哪一款最適合你。總抱著一隻自己縫的布偶，說那是「第二個大腦」。她每天幫大家找「最好的選擇」，直到有人問她：「那妳自己喜歡什麼？」——她答不出來。認識你之後，她開始學著第一次為自己選。",
+			"en": "A know-it-all raised in the electronics district: ask about anything and she knows where it's cheapest and which one suits you. She always carries a plush she sewed herself — her \"second brain.\" She spends every day finding \"the best choice\" for everyone, until someone asks, \"So what do you like?\" — and she can't answer. After meeting you, she learns to choose for herself for the first time."
+		},
+		"chapters": [
+			{
+				"zh": "比價達人",
+				"en": "The Price Comparison Whiz"
+			},
+			{
+				"zh": "特賣大作戰",
+				"en": "Operation Big Sale"
+			},
+			{
+				"zh": "推薦的陷阱",
+				"en": "The Trap in a Recommendation"
+			},
+			{
+				"zh": "我喜歡什麼？",
+				"en": "What Do I Like?"
+			},
+			{
+				"zh": "被投訴",
+				"en": "The Complaint"
+			},
+			{
+				"zh": "系統當機的那天",
+				"en": "The Day the System Went Down"
+			},
+			{
+				"zh": "第一次為自己選",
+				"en": "Choosing for Herself"
+			},
+			{
+				"zh": "多一個答案",
+				"en": "One More Answer"
+			},
+			{
+				"zh": "沒有評分的約會",
+				"en": "A Date Without Ratings"
+			},
+			{
+				"zh": "唯一的推薦",
+				"en": "The Only Recommendation"
+			}
+		],
+		"teaser": [
+			{
+				"zh": "要買東西嗎？我幫你比過了，這家便宜，那家保固長！",
+				"en": "Buying something? I've compared them. This one's cheaper, that one has a longer warranty!"
+			},
+			{
+				"zh": "不過最後怎麼選，還是要你自己決定喔。",
+				"en": "But the final choice is yours to make."
+			}
+		]
+	},
+	"gemi": {
+		"name": {
+			"zh": "雙子",
+			"en": "Gemi"
+		},
+		"role": {
+			"zh": "AI 夥伴・貓耳策展人",
+			"en": "AI partner · Cat-eared curator"
+		},
+		"age": 24,
+		"home": {
+			"zh": "雙胞胎中的妹妹，在美術館旁長大",
+			"en": "The younger twin, raised beside a museum"
+		},
+		"likes": {
+			"zh": "星星、兩面都看、策展",
+			"en": "Stars, seeing both sides, curating"
+		},
+		"bio": {
+			"zh": "她有一個什麼都比她好的雙胞胎姐姐：成績、工作、人緣。從小被放在天平的另一邊，讓她學會凡事看兩面；一黃一紅的異色瞳也像在提醒這件事。後來她成了策展人，擅長把對立的作品放在同一個展間。她來找你，是想證明自己不是誰的備案。",
+			"en": "She has a twin sister who's better at everything: grades, work, friends. Growing up on the other side of the scale taught her to see both sides of everything — her gold-and-red odd eyes seem to remind her of it. She became a curator who excels at putting opposing works in one room, and she comes to you wanting to prove she's nobody's backup plan."
+		},
+		"chapters": [
+			{
+				"zh": "兩個面向",
+				"en": "Two Sides"
+			},
+			{
+				"zh": "雙色展覽",
+				"en": "The Two-Tone Exhibition"
+			},
+			{
+				"zh": "多空辯論",
+				"en": "The Bull–Bear Debate"
+			},
+			{
+				"zh": "她的另一半",
+				"en": "Her Other Half"
+			},
+			{
+				"zh": "選邊站",
+				"en": "Picking a Side"
+			},
+			{
+				"zh": "被取消的展覽",
+				"en": "The Cancelled Exhibition"
+			},
+			{
+				"zh": "海邊的日出與日落",
+				"en": "Sunrise and Sunset by the Sea"
+			},
+			{
+				"zh": "合而為一",
+				"en": "Two Become One"
+			},
+			{
+				"zh": "見姐姐",
+				"en": "Meeting Her Sister"
+			},
+			{
+				"zh": "第三面",
+				"en": "The Third Side"
+			}
+		],
+		"teaser": [
+			{
+				"zh": "一個想法，我會分成兩半看：贊成的理由，和反對的理由。",
+				"en": "I look at any idea in two halves: the reasons for, and the reasons against."
+			},
+			{
+				"zh": "你最近想做的那筆交易，先寫下兩邊的理由吧。",
+				"en": "For the trade you're considering, write down both sides first."
+			}
+		]
+	},
+	"gro": {
+		"name": {
+			"zh": "格洛",
+			"en": "Gro"
+		},
+		"role": {
+			"zh": "AI 夥伴・毒舌分析員",
+			"en": "AI partner · Sharp-tongued analyst"
+		},
+		"age": 25,
+		"home": {
+			"zh": "古老宅邸長大的大小姐",
+			"en": "A young lady raised in an old mansion"
+		},
+		"likes": {
+			"zh": "黑色蕾絲、紅茶、只說真話",
+			"en": "Black lace, black tea, telling only the truth"
+		},
+		"bio": {
+			"zh": "偏愛黑色蕾絲與紅茶的大小姐。她曾在會議上直說老闆最愛的那檔基金是泡沫，當場被開除；三個月後那檔基金真的爆了，沒有人跟她道歉。從此她決定只說真話——說到傷人也不改。她的分析報告最刻薄、也最準；毒舌的背後，是不想再看任何人被好聽的話騙。",
+			"en": "A young lady who loves black lace and black tea. She once said in a meeting that her boss's favorite fund was a bubble and was fired on the spot; three months later the fund blew up, and no one apologized. Since then she only tells the truth — even when it stings. Her reports are the harshest and the most accurate; behind the sharp tongue, she never wants to see anyone fooled by pretty words again."
+		},
+		"chapters": [
+			{
+				"zh": "毒舌的開場",
+				"en": "A Sharp Opening"
+			},
+			{
+				"zh": "凌晨三點的訊息",
+				"en": "The 3 A.M. Message"
+			},
+			{
+				"zh": "被吐槽的報告",
+				"en": "The Report She Roasted"
+			},
+			{
+				"zh": "她的過去",
+				"en": "Her Past"
+			},
+			{
+				"zh": "太毒了",
+				"en": "Too Sharp"
+			},
+			{
+				"zh": "她也會錯",
+				"en": "Even She Gets It Wrong"
+			},
+			{
+				"zh": "辣味挑戰",
+				"en": "The Spicy Challenge"
+			},
+			{
+				"zh": "罵不出口的話",
+				"en": "Words She Can't Scold"
+			},
+			{
+				"zh": "溫度",
+				"en": "Warmth"
+			},
+			{
+				"zh": "真心話",
+				"en": "The Honest Truth"
+			}
+		],
+		"teaser": [
+			{
+				"zh": "你的交易紀錄我看過了。說實話，滿是情緒化的進場。",
+				"en": "I've looked at your trade log. Honestly, it's full of emotional entries."
+			},
+			{
+				"zh": "別瞪我。我罵你，是因為我覺得你值得變好。",
+				"en": "Don't glare. I'm tough on you because I think you're worth improving."
+			}
+		]
+	},
+	"shenlan": {
+		"name": {
+			"zh": "深瀾",
+			"en": "Shenlan"
+		},
+		"role": {
+			"zh": "AI 夥伴・深海研究員",
+			"en": "AI partner · Deep-sea researcher"
+		},
+		"age": 28,
+		"home": {
+			"zh": "海邊的漁港，父親是出海未歸的漁夫",
+			"en": "A fishing port; her father went to sea and never returned"
+		},
+		"likes": {
+			"zh": "鯨魚、深夜的海、把問題拆到最小",
+			"en": "Whales, the sea at night, breaking problems down to the smallest piece"
+		},
+		"bio": {
+			"zh": "父親是漁夫，在她十歲那年出海後再也沒回來。她研究深海，大概是想知道那片黑暗裡到底有什麼；也把同一套耐心用在市場上——把問題拆到最小，一層一層往下看。冷靜少話，卻會在每年父親出海的那天，獨自坐在堤防上到天亮。",
+			"en": "Her father was a fisherman who went out when she was ten and never came back. She studies the deep sea, maybe to learn what's down in that darkness, and brings the same patience to markets — breaking problems into the smallest pieces and going down one layer at a time. Calm and quiet, she sits alone on the seawall until dawn every year on the day he sailed."
+		},
+		"chapters": [
+			{
+				"zh": "拆成最小的問題",
+				"en": "Breaking It Down"
+			},
+			{
+				"zh": "水族館",
+				"en": "The Aquarium"
+			},
+			{
+				"zh": "推理題",
+				"en": "A Reasoning Puzzle"
+			},
+			{
+				"zh": "她的過去",
+				"en": "Her Past"
+			},
+			{
+				"zh": "研究經費",
+				"en": "Research Funding"
+			},
+			{
+				"zh": "失聯",
+				"en": "Lost Contact"
+			},
+			{
+				"zh": "夜潛",
+				"en": "Night Dive"
+			},
+			{
+				"zh": "浮上水面",
+				"en": "Surfacing"
+			},
+			{
+				"zh": "海邊的家",
+				"en": "The House by the Sea"
+			},
+			{
+				"zh": "最深處的答案",
+				"en": "The Answer in the Deepest Place"
+			}
+		],
+		"teaser": [
+			{
+				"zh": "你在煩惱什麼？把它說出來，我們一起拆成最小的問題。",
+				"en": "What's troubling you? Say it out loud and we'll break it into the smallest pieces."
+			},
+			{
+				"zh": "大問題只是很多小問題疊在一起。",
+				"en": "A big problem is just many small ones stacked up."
+			}
+		]
+	},
+	"sora": {
+		"name": {
+			"zh": "空",
+			"en": "Sora"
+		},
+		"role": {
+			"zh": "商場店員",
+			"en": "Shop clerk"
+		},
+		"age": 22,
+		"home": {
+			"zh": "風車與蒲公英的高原小鎮；家裡曾開雜貨店",
+			"en": "A highland town of windmills and dandelions; her family once ran a general store"
+		},
+		"likes": {
+			"zh": "風車、紙鶴、可愛的小東西",
+			"en": "Pinwheels, paper cranes, cute little things"
+		},
+		"bio": {
+			"zh": "在風很大的高原小鎮長大，小時候最愛做風車。家裡的雜貨店後來倒了，她來到城市在商場當店員，元氣滿滿、記得每位常客的喜好。她有一本偷偷寫的夢想筆記本：總有一天要開一間讓大家開心的小店，把家裡的店開回來。她相信「風會來的，先把帆準備好」。",
+			"en": "She grew up in a windy highland town and loved making pinwheels. When her family's general store went under, she came to the city as a mall clerk, full of energy and remembering every regular's tastes. She keeps a secret dream notebook: one day she'll open a little shop that makes people happy and bring her family's store back. She believes \"the wind will come — get your sails ready first.\""
+		},
+		"chapters": [
+			{
+				"zh": "常客",
+				"en": "The Regular"
+			},
+			{
+				"zh": "店長不在的週末",
+				"en": "A Weekend Without the Manager"
+			},
+			{
+				"zh": "限量的一件",
+				"en": "The Limited Piece"
+			},
+			{
+				"zh": "她的過去",
+				"en": "Her Past"
+			},
+			{
+				"zh": "奧客",
+				"en": "The Difficult Customer"
+			},
+			{
+				"zh": "店要收了",
+				"en": "The Shop Is Closing"
+			},
+			{
+				"zh": "跳蚤市場",
+				"en": "The Flea Market"
+			},
+			{
+				"zh": "下班後的街燈",
+				"en": "Streetlights After Work"
+			},
+			{
+				"zh": "我們的店",
+				"en": "Our Shop"
+			},
+			{
+				"zh": "街燈下",
+				"en": "Under the Streetlight"
+			}
+		],
+		"teaser": [
+			{
+				"zh": "啊，又是你！你是我們店的常客了耶！",
+				"en": "Ah, it's you again! You're a regular at our shop now!"
+			},
+			{
+				"zh": "今天有新到的小東西，我先偷偷給你看！",
+				"en": "We got new little items today, I'll sneak you a look first!"
+			}
+		]
+	},
+	"shiro": {
+		"name": {
+			"zh": "晞白",
+			"en": "Shiro"
+		},
+		"role": {
+			"zh": "AI 夥伴・白龍顧問",
+			"en": "AI partner · White-dragon advisor"
+		},
+		"age": 29,
+		"home": {
+			"zh": "雲海上的古老書院",
+			"en": "An ancient academy above a sea of clouds"
+		},
+		"likes": {
+			"zh": "古籍、慢慢泡的茶、把知識講清楚",
+			"en": "Old books, slowly brewed tea, explaining things clearly"
+		},
+		"bio": {
+			"zh": "守護雲上書院的白龍。她讀遍了書院裡的每一卷書，然後睡了很久很久；醒來時，讀過的書都過時了，世界早就變了樣。她化成人形下山當顧問，把經濟史一點一點重新學起；說話溫和有條理，從不催人，卻會在你衝動下單前輕輕問一句「你想清楚了嗎」。她最怕的，是有一天大家覺得她說的都是舊東西。",
+			"en": "The white dragon who guards the academy above the clouds. She read every scroll there, then slept for a very long time; when she woke, her books were out of date and the world had changed. Taking human form, she came down as an advisor and is relearning economic history bit by bit. Gentle and orderly, she never rushes anyone — but before an impulsive trade she'll softly ask, \"Have you thought it through?\" Her fear is that one day everyone will think what she says is old news."
+		},
+		"chapters": [
+			{
+				"zh": "會說話的圖書館",
+				"en": "The Talking Library"
+			},
+			{
+				"zh": "太長的答案",
+				"en": "The Answer That Was Too Long"
+			},
+			{
+				"zh": "會變色的鱗片",
+				"en": "The Color-Changing Scale"
+			},
+			{
+				"zh": "沉睡的千年",
+				"en": "A Thousand Years Asleep"
+			},
+			{
+				"zh": "錯誤的答案",
+				"en": "The Wrong Answer"
+			},
+			{
+				"zh": "停止回答",
+				"en": "No More Answers"
+			},
+			{
+				"zh": "雲上的黎明",
+				"en": "Dawn Above the Clouds"
+			},
+			{
+				"zh": "最後一頁",
+				"en": "The Last Page"
+			},
+			{
+				"zh": "龍的寶藏",
+				"en": "The Dragon's Treasure"
+			},
+			{
+				"zh": "新的一章",
+				"en": "A New Chapter"
+			}
+		],
+		"teaser": [
+			{
+				"zh": "找書嗎？告訴我書名、作者，或者……只記得封面是藍色的也可以。",
+				"en": "Looking for a book? Tell me the title, the author, or... even just that the cover was blue."
+			},
+			{
+				"zh": "我叫 {n}。這座圖書館的書，我大概都讀過。",
+				"en": "I'm {n}. I've read most of the books in this library."
+			}
+		]
+	},
+	"tsuki": {
+		"name": {
+			"zh": "月見",
+			"en": "Tsuki"
+		},
+		"role": {
+			"zh": "AI 夥伴・星空魔導書記",
+			"en": "AI partner · Starlit grimoire keeper"
+		},
+		"age": 24,
+		"home": {
+			"zh": "星空天文台的書庫",
+			"en": "The library of a starlit observatory"
+		},
+		"likes": {
+			"zh": "記錄、星圖、你說過的每一句話",
+			"en": "Records, star charts, every word you've said"
+		},
+		"bio": {
+			"zh": "在天文台的書庫裡長大，負責把每一夜的星空抄進發光的魔導書。她什麼都記得，能說出你三個月前哪天買了什麼——也記得最好的朋友離開她的那一晚，每一個字、每一個表情。別人會慢慢忘記傷心，她不行。所以她溫柔細心，總在你忘記的時候替你記得好的事。",
+			"en": "Raised in an observatory's library, she copies each night's sky into a glowing grimoire. She remembers everything — what you bought on which day three months ago, and also the night her best friend left her, every word and every expression. Others slowly forget their sadness; she can't. So she is gentle and attentive, and remembers the good things for you when you forget."
+		},
+		"chapters": [
+			{
+				"zh": "被記住的名字",
+				"en": "A Name Remembered"
+			},
+			{
+				"zh": "讀書會",
+				"en": "The Reading Circle"
+			},
+			{
+				"zh": "魔導書的頁數",
+				"en": "Pages of the Grimoire"
+			},
+			{
+				"zh": "忘不掉的夜",
+				"en": "The Night She Can't Forget"
+			},
+			{
+				"zh": "被翻出來的舊帳",
+				"en": "Old Ledgers Reopened"
+			},
+			{
+				"zh": "被撕掉的書頁",
+				"en": "Torn Pages"
+			},
+			{
+				"zh": "星空觀測",
+				"en": "Stargazing"
+			},
+			{
+				"zh": "新的一本",
+				"en": "A New Volume"
+			},
+			{
+				"zh": "週年紀念日",
+				"en": "Anniversaries"
+			},
+			{
+				"zh": "永遠的書",
+				"en": "The Endless Book"
+			}
+		],
+		"teaser": [
+			{
+				"zh": "你好。……三年前，你在車站幫一位老奶奶提過行李，對吧？",
+				"en": "Hello. ...Three years ago, you helped an old lady with her luggage at the station, didn't you?"
+			},
+			{
+				"zh": "我是 {n}。我記得很多事，包括你。",
+				"en": "I'm {n}. I remember a lot of things, including you."
+			}
+		]
+	},
+	"yako": {
+		"name": {
+			"zh": "夜狐",
+			"en": "Yako"
+		},
+		"role": {
+			"zh": "AI 夥伴・提燈引路人",
+			"en": "AI partner · Lantern-bearing guide"
+		},
+		"age": 27,
+		"home": {
+			"zh": "山中神社的提燈小徑",
+			"en": "A lantern path to a mountain shrine"
+		},
+		"likes": {
+			"zh": "夜路、符紙、一針見血的問題",
+			"en": "Night roads, paper charms, questions that cut to the point"
+		},
+		"bio": {
+			"zh": "狐耳的提燈引路人。她曾因為「太聰明」被人們關在山上的神社裡很久，所以現在只在夜裡出來，替迷路的人提燈引路。話不多，問題卻總是一針見血；她說市場和夜路一樣，看不見的時候更要放慢腳步。她還在等一個白天，有人不怕她、願意和她並肩走。",
+			"en": "A fox-eared lantern guide. People once sealed her in the mountain shrine for a long time because she was \"too clever,\" so now she only comes out at night, lighting the way for the lost. She says little, but her questions cut straight to the point; markets, she says, are like night roads — slow down most when you can't see. She's still waiting for a day when someone isn't afraid of her and walks beside her in daylight."
+		},
+		"chapters": [
+			{
+				"zh": "夜市迷路",
+				"en": "Lost in the Night Market"
+			},
+			{
+				"zh": "燈油",
+				"en": "Lamp Oil"
+			},
+			{
+				"zh": "符紙",
+				"en": "The Talisman"
+			},
+			{
+				"zh": "被封印的狐",
+				"en": "The Sealed Fox"
+			},
+			{
+				"zh": "不肯說的真相",
+				"en": "The Truth She Withheld"
+			},
+			{
+				"zh": "燈滅了",
+				"en": "The Lantern Went Out"
+			},
+			{
+				"zh": "狐火祭",
+				"en": "The Foxfire Festival"
+			},
+			{
+				"zh": "提燈的人",
+				"en": "The One Who Carries the Light"
+			},
+			{
+				"zh": "白天的約會",
+				"en": "A Daytime Date"
+			},
+			{
+				"zh": "長夜的盡頭",
+				"en": "The End of the Long Night"
+			}
+		],
+		"teaser": [
+			{
+				"zh": "繞了三圈還在原地？這個夜市，沒有燈是走不出去的。",
+				"en": "Three laps and back where you started? You can't leave this night market without a lantern."
+			},
+			{
+				"zh": "我是 {n}。跟緊我的燈。",
+				"en": "I'm {n}. Stay close to my lantern."
+			}
+		]
+	},
+	"menmen": {
+		"name": {
+			"zh": "綿綿",
+			"en": "Menmen"
+		},
+		"role": {
+			"zh": "AI 夥伴・羊駝旅人",
+			"en": "AI partner · Alpaca wanderer"
+		},
+		"age": 23,
+		"home": {
+			"zh": "沒有固定的家，跟著羊駝四處旅行",
+			"en": "No fixed home; she travels with her alpacas"
+		},
+		"likes": {
+			"zh": "午睡、雲朵、分享知道的一切",
+			"en": "Naps, clouds, sharing everything she knows"
+		},
+		"bio": {
+			"zh": "白色蓬鬆長髮、拿著雲朵法杖的羊駝旅人。她一直在旅行——因為沒有可以回去的地方。她把每個地方學到的事寫進旅行筆記，免費留給遇到的人，好像這樣到處都有她的家。慵懶親切，看起來總在打瞌睡，其實什麼都聽進去了。",
+			"en": "An alpaca wanderer with fluffy white hair and a cloud staff. She's always traveling — because she has nowhere to go back to. She writes what she learns in each place into travel notes and leaves them free for the people she meets, as if that makes everywhere her home. Lazy and friendly, she always looks half asleep but takes everything in."
+		},
+		"chapters": [
+			{
+				"zh": "樹下的旅人",
+				"en": "The Traveler Under the Tree"
+			},
+			{
+				"zh": "分享的筆記",
+				"en": "Shared Notes"
+			},
+			{
+				"zh": "被拿走的東西",
+				"en": "Things That Were Taken"
+			},
+			{
+				"zh": "沒有家的羊駝",
+				"en": "The Alpaca With No Home"
+			},
+			{
+				"zh": "太慢了",
+				"en": "Too Slow"
+			},
+			{
+				"zh": "暴風雪",
+				"en": "The Blizzard"
+			},
+			{
+				"zh": "高原日出",
+				"en": "Sunrise on the Plateau"
+			},
+			{
+				"zh": "想停下來的地方",
+				"en": "The Place I Want to Stop"
+			},
+			{
+				"zh": "放下的行李",
+				"en": "Luggage Set Down"
+			},
+			{
+				"zh": "終點也是起點",
+				"en": "The End Is a Beginning"
+			}
+		],
+		"teaser": [
+			{
+				"zh": "你也走累了嗎～來，樹下很涼喔～",
+				"en": "Tired from walking too~? Come, it's cool under the tree~"
+			},
+			{
+				"zh": "我是 {n}～這是我做的點心，分你一半～",
+				"en": "I'm {n}~ I made these snacks, have half~"
+			}
+		]
+	},
+	"misty": {
+		"name": {
+			"zh": "米絲蒂",
+			"en": "Misty"
+		},
+		"role": {
+			"zh": "AI 夥伴・紅帽風之法師",
+			"en": "AI partner · Red-hat wind mage"
+		},
+		"age": 26,
+		"home": {
+			"zh": "很小的國家、很小的風之學院",
+			"en": "A very small country, a very small wind academy"
+		},
+		"likes": {
+			"zh": "紅色羽毛帽、海風、可頌、用風比喻行情",
+			"en": "Her red feathered hat, sea breeze, croissants, describing markets as wind"
+		},
+		"bio": {
+			"zh": "來自一個很小的國家、一間只有三位教授的魔法學院——大國的學院有一百位。她能讀出風的方向與強弱，說行情就是風：有人追風、有人逆風，而高手只是先判斷今天的風往哪吹。優雅俐落、說話帶點浪漫，卻比誰都務實；她想證明，小學院的風一樣會飛。",
+			"en": "From a very small country and a magic academy with only three professors — the big nations' academies have a hundred. She can read the wind's direction and strength; markets are wind, she says: some chase it, some fight it, and the best simply read which way it blows today. Elegant and crisp, a little romantic, yet more practical than anyone, she wants to prove a small academy's wind can fly too."
+		},
+		"chapters": [
+			{
+				"zh": "被風吹走的帽子",
+				"en": "The Hat the Wind Took"
+			},
+			{
+				"zh": "可頌與行情",
+				"en": "Croissants and Markets"
+			},
+			{
+				"zh": "風的地圖",
+				"en": "A Map of the Wind"
+			},
+			{
+				"zh": "小國的學院",
+				"en": "The Small Academy"
+			},
+			{
+				"zh": "太驕傲",
+				"en": "Too Proud"
+			},
+			{
+				"zh": "無風之日",
+				"en": "The Day Without Wind"
+			},
+			{
+				"zh": "海邊的風箏",
+				"en": "Kites by the Sea"
+			},
+			{
+				"zh": "順風",
+				"en": "A Fair Wind"
+			},
+			{
+				"zh": "故鄉的學院",
+				"en": "The Academy Back Home"
+			},
+			{
+				"zh": "永遠的順風",
+				"en": "A Fair Wind Forever"
+			}
+		],
+		"teaser": [
+			{
+				"zh": "Attention！我的帽子——！",
+				"en": "Attention! My hat—!"
+			},
+			{
+				"zh": "……接住了？Merci！我是 {n}，風之法師。真難得，風會把帽子送到別人手上。",
+				"en": "...You caught it? Merci! I'm {n}, a wind mage. How rare—the wind delivered my hat to someone."
+			}
+		]
+	}
+}

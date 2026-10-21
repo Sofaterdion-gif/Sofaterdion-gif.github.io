@@ -105,3 +105,50 @@
     }
   } catch (e) {}
 })();
+
+// 角色卡：點開看這位角色的檔案與故事章節（資料來自 stories.json，由遊戲的 tools/export_site_stories.gd 匯出；只放第一章開場，不劇透後面）。
+(function () {
+  var cards = document.querySelectorAll(".person");
+  if (!cards.length) return;
+  var data = null;
+  var dialog = document.createElement("dialog");
+  dialog.className = "story-dialog";
+  dialog.setAttribute("aria-label", "角色故事");
+  document.body.appendChild(dialog);
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function render(id, img) {
+    var c = data[id];
+    var name = c.name.zh.replace(/\s*[A-Za-z].*$/, "") || c.name.zh;
+    var chapters = c.chapters.map(function (ch, i) {
+      return "<li><span>" + String(i + 1).padStart(2, "0") + "</span>" + esc(ch.zh) + "</li>";
+    }).join("");
+    var teaser = c.teaser.map(function (l) { return "<p>" + esc(l.zh.replace(/\{n\}/g, name)) + "</p>"; }).join("");
+    dialog.innerHTML =
+      '<button class="story-close" aria-label="關閉">×</button>' +
+      '<div class="story-grid"><figure><img src="' + esc(img) + '" alt="' + esc(name) + '"></figure><div class="story-body">' +
+      '<h3>' + esc(name) + '</h3><div class="story-role">' + esc(c.role.zh) + " · " + c.age + " 歲</div>" +
+      '<dl><dt>出身</dt><dd>' + esc(c.home.zh) + '</dd><dt>喜歡</dt><dd>' + esc(c.likes.zh) + "</dd></dl>" +
+      "<p class=\"story-bio\">" + esc(c.bio.zh) + "</p>" +
+      (teaser ? '<div class="story-teaser"><b>第一章 · ' + esc(c.chapters[0].zh) + "</b>" + teaser + "</div>" : "") +
+      '<div class="story-chapters"><b>' + c.chapters.length + " 章故事</b><ol>" + chapters + "</ol></div>" +
+      '<div class="story-note">完整劇情與多重結局請在遊戲裡體驗。</div></div></div>';
+    dialog.querySelector(".story-close").addEventListener("click", function () { dialog.close(); });
+    if (!dialog.open) dialog.showModal();
+  }
+  function open(card) {
+    var img = card.querySelector("img");
+    var match = img && img.getAttribute("src").match(/cast_(\w+)\.webp/);
+    if (!match) return;
+    var show = function () { if (data[match[1]]) render(match[1], img.getAttribute("src")); };
+    if (data) return show();
+    fetch("stories.json").then(function (r) { return r.json(); }).then(function (json) { data = json; show(); }).catch(function () {});
+  }
+  dialog.addEventListener("click", function (e) { if (e.target === dialog) dialog.close(); });
+  cards.forEach(function (card) {
+    card.tabIndex = 0;
+    card.setAttribute("role", "button");
+    card.style.cursor = "pointer";
+    card.addEventListener("click", function () { open(card); });
+    card.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(card); } });
+  });
+})();
