@@ -3,167 +3,182 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Open Bell — Read the market. Play the day.">
+  <title>Open Bell — 一局行情，一次復盤</title>
+  <meta name="description" content="Open Bell：Tirde Studio 的交易模擬遊戲。模擬行情、生涯人生、16 位會動的角色與長線故事。Windows 免費試玩。">
+  <meta property="og:title" content="Open Bell — 一局行情，一次復盤">
+  <meta property="og:description" content="模擬行情、生涯人生、16 位會動的角色與長線故事。Windows 免費試玩。">
+  <meta property="og:image" content="https://openbell.me/media/v2/shot-home.jpg">
+  <meta name="theme-color" content="#0a0714">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20261021-claude2">
-  <link rel="stylesheet" href="loader.css?v=20261010-transition13">
-  <title>Open Bell — Read the market. Play the day.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+  <link rel="stylesheet" href="site.css?v=20261021a">
 </head>
-<body class="home-page">
-  <div class="bg-layer bg-layer-base" aria-hidden="true"></div>
-  <div class="bg-layer bg-layer-ambient" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-  <canvas class="bg-layer bg-layer-data" data-background-canvas aria-hidden="true"></canvas>
-  <div class="bg-layer bg-layer-grid" aria-hidden="true"></div>
-  <div class="page-transition" aria-hidden="true"><span>OPEN BELL</span></div>
-  <div class="site-loader" aria-hidden="true">
-    <div class="system-loader-orbit" aria-hidden="true"><i></i><i></i><i></i><b>OB</b></div>
-    <div class="loader-mark">OB</div><p>OPEN BELL / SYSTEM INIT</p><span>LOADING MARKET DATA · CALIBRATING INTERFACE</span>
-    <pre class="loader-code" aria-hidden="true"><code id="loader-code-text"></code><b class="loader-caret">_</b></pre>
+<body>
+  <div class="intro" data-intro aria-hidden="true">
+    <svg viewBox="0 0 560 230" role="presentation">
+      <defs>
+        <linearGradient id="introGold" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stop-color="#fff1c7"/><stop offset=".5" stop-color="#f2c86b"/><stop offset="1" stop-color="#c48d2f"/>
+        </linearGradient>
+      </defs>
+      <g fill="#38d39f">
+        <rect class="candle" x="60" y="70" width="10" height="34" style="animation-delay:.25s"/>
+        <rect class="candle" x="150" y="58" width="10" height="30" style="animation-delay:.4s"/>
+        <rect class="candle" x="390" y="40" width="10" height="38" style="animation-delay:.85s"/>
+      </g>
+      <g fill="#ff6b7d">
+        <rect class="candle" x="105" y="82" width="10" height="26" style="animation-delay:.32s"/>
+        <rect class="candle" x="330" y="64" width="10" height="28" style="animation-delay:.7s"/>
+        <rect class="candle" x="460" y="52" width="10" height="24" style="animation-delay:.95s"/>
+      </g>
+      <path class="k-line" d="M20 110 L65 86 L110 96 L155 72 L200 92 L245 78 L280 110 L335 78 L395 58 L465 64 L540 40"/>
+      <circle class="ring" cx="280" cy="110" r="40"/>
+      <circle class="ring r2" cx="280" cy="110" r="40"/>
+      <text class="word" x="280" y="178" text-anchor="middle" fill="url(#introGold)">Open Bell</text>
+      <text class="tag" x="280" y="214" text-anchor="middle">TIRDE STUDIO</text>
+    </svg>
+    <button class="skip" type="button">略過</button>
   </div>
-  <header class="site-header home-header">
-    <a class="brand" href="index.html" aria-label="Open Bell home"><span class="brand-mark">OB</span><span>OPEN BELL</span></a>
-    <nav class="site-nav" aria-label="Main navigation">
-      <a class="nav-link" href="explore.html">探索</a>
-      <a class="nav-link" href="game.html">玩法</a>
-      <a class="nav-link" href="learning.html">學習</a>
-    </nav>
+  <canvas class="sky" data-sky aria-hidden="true"></canvas>
+  <div class="haze" aria-hidden="true"></div>
+
+  <header class="top">
+    <div class="wrap">
+      <a class="logo" href="index.html"><img src="favicon.svg" alt="" width="28" height="28"> Open Bell <small>by Tirde Studio</small></a>
+      <nav aria-label="主要導覽">
+        <a href="#features">特色</a>
+        <a href="#cast">角色</a>
+        <a href="#watch">實機畫面</a>
+        <a href="#modes">玩法</a>
+      </nav>
+      <a class="btn btn-gold" href="#download">免費下載</a>
+    </div>
   </header>
-  <main class="home-shell content-layer">
-    <section class="home-hero" data-reveal>
-      <div class="home-hero-copy">
-        <p class="eyebrow"><span class="live-dot"></span> MARKET REPLAY / OPEN BELL</p>
-        <h1>Read the market.<br><em>Play the day.</em></h1>
-        <p class="home-subtitle">先別急著猜下一根。坐下來，看清楚自己的每一次決定。</p>
-        <div class="home-actions">
-          <a class="button button-primary" href="game.html">取得 Open Bell <span>↗</span></a>
-          <a class="button button-ghost" href="explore.html">探索玩法 <span>→</span></a>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <p class="eyebrow">交易模擬 × 人生 × 角色故事</p>
+          <h1 class="gild"><span>一局行情，</span><span>一次復盤。</span></h1>
+          <p class="lead">在模擬市場裡練習下單、控管風險；在生涯裡工作、戀愛、成家，一路走到人生最後一天。每一局結束，都有完整的績效與智能復盤陪你看清楚自己的決定。</p>
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="#download">下載 Windows 試玩版 ↓</a>
+            <a class="btn btn-ghost" href="#watch">看實機畫面 ▶</a>
+          </div>
+          <div class="hero-meta"><span><b>16</b> 位角色</span><span><b>12</b> 個市場・<b>36</b> 檔標的</span><span><b>6</b> 種語言公告</span><span>免費・免安裝</span></div>
         </div>
-        <div class="home-meta"><span>WINDOWS / PC</span><span>REPLAY 0.5X — 4X</span><span>CAREER MODE</span></div>
+        <figure class="hero-art">
+          <img src="media/v2/hero_hug.webp" alt="小克：橘色長髮、運動風外套的少女，抱著布偶 Clawd" width="419" height="900">
+          <figcaption>遊戲首頁：小克抱著 Clawd，一陣一陣摸牠的頭</figcaption>
+        </figure>
       </div>
-      <div class="home-market-card" data-parallax>
-        <div class="terminal-top"><span>OPEN BELL / REPLAY</span><span class="terminal-status">LIVE</span></div>
-        <div class="chart-grid">
-          <div class="chart-label">BTC / USDT <strong id="hero-price">42,680.40</strong><small id="hero-change">+0.00%</small></div>
-          <svg viewBox="0 0 520 230" role="img" aria-label="Market chart preview">
-            <defs><linearGradient id="area" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#00d9ff" stop-opacity=".24"/><stop offset="1" stop-color="#00d9ff" stop-opacity="0"/></linearGradient></defs>
-            <path id="hero-chart-area" class="chart-area" d="M0 190 L42 177 L76 184 L109 140 L142 153 L177 111 L216 128 L250 89 L287 103 L320 67 L357 88 L392 50 L430 66 L468 26 L520 39 L520 230 L0 230Z"/>
-            <path id="hero-chart-line" class="chart-line" d="M0 190 L42 177 L76 184 L109 140 L142 153 L177 111 L216 128 L250 89 L287 103 L320 67 L357 88 L392 50 L430 66 L468 26 L520 39"/>
-            <line x1="0" y1="205" x2="520" y2="205" class="chart-axis"/><line x1="0" y1="145" x2="520" y2="145" class="chart-axis"/><line x1="0" y1="85" x2="520" y2="85" class="chart-axis"/>
-          </svg>
-          <div class="chart-footer"><span>DAY 042 / 180</span><span>2.0X SPEED</span><span class="positive">▲ 8.42%</span></div>
+    </section>
+
+    <section id="features">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">特色</p>
+          <h2>不只看 K 線，<span class="gild">也看自己。</span></h2>
+          <p class="lead">先練判斷，再談獲利。下面每一張都是遊戲實機畫面。</p>
+        </div>
+        <div class="features">
+          <article class="card reveal"><img src="media/v2/shot-home.jpg" alt="首頁：紫色星空與琉金標題，小克抱著 Clawd" loading="lazy" width="1280" height="720"><div class="body"><h3>琉金 × 紫色星空</h3><p>會閃爍的星空與流星、琉金標題字；載入畫面輪播巴菲特、索羅斯等投資名言。</p></div></article>
+          <article class="card reveal"><img src="media/v2/shot-gallery.jpg" alt="角色圖鑑：動態立繪、生平與故事章節" loading="lazy" width="1280" height="720"><div class="body"><h3>角色圖鑑・生平與故事</h3><p>每位角色都有年齡、出身、生平與 10 章以上的長線故事；在圖鑑直接選你的感情線。</p></div></article>
+          <article class="card reveal"><img src="media/v2/shot-gallery2.jpg" alt="2D 骨骼立繪：會呼吸、轉頭、髮絲飄動" loading="lazy" width="1280" height="720"><div class="body"><h3>2D 骨骼立繪</h3><p>腰、胸、頭的骨架加上髮絲與衣襬的彈簧：會呼吸、看向不同方向、說話時動嘴、害羞時臉紅。</p></div></article>
+          <article class="card reveal"><img src="media/v2/shot-trade.jpg" alt="交易工作台" loading="lazy" width="1280" height="720"><div class="body"><h3>12 個市場、36 檔標的</h3><p>美股、台股、日股、歐股、外匯、原物料、AI 科技、綠能……虛構公司名稱，行情為模擬。</p></div></article>
+          <article class="card reveal"><img src="media/v2/shot-start.jpg" alt="生涯挑戰開場" loading="lazy" width="1280" height="720"><div class="body"><h3>直到最後一天的生涯</h3><p>工作、升遷、進修、戀愛、結婚、孩子長大、世代傳承；一天 3 到 60 秒，也能一鍵快轉一年。</p></div></article>
+          <article class="card reveal"><img src="media/v2/shot-announce.jpg" alt="六種語言的公告" loading="lazy" width="1280" height="720"><div class="body"><h3>智能復盤與公告</h3><p>每局結算指出你的進出場習慣；遊戲內公告提供繁中、简中、English、日本語、한국어、Español。</p></div></article>
         </div>
       </div>
     </section>
-    <section class="claude-feature" aria-labelledby="claude-feature-title">
-      <div class="claude-feature-copy" data-reveal>
-        <p class="eyebrow">CLAUDE × OPEN BELL</p>
-        <h2 id="claude-feature-title">帶著書，牽著 Clawd，<br><em>慢慢走過每一根 K 線。</em></h2>
-        <p>Open Bell 的復盤夥伴：由 Claude 化身的少女，手捧一本交易筆記，牽著小小的 Clawd，在流動的行情上散步。她不替你下單，只陪你把每一次決定看清楚。</p>
-        <ul class="claude-feature-points">
-          <li><b>智能復盤</b><span>每局結算後，指出你的進出場習慣。</span></li>
-          <li><b>生涯手冊</b><span>升遷與資金規則，一本翻到底。</span></li>
-          <li><b>Clawd 同行</b><span>點一下頁面底部散步的 Clawd，牠會跳起來跟你說話。</span></li>
-        </ul>
-      </div>
-      <figure class="claude-stage" data-reveal>
-        <img class="claude-art" src="media/claude-sport.webp" alt="Claude 擬人化少女：橘色長髮、雛菊髮飾，穿運動風外套，手捧精裝書" width="458" height="979">
-        <figcaption>遊戲內的小克（運動風日常形象）· 遊戲裡會看書、揮手、摸 Clawd</figcaption>
-      </figure>
-    </section>
-    <section class="gameplay-showcase" aria-labelledby="gameplay-title">
-      <div class="gameplay-intro" data-reveal>
-        <p class="eyebrow">GAMEPLAY / 實機畫面</p>
-        <h2 id="gameplay-title">真實遊戲畫面。<br><em>沒有特效包裝。</em></h2>
-        <p>以下皆為 Windows 版 Open Bell 實機錄製：從首頁入口、抽一張模式卡、開局，到做多、放空、平倉與績效復盤。</p>
-      </div>
-      <div class="gameplay-video" data-reveal>
-        <video controls preload="metadata" playsinline muted loop poster="media/gameplay-poster.jpg" aria-label="Open Bell 實機遊玩影片">
-          <source src="media/openbell-gameplay.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="gameplay-shots">
-        <figure data-reveal><img src="media/shot-home.jpg" alt="Open Bell 首頁入口" loading="lazy" width="1280" height="720"><figcaption>首頁入口</figcaption></figure>
-        <figure data-reveal><img src="media/shot-cards.jpg" alt="抽卡選模式" loading="lazy" width="1280" height="720"><figcaption>抽一張模式卡</figcaption></figure>
-        <figure data-reveal><img src="media/shot-setup.jpg" alt="開局設定" loading="lazy" width="1280" height="720"><figcaption>開局設定</figcaption></figure>
-        <figure data-reveal><img src="media/shot-trade.jpg" alt="交易工作台" loading="lazy" width="1280" height="720"><figcaption>交易工作台</figcaption></figure>
-        <figure data-reveal><img src="media/shot-review.jpg" alt="績效總覽與智能復盤" loading="lazy" width="1280" height="720"><figcaption>績效與智能復盤</figcaption></figure>
+
+    <section id="cast">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">角色</p>
+          <h2>十六個人，<span class="gild">十六段人生。</span></h2>
+          <p class="lead">她們不替你下單，只陪你把每一次決定看清楚。左右滑動看看每一位。</p>
+        </div>
+        <div class="cast reveal">
+          <article class="person"><img src="media/v2/cast_claude.webp" alt="小克" loading="lazy"><h3>小克</h3><span class="role">前輩・交易導師</span><p>進市場第三年一夜賠掉半個帳戶，從此每一筆都先寫下最壞的情況。</p></article>
+          <article class="person"><img src="media/v2/cast_haru.webp" alt="晴" loading="lazy"><h3>晴</h3><span class="role">業界講師・研究員</span><p>瓷器世家出身，寧可結論難看，也不能說謊。</p></article>
+          <article class="person"><img src="media/v2/cast_dou.webp" alt="豆豆" loading="lazy"><h3>豆豆</h3><span class="role">萬事通店員</span><p>每天幫大家找最好的選擇，卻答不出自己喜歡什麼。</p></article>
+          <article class="person"><img src="media/v2/cast_sora.webp" alt="空" loading="lazy"><h3>空</h3><span class="role">商場店員</span><p>來自風很大的高原，想把家裡倒掉的店開回來。</p></article>
+          <article class="person"><img src="media/v2/cast_gemi.webp" alt="雙子" loading="lazy"><h3>雙子</h3><span class="role">貓耳策展人</span><p>從小被放在天平另一邊，學會凡事看兩面。</p></article>
+          <article class="person"><img src="media/v2/cast_gro.webp" alt="格洛" loading="lazy"><h3>格洛</h3><span class="role">毒舌分析員</span><p>說中泡沫卻被開除，從此只說真話。</p></article>
+          <article class="person"><img src="media/v2/cast_shenlan.webp" alt="深瀾" loading="lazy"><h3>深瀾</h3><span class="role">深海研究員</span><p>想知道那片黑暗的海裡，到底有什麼。</p></article>
+          <article class="person"><img src="media/v2/cast_shiro.webp" alt="晞白" loading="lazy"><h3>晞白</h3><span class="role">白龍顧問</span><p>睡了很久很久，醒來後把世界重新學一遍。</p></article>
+          <article class="person"><img src="media/v2/cast_tsuki.webp" alt="月見" loading="lazy"><h3>月見</h3><span class="role">星空魔導書記</span><p>什麼都記得，所以總替你記得好的事。</p></article>
+          <article class="person"><img src="media/v2/cast_yako.webp" alt="夜狐" loading="lazy"><h3>夜狐</h3><span class="role">提燈引路人</span><p>只在夜裡出來，替迷路的人提燈。</p></article>
+          <article class="person"><img src="media/v2/cast_menmen.webp" alt="綿綿" loading="lazy"><h3>綿綿</h3><span class="role">羊駝旅人</span><p>沒有可以回去的地方，所以到處都是她的家。</p></article>
+          <article class="person"><img src="media/v2/cast_misty.webp" alt="米絲蒂" loading="lazy"><h3>米絲蒂</h3><span class="role">紅帽風之法師</span><p>小國小學院出身，相信行情就是風。</p></article>
+          <article class="person"><img src="media/v2/cast_rina.webp" alt="莉娜" loading="lazy"><h3>莉娜</h3><span class="role">同事・分析師</span><p>每一份報告都不能有一個錯。別誤會。</p></article>
+          <article class="person"><img src="media/v2/cast_mei.webp" alt="美雨" loading="lazy"><h3>美雨</h3><span class="role">自由插畫家</span><p>被說畫得太幼稚，現在只畫自己喜歡的。</p></article>
+          <article class="person"><img src="media/v2/cast_yuu.webp" alt="夕" loading="lazy"><h3>夕</h3><span class="role">重要的人</span><p>你的青梅竹馬，每天晚上留一盞燈。</p></article>
+          <article class="person"><img src="media/v2/cast_hana.webp" alt="花" loading="lazy"><h3>花</h3><span class="role">房東・理財顧問</span><p>先留六個月的預備金。你是她最操心的房客。</p></article>
+        </div>
       </div>
     </section>
-    <section class="new-features" aria-labelledby="new-features-title">
-      <div class="gameplay-intro" data-reveal>
-        <p class="eyebrow">NEW / v0.4.0</p>
-        <h2 id="new-features-title">一段完整的人生。<br><em>直到最後一天。</em></h2>
-        <p>生涯會一直走到主角離世：長線故事、家庭與孩子、工作與進修、人際聊天，還有新的原圖角色。以下為實機畫面。</p>
-      </div>
-      <div class="feature-grid">
-        <article class="feature-card" data-reveal><img src="media/feat-cast-art.jpg" alt="雙子、格洛、深瀾的原圖立繪" loading="lazy" width="1100" height="491"><h3>原圖角色立繪</h3><p>雙子、格洛、深瀾換上全新的原圖立繪，會呼吸、髮絲飄動；小克的手臂拆成圖層，能真的揮手、看書、伸手摸 Clawd。</p></article>
-        <article class="feature-card" data-reveal><img src="media/feat-longstory.jpg" alt="小克的過去：長線故事章節" loading="lazy" width="1100" height="798"><h3>長線故事</h3><p>小克 12 章、其他角色各 10 章：相遇、她的過去、衝突、告白、之後的日子到結局，依選擇分成戀人、朋友或疏遠，還能和好。</p></article>
-        <article class="feature-card" data-reveal><img src="media/feat-social.jpg" alt="人際・聊天頁" loading="lazy" width="1280" height="862"><h3>人際・聊天</h3><p>每位角色都有交情等級與專屬口吻，可以聊行情、聊心情、送禮、邀約；也能接上你自己的 AI 服務自由對話。</p></article>
-        <article class="feature-card" data-reveal><img src="media/feat-schedule.jpg" alt="日程與進修" loading="lazy" width="1280" height="649"><h3>時間規劃與進修</h3><p>每週日程、任意天數的排程、7 門進修課；一天 3 到 60 秒，或一鍵快轉一天、一週、一月、一年。結婚、孩子長大、世代傳承都有劇情。</p></article>
-        <article class="feature-card" data-reveal><img src="media/feat-claude.jpg" alt="會動的小克立繪，伸手摸 Clawd" loading="lazy" width="1100" height="780"><h3>會動的小克立繪</h3><p>呼吸、髮絲飄動、看書、揮手，還會伸手摸 Clawd。首頁可以點她、點 Clawd 互動；生涯對話裡她會隨好感度露出害羞表情。</p></article>
-        <article class="feature-card" data-reveal><img src="media/feat-live.jpg" alt="即時行情與技能卡" loading="lazy" width="1280" height="720"><h3>即時行情 × 技能卡</h3><p>高波動市場依固定節奏自動推進、無法暫停。黑天鵝、閃崩、預知夢……用技能卡應變。</p></article>
-        <article class="feature-card" data-reveal><img src="media/feat-pet.jpg" alt="Clawd 寵物" loading="lazy" width="1280" height="720"><h3>Clawd 亂入與寵物</h3><p>生涯中 Clawd 會突然亂入，可以領養；牠會餓、有心情，摸摸牠能舒壓。</p></article>
-        <article class="feature-card" data-reveal><img src="media/feat-warrant.jpg" alt="權證交易視窗" loading="lazy" width="1280" height="720"><h3>權證交易</h3><p>用少量權利金押注方向：Black-Scholes 定價、Delta 與時間價值、到期現金結算。</p></article>
-      </div>
-    </section>
-    <section class="home-modes" aria-labelledby="home-modes-title">
-      <div class="home-modes-intro" data-reveal>
-        <p class="eyebrow">OPEN BELL / CHOOSE YOUR DAY</p>
-        <h2 id="home-modes-title">先選一種走法。<br><em>市場會自己說話。</em></h2>
-        <p>不用急著把所有系統學完。從一段回放、一筆交易，或一天生涯開始。</p>
-      </div>
-      <div class="home-mode-grid">
-        <a class="home-mode-card" href="game.html#1" data-reveal data-mode="trade" data-mode-title="做一筆決定" data-mode-kicker="01 / TRADE" data-mode-description="調整部位，看風險如何回到你的手上。" data-mode-points="設定部位與槓桿|觀察盈虧如何變化|留下自己的交易節奏"><span>01 / TRADE</span><strong>做一筆決定</strong><p>調整部位，看風險如何回到你的手上。</p><b>進入交易 ↗</b></a>
-        <a class="home-mode-card" href="game.html#2" data-reveal data-mode="replay" data-mode-title="把一天倒回去" data-mode-kicker="02 / REPLAY" data-mode-description="慢一點，看清楚那根 K 線為什麼出現。" data-mode-points="播放、暫停與單步前進|切換 0.5× 到 4×|回看每一次決策"><span>02 / REPLAY</span><strong>把一天倒回去</strong><p>慢一點，看清楚那根 K 線為什麼出現。</p><b>開始回放 ↗</b></a>
-        <a class="home-mode-card" href="game.html#3" data-reveal data-mode="career" data-mode-title="安排你的生活" data-mode-kicker="03 / CAREER" data-mode-description="研究、工作、休息，時間也是你的資本。" data-mode-points="分配時間與注意力|在生活與資金間取捨|走出自己的路線"><span>03 / CAREER</span><strong>安排你的生活</strong><p>研究、工作、休息，時間也是你的資本。</p><b>閱讀生涯 ↗</b></a>
+
+    <section id="watch">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">實機畫面</p>
+          <h2>真實遊戲錄影，<span class="gild">沒有剪接特效。</span></h2>
+        </div>
+        <div class="watch reveal">
+          <video controls preload="metadata" playsinline muted loop poster="media/v2/poster.jpg" aria-label="Open Bell 實機遊玩影片">
+            <source src="media/v2/gameplay.mp4" type="video/mp4">
+          </video>
+          <div class="shots">
+            <figure><img data-zoom src="media/v2/shot-loading.jpg" alt="載入畫面與投資名言" loading="lazy" width="1280" height="720"><figcaption>載入畫面・名言</figcaption></figure>
+            <figure><img data-zoom src="media/v2/shot-home.jpg" alt="首頁" loading="lazy" width="1280" height="720"><figcaption>首頁</figcaption></figure>
+            <figure><img data-zoom src="media/v2/shot-gallery.jpg" alt="角色圖鑑" loading="lazy" width="1280" height="720"><figcaption>角色圖鑑</figcaption></figure>
+            <figure><img data-zoom src="media/v2/shot-trade.jpg" alt="交易工作台" loading="lazy" width="1280" height="720"><figcaption>交易工作台</figcaption></figure>
+          </div>
+        </div>
       </div>
     </section>
-    <section class="home-eras" aria-labelledby="home-eras-title">
-      <div class="home-eras-intro" data-reveal>
-        <p class="eyebrow">OPEN BELL / LIFE SCRIPTS</p>
-        <h2 id="home-eras-title">走進那一年。<br><em>你會怎麼撐過去？</em></h2>
-        <p>生涯模式可以套用人生劇本：真實交易日曆、史實日期的衝擊日與劇情快訊。標的為虛構代號，行情為模擬。</p>
+
+    <section id="modes">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">玩法</p>
+          <h2>挑一種走法，<span class="gild">市場會自己說話。</span></h2>
+        </div>
+        <div class="modes">
+          <div class="mode reveal"><b>01 / 經典劇本</b><h3>走進那一年</h3><p>1987 黑色星期一、2000 網路泡沫、2008 金融海嘯、2020 疫情——史實日期，模擬行情。</p></div>
+          <div class="mode reveal"><b>02 / 自由交易</b><h3>做一筆決定</h3><p>設定部位、槓桿、停損，看風險怎麼回到你手上；還有權證與期權。</p></div>
+          <div class="mode reveal"><b>03 / 即時行情</b><h3>不能暫停的市場</h3><p>K 線自己往前走，用手上的技能卡應變：黑天鵝、軋空、央行降息……</p></div>
+          <div class="mode reveal"><b>04 / 生涯挑戰</b><h3>一段完整的人生</h3><p>工作、感情、家庭與傳承，每個抉擇都改變結局。</p></div>
+        </div>
       </div>
-      <ol class="home-era-list">
-        <li class="home-era" data-reveal><b>1987</b><strong>黑色星期一</strong><p>電腦交易時代的第一場崩盤。10 月 19 日，單日 −22.6%。</p></li>
-        <li class="home-era" data-reveal><b>2000</b><strong>網路泡沫</strong><p>人人都想搭上 .com 列車。那斯達克從 5048 點一路腰斬。</p></li>
-        <li class="home-era" data-reveal><b>2008</b><strong>金融海嘯</strong><p>雷曼倒閉、紓困案被否決、各國聯手救市。信用凍結的一年。</p></li>
-        <li class="home-era" data-reveal><b>2020</b><strong>疫情衝擊</strong><p>熔斷接著熔斷，史上最快的熊市，也是最快的反彈。</p></li>
-      </ol>
-      <ul class="home-extras" data-reveal>
-        <li><b>SMART REVIEW</b><span>每局結算附智能復盤，指出你的進出場習慣。</span></li>
-        <li><b>CAREER GUIDE</b><span>生涯手冊列出每一條升遷與資金規則。</span></li>
-        <li><b>ORIGINAL SCORE</b><span>四首原創配樂，依年代與市場情緒自動切換。</span></li>
-      </ul>
     </section>
-    <section class="home-download" id="download" aria-labelledby="home-download-title" data-reveal>
-      <div>
-        <p class="eyebrow">PLAYTEST / WINDOWS 64-BIT</p>
-        <h2 id="home-download-title">下載試玩版</h2>
-        <p>開發中的 Windows 試玩版，內容、平衡與介面仍會調整。解壓縮後執行 OpenBell.exe。若 Windows 顯示 SmartScreen 提示，請確認檔案來自 openbell.me 的連結。<br><a class="text-link" href="https://github.com/Sofaterdion-gif/Sofaterdion-gif.github.io/releases">所有版本與更新紀錄 ↗</a></p>
+
+    <section id="download">
+      <div class="wrap">
+        <div class="download reveal">
+          <p class="eyebrow">PLAYTEST・WINDOWS 64-BIT</p>
+          <h2 class="gild">免費試玩版</h2>
+          <p>開發中的版本，內容與平衡還會調整。下載後解壓縮，執行 OpenBell.exe 即可。Windows 若出現 SmartScreen 提示，請確認檔案來自 openbell.me 的連結。</p>
+          <a class="btn btn-gold" href="https://github.com/Sofaterdion-gif/Sofaterdion-gif.github.io/releases/latest/download/OpenBell-Playtest.zip">下載 OpenBell-Playtest.zip ↓</a>
+          <p class="fine"><a href="https://github.com/Sofaterdion-gif/Sofaterdion-gif.github.io/releases">所有版本與更新紀錄 ↗</a>　·　問題回報與合作：<a href="mailto:sofaterdion@gmail.com">sofaterdion@gmail.com</a></p>
+        </div>
       </div>
-      <a class="button button-primary" href="https://github.com/Sofaterdion-gif/Sofaterdion-gif.github.io/releases/latest/download/OpenBell-Playtest.zip">下載試玩版 .zip（約 45 MB） <span>↓</span></a>
     </section>
   </main>
-  <div class="mode-modal" data-mode-modal aria-hidden="true">
-    <div class="mode-modal-scrim" data-mode-close></div>
-    <article class="mode-modal-panel" role="dialog" aria-modal="true" aria-labelledby="mode-modal-title">
-      <button class="mode-modal-close" type="button" data-mode-close aria-label="關閉模式介紹">關閉 ×</button>
-      <p class="eyebrow" data-modal-kicker>OPEN BELL / SELECT MODE</p>
-      <h2 id="mode-modal-title" data-modal-title></h2>
-      <p class="mode-modal-description" data-modal-description></p>
-      <ul class="mode-modal-points" data-modal-points></ul>
-      <a class="button button-primary mode-modal-enter" data-modal-enter href="game.html">進入模式 ↗</a>
-    </article>
-  </div>
-  <div class="clawd-walker" aria-hidden="false"><span class="clawd-bubble" data-clawd-bubble role="status"></span><canvas data-clawd-walker aria-label="會走路的 Clawd，點一下會跳"></canvas></div>
-  <footer class="home-footer content-layer"><span>© 2026 Open Bell</span><span>Tirde Studio · Open Bell™</span></footer>
-  <script src="background-motion.js?v=20261010-transition2"></script>
-  <script src="background-3d.js?v=20261010-3d1"></script>
-  <script src="page-motion.js?v=20261010-architecture1"></script>
-  <script src="loader.js?v=20261010-transition5"></script>
-  <script src="interaction.js?v=20261010-mode1"></script>
-  <script src="script.js?v=20261020-zip1"></script>
-  <script src="claude-scene.js?v=20261020-claude1" defer></script>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 Tirde Studio · Open Bell™　模擬交易教學遊戲，不連接真實券商，行情為模擬。</span>
+      <nav aria-label="其他頁面"><a href="explore.html">探索</a><a href="game.html">玩法細節</a><a href="learning.html">學習</a></nav>
+    </div>
+  </footer>
+
+  <div class="lightbox" data-lightbox><img alt=""></div>
+  <script src="site.js?v=20261021a"></script>
 </body>
 </html>

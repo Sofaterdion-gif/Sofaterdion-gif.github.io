@@ -1,12 +1,14 @@
 # Open Bell Playtest
 
-![Open Bell cover](open-bell-cover.svg)
+<p align="center"><img src="media/readme-banner.jpg" alt="Open Bell" width="720"></p>
 
 ## 目前可玩試玩版
 
-這是 Open Bell 的 Windows / PC 開發中試玩版。可以體驗交易、行情回放、生涯模式與人生劇本（1987／2000／2008／2020）、智能復盤與原創配樂，但內容、平衡與介面仍會持續調整，**不是最終版本**。
+這是 Open Bell 的 Windows / PC 開發中試玩版（目前 **v0.4.0**）。可以體驗 12 個市場的交易與行情回放、一路走到主角離世的生涯模式（長線故事、家庭與孩子、工作與進修、人際聊天、世代傳承）、人生劇本（1987／2000／2008／2020）、智能復盤與原創配樂；新介面為琉金＋紫色星空。內容、平衡與介面仍會持續調整，**不是最終版本**。
 
-**[下載 OpenBell-Playtest.zip](https://github.com/Sofaterdion-gif/Sofaterdion-gif.github.io/releases/latest/download/OpenBell-Playtest.zip)**（約 41 MB）· [所有版本與更新紀錄](https://github.com/Sofaterdion-gif/Sofaterdion-gif.github.io/releases)
+聯絡信箱：[sofaterdion@gmail.com](mailto:sofaterdion@gmail.com) · 官方網站：[openbell.me](https://openbell.me)
+
+**[下載 OpenBell-Playtest.zip](https://github.com/Sofaterdion-gif/Sofaterdion-gif.github.io/releases/latest/download/OpenBell-Playtest.zip)**（約 46 MB）· [所有版本與更新紀錄](https://github.com/Sofaterdion-gif/Sofaterdion-gif.github.io/releases)
 
 ## 創作者聲明
 
