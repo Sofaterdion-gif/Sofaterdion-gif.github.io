@@ -96,3 +96,12 @@
     box.addEventListener("click", () => box.classList.remove("open"));
   }
 })();
+
+// 偏好減少動態的人：小克影片停在海報畫面。
+(function () {
+  try {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.querySelectorAll(".hero-live").forEach(function (v) { v.removeAttribute("autoplay"); v.pause(); });
+    }
+  } catch (e) {}
+})();
