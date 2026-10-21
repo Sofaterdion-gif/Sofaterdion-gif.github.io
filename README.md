@@ -4,11 +4,11 @@
 
 ## 目前可玩試玩版
 
-這是 Open Bell 的 Windows / PC 開發中試玩版（目前 **v0.4.0**）。可以體驗 12 個市場的交易與行情回放、一路走到主角離世的生涯模式（長線故事、家庭與孩子、工作與進修、人際聊天、世代傳承）、人生劇本（1987／2000／2008／2020）、智能復盤與原創配樂；新介面為琉金＋紫色星空。內容、平衡與介面仍會持續調整，**不是最終版本**。
+這是 Open Bell 的 Windows / PC 開發中試玩版（目前 **v0.4.1**）。可以體驗 20 個市場、60 檔標的的交易與行情回放（K 線指標與畫線工具）、世界地圖休閒與旅行（135 座城市、旅居、在地事件、相遇認識角色）、會互動的寵物 Clawd、一路走到主角離世的生涯模式（長線故事、家庭與孩子、工作與進修、人際聊天、世代傳承）、人生劇本（1987／2000／2008／2020）、智能復盤與原創配樂；新介面為琉金＋紫色星空。內容、平衡與介面仍會持續調整，**不是最終版本**。
 
 聯絡信箱：[sofaterdion@gmail.com](mailto:sofaterdion@gmail.com) · 官方網站：[openbell.me](https://openbell.me)
 
-**[下載 OpenBell-Playtest.zip](https://github.com/Sofaterdion-gif/Sofaterdion-gif.github.io/releases/latest/download/OpenBell-Playtest.zip)**（約 46 MB）· [所有版本與更新紀錄](https://github.com/Sofaterdion-gif/Sofaterdion-gif.github.io/releases)
+**[下載 OpenBell-Playtest.zip](https://github.com/Sofaterdion-gif/Sofaterdion-gif.github.io/releases/latest/download/OpenBell-Playtest.zip)**（約 93 MB）· [所有版本與更新紀錄](https://github.com/Sofaterdion-gif/Sofaterdion-gif.github.io/releases)
 
 ## 創作者聲明
 
